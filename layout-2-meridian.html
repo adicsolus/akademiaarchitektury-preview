@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACADEMIA — Meridian</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeGoodsStore",
+  "name": "Academia Architektury",
+  "description": "Ekskluzywne wyposażenie wnętrz — meble i obiekty dla architektów",
+  "url": "https://akademiaarchitektury.pl",
+  "priceRange": "$$$$$",
+  "currenciesAccepted": "PLN"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ivory: #F5F0E8;
+  --ivory-2: #EDE7DB;
+  --ivory-3: #DDD5C4;
+  --charcoal: #1C1C1A;
+  --charcoal-2: #2E2E2B;
+  --charcoal-dim: #6B6B66;
+  --terra: #C25A38;
+  --terra-light: #D4714D;
+  --terra-dim: #8B3D24;
+  --brass: #B5943A;
+  --brass-light: #C9A84C;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--ivory);
+  color: var(--charcoal);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── TICKER ── */
+.ticker {
+  background: var(--charcoal);
+  padding: 10px 0;
+  overflow: hidden;
+}
+.ticker-track {
+  display: flex;
+  gap: 0;
+  white-space: nowrap;
+  animation: tickerMove 25s linear infinite;
+}
+.ticker-item {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ivory-3);
+  padding: 0 40px;
+  flex-shrink: 0;
+}
+.ticker-item span { color: var(--terra); margin: 0 8px; }
+@keyframes tickerMove {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ── NAV ── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 500;
+  background: var(--ivory);
+  border-bottom: 1px solid var(--ivory-3);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 48px;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  color: var(--charcoal);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+}
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--charcoal-dim);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 400;
+  transition: color 0.25s;
+}
+.nav-links a:hover { color: var(--terra); }
+.nav-cta {
+  background: var(--charcoal);
+  color: var(--ivory);
+  padding: 10px 24px;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.25s;
+}
+.nav-cta:hover { background: var(--terra); }
+
+/* ── HERO — SPLIT ── */
+.hero {
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  min-height: calc(100vh - 100px);
+}
+.hero-visual {
+  position: relative;
+  overflow: hidden;
+}
+/* Large asymmetric product visual */
+.hero-visual-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, #E8DDD0 0%, #D5C8B8 40%, #C8B9A5 100%);
+}
+.hero-visual-obj {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 80%;
+  background: linear-gradient(160deg, #3D2060 0%, #2D1550 50%, #1A0D35 100%);
+  clip-path: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
+}
+.hero-visual-obj::before {
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 10%;
+  right: 10%;
+  height: 45%;
+  background: linear-gradient(160deg, #5A3090 0%, #4A2278 60%, #3A1A65 100%);
+  border-radius: 6px 6px 0 0;
+}
+.hero-visual-obj::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 15%;
+  width: 1px;
+  height: 10%;
+  background: linear-gradient(to bottom, #C4A84C, transparent);
+}
+
+/* Collection badge overlay */
+.hero-badge {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  background: var(--charcoal);
+  color: var(--ivory);
+  padding: 16px 24px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+.hero-badge strong {
+  display: block;
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+  color: var(--brass-light);
+}
+
+/* Product label in-image */
+.hero-product-label {
+  position: absolute;
+  bottom: 48px;
+  right: 40px;
+  text-align: right;
+}
+.hero-product-label .pname {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ivory);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.hero-product-label .pprice {
+  font-size: 13px;
+  color: rgba(245, 240, 232, 0.6);
+  letter-spacing: 0.1em;
+}
+
+/* Vertical scroll indicator line in hero */
+.hero-scroll-indicator {
+  position: absolute;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  writing-mode: vertical-lr;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.4);
+}
+.hero-scroll-bar {
+  width: 1px;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(245,240,232,0.4), transparent);
+  margin-bottom: 4px;
+}
+
+/* Hero right panel */
+.hero-content {
+  padding: 60px 48px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--ivory-2);
+  border-left: 1px solid var(--ivory-3);
+}
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 20px;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(42px, 4vw, 64px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+}
+.hero-title em { font-style: italic; color: var(--terra); }
+.hero-desc {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--charcoal-dim);
+  margin-bottom: 40px;
+}
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--terra);
+  color: var(--ivory);
+  padding: 16px 32px;
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s, gap 0.3s;
+}
+.hero-cta:hover { background: var(--terra-dim); gap: 20px; }
+
+/* Stats row */
+.hero-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding-top: 40px;
+  border-top: 1px solid var(--ivory-3);
+  margin-top: 40px;
+}
+.hero-stat-num {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 400;
+  color: var(--charcoal);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-stat-num span { color: var(--terra); font-size: 24px; }
+.hero-stat-label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--charcoal-dim);
+  text-transform: uppercase;
+}
+
+/* ── BENTO PRODUCT GRID ── */
+.bento {
+  padding: 100px 48px;
+}
+.bento-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 48px;
+}
+.bento-title {
+  font-family: var(--serif);
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.bento-title em { font-style: italic; color: var(--terra); }
+.bento-view-all {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--terra);
+  text-decoration: none;
+  border-bottom: 1px solid var(--terra);
+  padding-bottom: 2px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.bento-view-all:hover { color: var(--terra-dim); border-color: var(--terra-dim); }
+
+/* Bento grid — 3 columns, 2 rows, varied sizes */
+.bento-grid {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr;
+  grid-template-rows: 480px 320px;
+  gap: 12px;
+}
+
+.bento-cell {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--ivory-2);
+}
+.bento-cell:first-child { grid-row: span 2; }
+.bento-cell:nth-child(4) { grid-column: span 2; }
+
+.bento-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.bento-cell:hover .bento-bg { transform: scale(1.04); }
+
+/* Individual bento product visuals */
+.bb-velvet {
+  background: linear-gradient(150deg, #3D2060 0%, #2D1550 50%, #1A0D35 100%);
+}
+.bb-velvet::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 65%;
+  height: 60%;
+  background: linear-gradient(180deg, #4A2880 0%, #2D1550 100%);
+  clip-path: polygon(5% 0%, 95% 0%, 100% 100%, 0% 100%);
+}
+
+.bb-marble {
+  background: linear-gradient(135deg, #EDE8E1 0%, #D8D0C4 40%, #E8E0D5 100%);
+}
+.bb-marble::before {
+  content: '';
+  position: absolute;
+  left: 15%; right: 15%; top: 25%; bottom: 25%;
+  background: linear-gradient(145deg, #F0EBE3, #DDD4C7, #E8E2D8);
+  box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+  border-radius: 3px;
+}
+
+.bb-brass {
+  background: radial-gradient(ellipse at 50% 20%, #2A2215, #0D0C09);
+}
+.bb-brass::after {
+  content: '';
+  position: absolute;
+  left: 50%; top: 10%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 70%;
+  background: linear-gradient(180deg, #D4BC96, #B8963C, #7A6014);
+  box-shadow: 0 0 30px rgba(212, 188, 150, 0.25);
+}
+.bb-brass::before {
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 25%;
+  background: radial-gradient(ellipse, rgba(212,188,150,0.5), transparent 70%);
+  filter: blur(15px);
+}
+
+.bb-linen {
+  background: linear-gradient(160deg, #D4C8B5, #C4B8A0, #D8CCBA);
+}
+.bb-linen::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 20%; right: 20%;
+  height: 70%;
+  background: linear-gradient(180deg, #C8BAA5, #B8A890, #A89878);
+  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
+}
+
+.bb-oak {
+  background: linear-gradient(145deg, #6B4A32, #4A3020, #5C3D28);
+}
+.bb-oak::before {
+  content: '';
+  position: absolute;
+  inset: 15%;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 30px);
+}
+
+.bb-glass {
+  background: linear-gradient(135deg, #B8D4E8 0%, #8DBAD4 50%, #A8CAE0 100%);
+  opacity: 0.8;
+}
+.bb-glass::before {
+  content: '';
+  position: absolute;
+  inset: 20%;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 2px;
+  backdrop-filter: blur(4px);
+}
+
+/* Cell info overlay */
+.bento-info {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(28,28,26,0.75) 0%, transparent 50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.bento-cell:hover .bento-info { opacity: 1; }
+.bento-cat { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--brass-light); margin-bottom: 6px; }
+.bento-name { font-family: var(--serif); font-size: 24px; color: var(--ivory); margin-bottom: 4px; }
+.bento-price { font-size: 13px; color: rgba(245,240,232,0.7); }
+
+/* Always-visible label on large cell */
+.bento-cell:first-child .bento-info { opacity: 1; background: linear-gradient(to top, rgba(28,28,26,0.8) 0%, transparent 45%); }
+
+/* Wishlist dot */
+.bento-wish {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  background: rgba(245,240,232,0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s, transform 0.3s;
+  font-size: 14px;
+  cursor: pointer;
+}
+.bento-cell:hover .bento-wish { opacity: 1; transform: scale(1); }
+
+/* ── MATERIAL STORIES ── */
+.materials {
+  background: var(--charcoal);
+  padding: 100px 48px;
+  color: var(--ivory);
+}
+.materials-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 64px;
+  align-items: end;
+}
+.materials-title {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.materials-title em { color: var(--brass-light); font-style: italic; }
+.materials-desc {
+  color: rgba(245,240,232,0.5);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.materials-row {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+}
+.material-item {
+  position: relative;
+  aspect-ratio: 0.75;
+  overflow: hidden;
+  cursor: pointer;
+}
+.material-item:hover .material-bg { transform: scale(1.06); }
+
+.material-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.mat-marble { background: linear-gradient(145deg, #E8E2D9, #D5C9BC, #EDE8E1, #C8BDB0); }
+.mat-velvet { background: linear-gradient(150deg, #3D2060, #2D1550, #1A0D35); }
+.mat-brass { background: linear-gradient(135deg, #b8902a, #dcc068, #c9a84c, #8c6914); }
+.mat-oak { background: linear-gradient(145deg, #6B4A32, #4A3020, #5C3D28, #8B6040); }
+.mat-concrete { background: linear-gradient(135deg, #6A6A6A, #7A7A7A, #5A5A5A, #686868); }
+
+.material-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(28,28,26,0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px;
+  transition: background 0.4s;
+}
+.material-item:hover .material-overlay { background: rgba(28,28,26,0.2); }
+
+.material-name {
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--ivory);
+  margin-bottom: 4px;
+}
+.material-count { font-size: 11px; color: rgba(245,240,232,0.5); letter-spacing: 0.1em; }
+
+/* ── EDITORIAL ROW ── */
+.editorial {
+  padding: 100px 48px;
+  display: grid;
+  grid-template-columns: 1fr 2px 1fr 2px 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.editorial-divider {
+  background: var(--ivory-3);
+  height: 100%;
+  min-height: 300px;
+}
+.ed-number {
+  font-family: var(--serif);
+  font-size: 72px;
+  font-weight: 400;
+  color: var(--ivory-3);
+  line-height: 1;
+  margin-bottom: 24px;
+}
+.ed-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 16px;
+  line-height: 1.3;
+}
+.ed-body {
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--charcoal-dim);
+}
+.ed-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--terra);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+
+/* ── STATS COUNTER ROW ── */
+.stats-row {
+  background: var(--terra);
+  padding: 60px 48px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+.stat-block {
+  text-align: center;
+  color: var(--ivory);
+}
+.stat-num {
+  font-family: var(--serif);
+  font-size: 56px;
+  font-weight: 400;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.stat-suffix {
+  font-size: 28px;
+  color: rgba(245,240,232,0.6);
+}
+.stat-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+/* ── AI ADVISOR ── */
+.advisor {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+}
+.advisor-content {
+  background: var(--charcoal-2);
+  padding: 80px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: var(--ivory);
+}
+.advisor-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--brass-light);
+  margin-bottom: 32px;
+}
+.advisor-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--brass-light);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+.advisor-title {
+  font-family: var(--serif);
+  font-size: clamp(32px, 3.5vw, 48px);
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 24px;
+}
+.advisor-title em { font-style: italic; color: var(--brass-light); }
+
+.chat-window {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 24px;
+  margin: 32px 0;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.chat-msg {
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  border-radius: 2px;
+}
+.chat-msg.user {
+  background: rgba(245,240,232,0.08);
+  color: rgba(245,240,232,0.7);
+  font-style: italic;
+}
+.chat-msg.ai {
+  background: rgba(181, 148, 58, 0.12);
+  color: var(--ivory);
+  border-left: 2px solid var(--brass);
+}
+.chat-msg.ai strong { color: var(--brass-light); }
+
+.advisor-input-row {
+  display: flex;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+.advisor-input-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 16px 20px;
+  color: var(--ivory);
+  font-family: var(--sans);
+  font-size: 13px;
+  outline: none;
+}
+.advisor-input-row input::placeholder { color: rgba(245,240,232,0.3); }
+.advisor-input-btn {
+  background: var(--terra);
+  border: none;
+  padding: 16px 24px;
+  color: var(--ivory);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-family: var(--sans);
+  transition: background 0.3s;
+}
+.advisor-input-btn:hover { background: var(--terra-dim); }
+
+.advisor-visual {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(160deg, #D5C9BC 0%, #C4B5A5 50%, #D8CDBF 100%);
+}
+.advisor-visual-obj {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Decorative architectural object */
+.advisor-visual-obj::before {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 300px;
+  background: linear-gradient(160deg, #6B4A32, #4A3020);
+  box-shadow: 40px 40px 80px rgba(0,0,0,0.2);
+  transform: rotate(-8deg);
+}
+.advisor-visual-obj::after {
+  content: '';
+  position: absolute;
+  width: 120px;
+  height: 200px;
+  background: linear-gradient(160deg, #3D2060, #2D1550);
+  box-shadow: -20px 20px 60px rgba(0,0,0,0.15);
+  transform: rotate(6deg) translateX(50px) translateY(-20px);
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--charcoal);
+  color: var(--ivory);
+  padding: 80px 48px 40px;
+}
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 40px;
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+.footer-logo span { color: var(--terra); }
+.footer-tagline {
+  font-size: 13px;
+  color: rgba(245,240,232,0.4);
+  line-height: 1.7;
+  margin-bottom: 32px;
+  max-width: 260px;
+}
+.footer-col-h {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 20px;
+}
+.footer-list { list-style: none; }
+.footer-list li { margin-bottom: 10px; }
+.footer-list a { color: rgba(245,240,232,0.5); text-decoration: none; font-size: 13px; transition: color 0.25s; }
+.footer-list a:hover { color: var(--ivory); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: rgba(245,240,232,0.3);
+}
+
+/* ── REVEAL ANIM ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── PHOTO OVERRIDES ── */
+.hero-visual-bg { background-image: url('../image_gen/generated/academia/hero-warm-interior.png'); background-size: cover; background-position: center; }
+.hero-visual-obj { display: none; }
+
+.bento-bg.bb-velvet { background-image: url('../image_gen/generated/academia/salone-chair-studio.png'); background-size: cover; background-position: center; }
+.bento-bg.bb-velvet::after { content: none !important; }
+.bento-bg.bb-marble { background-image: url('../image_gen/generated/academia/meridian-table-studio.png'); background-size: cover; background-position: center; }
+.bento-bg.bb-marble::before { content: none !important; }
+.bento-bg.bb-brass { background-image: url('../image_gen/generated/academia/forma-lamp-studio.png'); background-size: cover; background-position: center; }
+.bento-bg.bb-brass::before, .bento-bg.bb-brass::after { content: none !important; }
+.bento-bg.bb-linen { background-image: url('../image_gen/generated/academia/velato-sofa-studio.png'); background-size: cover; background-position: center; }
+.bento-bg.bb-linen::before { content: none !important; }
+.bento-bg.bb-oak { background-image: url('../image_gen/generated/academia/radice-shelf-studio.png'); background-size: cover; background-position: center; }
+.bento-bg.bb-oak::before { content: none !important; }
+
+.material-bg.mat-marble { background-image: url('../image_gen/generated/academia/material-marble.png'); background-size: cover; background-position: center; }
+.material-bg.mat-velvet { background-image: url('../image_gen/generated/academia/material-velvet.png'); background-size: cover; background-position: center; }
+.material-bg.mat-brass { background-image: url('../image_gen/generated/academia/material-brass.png'); background-size: cover; background-position: center; }
+.material-bg.mat-oak { background-image: url('../image_gen/generated/academia/material-oak.png'); background-size: cover; background-position: center; }
+.material-bg.mat-concrete { background-image: url('../image_gen/generated/academia/material-concrete.png'); background-size: cover; background-position: center; }
+
+.advisor-visual { background-image: url('../image_gen/generated/academia/interior-editorial-vignette.png'); background-size: cover; background-position: center; }
+.advisor-visual-obj { display: none; }
+</style>
+</head>
+<body>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">Nowa kolekcja <span>·</span> Lato 2025</span>
+    <span class="ticker-item">Bezpłatna konsultacja z architektem <span>·</span></span>
+    <span class="ticker-item">Dostawa na terenie całej Polski <span>·</span></span>
+    <span class="ticker-item">Produkowane w Europie <span>·</span></span>
+    <span class="ticker-item">Meble na zamówienie w 8 tygodni <span>·</span></span>
+    <span class="ticker-item">Nowa kolekcja <span>·</span> Lato 2025</span>
+    <span class="ticker-item">Bezpłatna konsultacja z architektem <span>·</span></span>
+    <span class="ticker-item">Dostawa na terenie całej Polski <span>·</span></span>
+    <span class="ticker-item">Produkowane w Europie <span>·</span></span>
+    <span class="ticker-item">Meble na zamówienie w 8 tygodni <span>·</span></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Academia</a>
+  <ul class="nav-links">
+    <li><a href="#">Kolekcje</a></li>
+    <li><a href="#">Projektanci</a></li>
+    <li><a href="#">Materiały</a></li>
+    <li><a href="#">Realizacje</a></li>
+    <li><a href="#">O nas</a></li>
+  </ul>
+  <a href="#" class="nav-cta">Koszyk (0)</a>
+</nav>
+
+<!-- HERO SPLIT -->
+<section class="hero">
+  <div class="hero-visual">
+    <div class="hero-visual-bg"></div>
+    <div class="hero-visual-obj"></div>
+    <div class="hero-badge">
+      Polecamy
+      <strong>Salone Chair</strong>
+    </div>
+    <div class="hero-product-label">
+      <div class="pname">Salone</div>
+      <div class="pprice">od 18 900 PLN</div>
+    </div>
+    <div class="hero-scroll-indicator">
+      <div class="hero-scroll-bar"></div>
+      Przewiń
+    </div>
+  </div>
+
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow">Kolekcja 2025</div>
+      <h1 class="hero-title">Meble,<br>które <em>trwają</em><br>pokolenia.</h1>
+      <p class="hero-desc">Wybieramy tylko projektantów, którzy projektują z myślą o wieczności — nie o sezonie. Każdy obiekt powstaje z materiałów, które z wiekiem nabierają charakteru.</p>
+      <a href="#" class="hero-cta">Przeglądaj kolekcję →</a>
+    </div>
+
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num"><span id="c1">0</span><span>+</span></div>
+        <div class="hero-stat-label">Projektantów</div>
+      </div>
+      <div>
+        <div class="hero-stat-num"><span id="c2">0</span></div>
+        <div class="hero-stat-label">Obiektów w kolekcji</div>
+      </div>
+      <div>
+        <div class="hero-stat-num"><span id="c3">0</span></div>
+        <div class="hero-stat-label">Krajów produkcji</div>
+      </div>
+      <div>
+        <div class="hero-stat-num"><span id="c4">0</span></div>
+        <div class="hero-stat-label">Lat doświadczenia</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENTO GRID -->
+<section class="bento">
+  <div class="bento-header reveal">
+    <h2 class="bento-title">Nowe <em>obiekty</em></h2>
+    <a href="#" class="bento-view-all">Zobacz wszystkie</a>
+  </div>
+  <div class="bento-grid reveal">
+
+    <div class="bento-cell" itemscope itemtype="https://schema.org/Product">
+      <meta itemprop="name" content="Salone — Fotel Wypoczynkowy">
+      <div class="bento-bg bb-velvet"></div>
+      <div class="bento-wish">♡</div>
+      <div class="bento-info">
+        <div class="bento-cat">Siedziska</div>
+        <div class="bento-name">Salone</div>
+        <div class="bento-price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <meta itemprop="priceCurrency" content="PLN">
+          <meta itemprop="price" content="18900">
+          18 900 PLN
+        </div>
+      </div>
+    </div>
+
+    <div class="bento-cell" itemscope itemtype="https://schema.org/Product">
+      <meta itemprop="name" content="Meridian — Stół Marmurowy">
+      <div class="bento-bg bb-marble"></div>
+      <div class="bento-wish">♡</div>
+      <div class="bento-info">
+        <div class="bento-cat">Stoły</div>
+        <div class="bento-name">Meridian</div>
+        <div class="bento-price">42 000 PLN</div>
+      </div>
+    </div>
+
+    <div class="bento-cell" itemscope itemtype="https://schema.org/Product">
+      <meta itemprop="name" content="Forma — Lampa Mosiężna">
+      <div class="bento-bg bb-brass"></div>
+      <div class="bento-wish">♡</div>
+      <div class="bento-info">
+        <div class="bento-cat">Oświetlenie</div>
+        <div class="bento-name">Forma</div>
+        <div class="bento-price">7 800 PLN</div>
+      </div>
+    </div>
+
+    <div class="bento-cell" itemscope itemtype="https://schema.org/Product">
+      <meta itemprop="name" content="Velato — Sofa Lniana">
+      <div class="bento-bg bb-linen"></div>
+      <div class="bento-wish">♡</div>
+      <div class="bento-info">
+        <div class="bento-cat">Sofy</div>
+        <div class="bento-name">Velato</div>
+        <div class="bento-price">34 500 PLN</div>
+      </div>
+    </div>
+
+    <div class="bento-cell" itemscope itemtype="https://schema.org/Product">
+      <meta itemprop="name" content="Radice — Regał Dębowy">
+      <div class="bento-bg bb-oak"></div>
+      <div class="bento-wish">♡</div>
+      <div class="bento-info">
+        <div class="bento-cat">Przechowywanie</div>
+        <div class="bento-name">Radice</div>
+        <div class="bento-price">19 200 PLN</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MATERIAL STORIES -->
+<section class="materials reveal">
+  <div class="materials-header">
+    <h2 class="materials-title">Historie<br><em>materiałów</em></h2>
+    <p class="materials-desc">Każdy materiał, który wybieramy, ma własną historię. Marmur z kamieniołomów Carrara, aksamit z manufaktur Como, dąb z polskich lasów zarządzanych zrównoważenie.</p>
+  </div>
+  <div class="materials-row">
+    <div class="material-item">
+      <div class="material-bg mat-marble"></div>
+      <div class="material-overlay">
+        <div class="material-name">Marmur</div>
+        <div class="material-count">12 produktów</div>
+      </div>
+    </div>
+    <div class="material-item">
+      <div class="material-bg mat-velvet"></div>
+      <div class="material-overlay">
+        <div class="material-name">Aksamit</div>
+        <div class="material-count">8 produktów</div>
+      </div>
+    </div>
+    <div class="material-item">
+      <div class="material-bg mat-brass"></div>
+      <div class="material-overlay">
+        <div class="material-name">Mosiądz</div>
+        <div class="material-count">15 produktów</div>
+      </div>
+    </div>
+    <div class="material-item">
+      <div class="material-bg mat-oak"></div>
+      <div class="material-overlay">
+        <div class="material-name">Dąb</div>
+        <div class="material-count">20 produktów</div>
+      </div>
+    </div>
+    <div class="material-item">
+      <div class="material-bg mat-concrete"></div>
+      <div class="material-overlay">
+        <div class="material-name">Beton</div>
+        <div class="material-count">7 produktów</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS ROW -->
+<div class="stats-row reveal">
+  <div class="stat-block">
+    <div class="stat-num"><span class="counter" data-target="48">0</span><span class="stat-suffix">+</span></div>
+    <div class="stat-label">Projektantów</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-num"><span class="counter" data-target="340">0</span></div>
+    <div class="stat-label">Obiektów w kolekcji</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-num"><span class="counter" data-target="14">0</span></div>
+    <div class="stat-label">Krajów produkcji</div>
+  </div>
+  <div class="stat-block">
+    <div class="stat-num"><span class="counter" data-target="22">0</span></div>
+    <div class="stat-label">Lat na rynku</div>
+  </div>
+</div>
+
+<!-- EDITORIAL -->
+<section class="editorial reveal">
+  <div>
+    <div class="ed-number">01</div>
+    <h3 class="ed-title">Projekt, który przetrwa trendy</h3>
+    <p class="ed-body">Nie projektujemy pod sezon. Nasze meble nie mają daty przydatności — za 20 lat będą równie aktualne. Inwestycja w jakość to inwestycja w ponadczasowość.</p>
+    <a href="#" class="ed-link">Czytaj więcej →</a>
+  </div>
+  <div class="editorial-divider"></div>
+  <div>
+    <div class="ed-number">02</div>
+    <h3 class="ed-title">Materiały, które żyją z Tobą</h3>
+    <p class="ed-body">Dąb nabiera głębszego tonu. Skóra mięknie. Marmur chłonie historię. Wybieramy materiały, które zmieniają się jak my — i stają się przez to piękniejsze.</p>
+    <a href="#" class="ed-link">Czytaj więcej →</a>
+  </div>
+  <div class="editorial-divider"></div>
+  <div>
+    <div class="ed-number">03</div>
+    <h3 class="ed-title">Praca z architektami</h3>
+    <p class="ed-body">Współpracujemy z biurami architektonicznymi na każdym etapie projektu — od koncepcji po realizację. Oferujemy próbki, pliki BIM i dedykowane doradztwo.</p>
+    <a href="#" class="ed-link">Dla architektów →</a>
+  </div>
+</section>
+
+<!-- AI ADVISOR -->
+<div class="advisor reveal">
+  <div class="advisor-content">
+    <div class="advisor-tag">
+      <span class="advisor-dot"></span>
+      Asystent AI · Zawsze dostępny
+    </div>
+    <h2 class="advisor-title">Twój doradca<br><em>wyposażenia wnętrz</em></h2>
+
+    <div class="chat-window">
+      <div class="chat-msg user">
+        „Szukam fotela do gabinetu architekta — jasny marmur Calacatta na podłodze, dużo naturalnego światła"
+      </div>
+      <div class="chat-msg ai">
+        Na podstawie Twojego opisu proponuję: <strong>Salone</strong> w wersji aksamitnej głębokiej zieleni lub granatu — kontrastuje z marmurem i nadaje przestrzeni charakter. Uzupełni go lampa <strong>Forma Brass</strong> — jej mosiężna noga dopasuje się do ciepłych połyskliwych żył Calacatty. Chcesz zobaczyć całą aranżację?
+      </div>
+    </div>
+
+    <div class="advisor-input-row">
+      <input type="text" placeholder="Opisz swoje wnętrze lub potrzebę...">
+      <button class="advisor-input-btn">Zapytaj →</button>
+    </div>
+  </div>
+  <div class="advisor-visual">
+    <div class="advisor-visual-obj"></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer itemscope itemtype="https://schema.org/HomeGoodsStore">
+  <div class="footer-top">
+    <div>
+      <div class="footer-logo">Acad<span>·</span>emia</div>
+      <p class="footer-tagline" itemprop="description">Ekskluzywne wyposażenie wnętrz dla architektów i miłośników piękna. Od 2003 roku.</p>
+      <div style="font-size:12px; color: rgba(245,240,232,0.3);">
+        <itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <span itemprop="streetAddress">ul. Mokotowska 12</span>, <span itemprop="addressLocality">Warszawa</span>
+        </itemprop>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-h">Kolekcje</div>
+      <ul class="footer-list">
+        <li><a href="#">Nowe obiekty</a></li>
+        <li><a href="#">Siedziska</a></li>
+        <li><a href="#">Stoły</a></li>
+        <li><a href="#">Oświetlenie</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-h">Dla Architektów</div>
+      <ul class="footer-list">
+        <li><a href="#">Program partnerski</a></li>
+        <li><a href="#">Pliki BIM/CAD</a></li>
+        <li><a href="#">Próbki materiałów</a></li>
+        <li><a href="#">Konsultacje</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-h">Kontakt</div>
+      <ul class="footer-list">
+        <li><a href="#" itemprop="telephone">+48 22 000 00 00</a></li>
+        <li><a href="#" itemprop="email">hello@academia.pl</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Pinterest</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Academia Architektury. Wszelkie prawa zastrzeżone.</span>
+    <span>Projekt: Layout II — <em>Meridian</em></span>
+  </div>
+</footer>
+
+<script>
+// ── COUNTER ANIMATION ──
+function animateCounter(el, target, duration) {
+  let start = 0;
+  const step = (timestamp) => {
+    if (!start) start = timestamp;
+    const progress = Math.min((timestamp - start) / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(ease * target);
+    if (progress < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+// Hero stats
+const heroCounters = [
+  { id: 'c1', target: 48, duration: 1800 },
+  { id: 'c2', target: 340, duration: 2000 },
+  { id: 'c3', target: 14, duration: 1500 },
+  { id: 'c4', target: 22, duration: 1600 }
+];
+let heroAnimated = false;
+function startHeroCounters() {
+  if (heroAnimated) return;
+  heroAnimated = true;
+  heroCounters.forEach(c => {
+    const el = document.getElementById(c.id);
+    if (el) animateCounter(el, c.target, c.duration);
+  });
+}
+
+// Section counters
+const counters = document.querySelectorAll('.counter');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const target = parseInt(e.target.dataset.target);
+      animateCounter(e.target, target, 1800);
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.5 });
+counters.forEach(el => obs.observe(el));
+
+// Start hero counters after slight delay
+setTimeout(startHeroCounters, 800);
+
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => revealObs.observe(el));
+</script>
+</body>
+</html>

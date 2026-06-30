@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACADEMIA — Fragment</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeGoodsStore",
+  "name": "Academia Architektury",
+  "description": "Ekskluzywne wyposażenie wnętrz — fragmenty piękna",
+  "url": "https://akademiaarchitektury.pl",
+  "priceRange": "$$$$$",
+  "currenciesAccepted": "PLN"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --paper: #F8F6F1;
+  --paper-2: #F0EDE6;
+  --paper-3: #E4DED5;
+  --ink: #111111;
+  --ink-dim: #5A5A5A;
+  --ink-faint: #9A9A9A;
+  --green: #2C5F3F;
+  --green-2: #3A7A52;
+  --green-dim: #1A3D28;
+  --copper: #B87333;
+  --copper-light: #CC8844;
+  --copper-dim: #7A4C20;
+  --serif: 'Libre Baskerville', Georgia, serif;
+  --sans: 'Space Grotesk', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CROSSHAIR CURSOR ── */
+#xhair {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s;
+}
+#xhair-h, #xhair-v {
+  position: absolute;
+  background: var(--green);
+  transition: background 0.3s;
+}
+#xhair-h { width: 24px; height: 1px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+#xhair-v { width: 1px; height: 24px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+#xhair-label {
+  position: absolute;
+  top: 16px;
+  left: 10px;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--green);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+body.on-product #xhair-label { opacity: 1; }
+body.on-product #xhair-h, body.on-product #xhair-v { background: var(--copper); }
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 500;
+  padding: 24px 48px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(248,246,241,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--paper-3);
+  transition: border-color 0.3s;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--ink);
+  text-decoration: none;
+  font-style: italic;
+}
+.nav-logo strong { font-style: normal; font-weight: 700; margin-right: 2px; }
+.nav-center {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-center a {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.nav-center a:hover { color: var(--green); }
+.nav-right { display: flex; align-items: center; gap: 24px; }
+.nav-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: blink 3s ease-in-out infinite;
+}
+@keyframes blink { 0%,80%,100% { opacity:1; } 90% { opacity: 0.3; } }
+.nav-ai-label { font-size: 11px; color: var(--green); letter-spacing: 0.1em; }
+.nav-cart-btn {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink);
+  background: none;
+  border: 1px solid var(--paper-3);
+  padding: 8px 20px;
+  cursor: none;
+  transition: all 0.25s;
+  letter-spacing: 0.05em;
+}
+.nav-cart-btn:hover { border-color: var(--ink); }
+
+/* ── HERO — MOOD BOARD ── */
+.hero {
+  min-height: 100vh;
+  padding: 120px 48px 80px;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Scattered fragment elements - pure CSS art */
+.frag-stage {
+  position: relative;
+  height: 600px;
+}
+
+/* Each "fragment" is a piece of a product shown at an angle */
+.frag {
+  position: absolute;
+  overflow: hidden;
+  cursor: none;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+.frag:hover { z-index: 10; }
+
+/* Fragment backgrounds (textures) */
+.frag-velvet {
+  background: linear-gradient(150deg, #3D2060 0%, #2D1550 50%, #4A2878 100%);
+  box-shadow: 8px 12px 40px rgba(0,0,0,0.18);
+}
+.frag-marble {
+  background: linear-gradient(135deg, #EDE8E1 0%, #D8D0C4 40%, #E8E2D8 100%);
+  box-shadow: 6px 10px 30px rgba(0,0,0,0.12);
+}
+.frag-brass {
+  background: linear-gradient(135deg, #C9A53A 0%, #DFC060 40%, #B8902A 100%);
+  box-shadow: 4px 8px 24px rgba(0,0,0,0.15);
+}
+.frag-oak {
+  background: linear-gradient(145deg, #5C3D28, #7A5038, #4A3020);
+  box-shadow: 6px 10px 32px rgba(0,0,0,0.2);
+}
+.frag-linen {
+  background: linear-gradient(160deg, #D4C8B5, #C4B8A0, #DACCBA);
+  box-shadow: 4px 8px 24px rgba(0,0,0,0.10);
+}
+.frag-copper {
+  background: linear-gradient(135deg, #B87333, #CC8844, #8A5520);
+  box-shadow: 6px 10px 28px rgba(0,0,0,0.15);
+}
+
+/* Fragment 1 — large velvet piece, rotated */
+.frag-1 { width: 240px; height: 300px; top: 20px; left: 60px; transform: rotate(-6deg); }
+.frag-1:hover { transform: rotate(0deg) scale(1.03); box-shadow: 16px 24px 60px rgba(0,0,0,0.25); }
+/* Texture overlay */
+.frag-1::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 60%;
+  background: linear-gradient(160deg, rgba(100,60,180,0.4), transparent);
+  border-radius: 4px 4px 0 0;
+}
+
+/* Fragment 2 — marble slab tilted other way */
+.frag-2 { width: 200px; height: 160px; top: 80px; right: 30px; transform: rotate(8deg); }
+.frag-2:hover { transform: rotate(0deg) scale(1.05); }
+/* Marble veins */
+.frag-2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, transparent 30%, rgba(180,160,140,0.3) 31%, transparent 32%),
+    linear-gradient(75deg, transparent 50%, rgba(160,140,120,0.2) 51%, transparent 52%);
+}
+
+/* Fragment 3 — brass corner piece */
+.frag-3 { width: 140px; height: 200px; bottom: 100px; left: 20px; transform: rotate(4deg); }
+.frag-3:hover { transform: rotate(0deg) scale(1.05); }
+.frag-3::after {
+  content: '';
+  position: absolute;
+  top: 20%; left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 60%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.1));
+}
+
+/* Fragment 4 — oak piece */
+.frag-4 { width: 180px; height: 130px; bottom: 60px; right: 60px; transform: rotate(-10deg); }
+.frag-4:hover { transform: rotate(0deg) scale(1.04); }
+.frag-4::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(85deg, transparent, transparent 8px, rgba(255,255,255,0.04) 8px, rgba(255,255,255,0.04) 9px);
+}
+
+/* Fragment 5 — linen */
+.frag-5 { width: 120px; height: 160px; top: 220px; right: 140px; transform: rotate(3deg); }
+.frag-5:hover { transform: rotate(0deg) scale(1.06); }
+
+/* Fragment 6 — copper */
+.frag-6 { width: 90px; height: 120px; top: 360px; left: 240px; transform: rotate(-5deg); }
+.frag-6:hover { transform: rotate(-2deg) scale(1.08); }
+
+/* Fragment labels (appear on hover) */
+.frag-name {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  background: rgba(0,0,0,0.5);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: white;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.3s, transform 0.3s;
+  backdrop-filter: blur(4px);
+}
+.frag:hover .frag-name { opacity: 1; transform: none; }
+
+/* Connection lines between fragments (decorative) */
+.frag-line {
+  position: absolute;
+  background: none;
+  pointer-events: none;
+}
+
+/* ── HERO TEXT ── */
+.hero-text {
+  position: relative;
+  z-index: 2;
+}
+.hero-kicker {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--green);
+  background: rgba(44, 95, 63, 0.08);
+  padding: 6px 14px;
+  margin-bottom: 32px;
+}
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin-bottom: 32px;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--green);
+}
+.hero-lead {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--ink-dim);
+  margin-bottom: 48px;
+  max-width: 440px;
+}
+.hero-cta-row {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.cta-primary {
+  background: var(--green);
+  color: white;
+  padding: 16px 36px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.3s;
+  display: inline-block;
+}
+.cta-primary:hover { background: var(--green-dim); transform: translateY(-1px); }
+.cta-secondary {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--ink-dim);
+  text-decoration: none;
+  border-bottom: 1px solid var(--paper-3);
+  padding-bottom: 2px;
+  transition: color 0.25s, border-color 0.25s;
+}
+.cta-secondary:hover { color: var(--green); border-color: var(--green); }
+
+/* Floating stat badge */
+.hero-badge {
+  position: absolute;
+  bottom: 80px;
+  right: 48px;
+  background: var(--ink);
+  color: white;
+  padding: 16px 20px;
+  max-width: 160px;
+  transform: rotate(2deg);
+  z-index: 3;
+}
+.hero-badge-num {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-badge-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.6; }
+
+/* ── MATERIAL SWATCHES ── */
+.swatches {
+  padding: 60px 48px;
+  background: var(--paper-2);
+  border-top: 1px solid var(--paper-3);
+  border-bottom: 1px solid var(--paper-3);
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  overflow-x: auto;
+}
+.swatches-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  min-width: 120px;
+}
+.swatch-group {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.swatch {
+  cursor: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.25s;
+}
+.swatch:hover { transform: translateY(-4px); }
+.swatch-color {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  transition: border-color 0.25s;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+.swatch:hover .swatch-color { border-color: var(--ink); }
+.swatch.active .swatch-color { border-color: var(--green); }
+.swatch-name { font-size: 10px; letter-spacing: 0.05em; color: var(--ink-faint); white-space: nowrap; }
+
+.sc-velvet { background: linear-gradient(135deg, #3D2060, #2D1550); }
+.sc-emerald { background: linear-gradient(135deg, #1A3D28, #2C5F3F); }
+.sc-camel { background: linear-gradient(135deg, #C4A870, #A88A50); }
+.sc-slate { background: linear-gradient(135deg, #4A5568, #2D3748); }
+.sc-white { background: #F0ECDE; border: 1px solid var(--paper-3) !important; }
+.sc-marble { background: linear-gradient(135deg, #EDE8E1, #C8BDB0); }
+.sc-brass { background: linear-gradient(135deg, #C9A53A, #DFC060); }
+.sc-copper { background: linear-gradient(135deg, #B87333, #CC8844); }
+.sc-black { background: #111; }
+.sc-oak { background: linear-gradient(135deg, #6B4A32, #4A3020); }
+.sc-walnut { background: linear-gradient(135deg, #3A2010, #251408); }
+.sc-ash { background: linear-gradient(135deg, #B8A890, #A09880); }
+
+/* ── PRODUCT — FULL EDITORIAL LAYOUT ── */
+.editorial {
+  padding: 100px 0;
+}
+
+/* Each editorial item alternates text/image direction */
+.ed-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 70vh;
+  overflow: hidden;
+  position: relative;
+}
+.ed-item:nth-child(even) .ed-visual { order: -1; }
+.ed-item + .ed-item { border-top: 1px solid var(--paper-3); }
+
+/* Fragment reveal visual */
+.ed-visual {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-2);
+}
+
+/* Fragment mosaic — 4 pieces that form the product on hover */
+.fragment-mosaic {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.fm-piece {
+  position: absolute;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), clip-path 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Mosaic for product 1 (velvet chair) */
+.ed-item-1 .fm-piece-1 {
+  inset: 0;
+  background: linear-gradient(150deg, #3D2060 0%, #2D1550 50%, #4A2878 100%);
+  clip-path: polygon(0 0, 55% 0, 55% 55%, 0 55%);
+  transform: translate(-8%, -8%);
+}
+.ed-item-1 .fm-piece-2 {
+  inset: 0;
+  background: linear-gradient(160deg, #2D1550, #4A2878);
+  clip-path: polygon(57% 0, 100% 0, 100% 55%, 57% 55%);
+  transform: translate(8%, -8%);
+}
+.ed-item-1 .fm-piece-3 {
+  inset: 0;
+  background: linear-gradient(140deg, #4A2878, #1A0D35);
+  clip-path: polygon(0 57%, 55% 57%, 55% 100%, 0 100%);
+  transform: translate(-8%, 8%);
+}
+.ed-item-1 .fm-piece-4 {
+  inset: 0;
+  background: linear-gradient(135deg, #1A0D35, #3D2060);
+  clip-path: polygon(57% 57%, 100% 57%, 100% 100%, 57% 100%);
+  transform: translate(8%, 8%);
+}
+.ed-visual:hover .fm-piece { transform: translate(0, 0) !important; }
+
+/* Mosaic for product 2 (marble table) */
+.ed-item-2 .fm-piece-1 {
+  inset: 0;
+  background: linear-gradient(135deg, #EDE8E1, #D8D0C4);
+  clip-path: polygon(0 0, 60% 0, 60% 50%, 0 50%);
+  transform: translate(-10%, -10%);
+}
+.ed-item-2 .fm-piece-2 {
+  inset: 0;
+  background: linear-gradient(145deg, #D8D0C4, #E8E2D8);
+  clip-path: polygon(62% 0, 100% 0, 100% 50%, 62% 50%);
+  transform: translate(10%, -10%);
+}
+.ed-item-2 .fm-piece-3 {
+  inset: 0;
+  background: linear-gradient(125deg, #C8BDB0, #EDE8E1);
+  clip-path: polygon(0 52%, 100% 52%, 100% 100%, 0 100%);
+  transform: translate(0, 10%);
+}
+
+/* Mosaic for product 3 (lamp) */
+.ed-item-3 .fm-piece-1 {
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 20%, #2A2215, #0D0C09);
+  clip-path: polygon(0 0, 100% 0, 70% 50%, 30% 50%);
+  transform: translateY(-12%);
+}
+.ed-item-3 .fm-piece-2 {
+  inset: 0;
+  background: linear-gradient(180deg, #1E1A0D, #0D0C09);
+  clip-path: polygon(30% 52%, 70% 52%, 70% 100%, 30% 100%);
+  transform: translateY(12%);
+}
+.ed-item-3 .fm-piece-3 {
+  inset: 0;
+  background: linear-gradient(135deg, #C9A53A, #8A6914);
+  clip-path: polygon(47% 48%, 53% 48%, 53% 54%, 47% 54%);
+  transform: scaleX(3) translateY(0);
+}
+
+/* Glare effect on mosaic hover */
+.fragment-mosaic::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(255,255,255,0.08), transparent);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+.ed-visual:hover .fragment-mosaic::after { opacity: 1; }
+
+/* "Reveal" hint text on mosaic */
+.mosaic-hint {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  opacity: 1;
+  transition: opacity 0.4s;
+  pointer-events: none;
+  z-index: 2;
+}
+.ed-visual:hover .mosaic-hint { opacity: 0; }
+
+/* Text side */
+.ed-content {
+  padding: 80px 64px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.ed-series {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 12px;
+}
+.ed-name {
+  font-family: var(--serif);
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.ed-name em { font-style: italic; color: var(--green); }
+.ed-sub {
+  font-size: 12px;
+  color: var(--copper);
+  letter-spacing: 0.1em;
+  margin-bottom: 28px;
+  font-weight: 500;
+}
+.ed-body {
+  font-size: 14px;
+  line-height: 1.85;
+  color: var(--ink-dim);
+  margin-bottom: 36px;
+  max-width: 380px;
+}
+
+/* Material tags */
+.ed-materials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.mat-tag {
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--green);
+  border: 1px solid rgba(44, 95, 63, 0.3);
+  padding: 5px 12px;
+  background: rgba(44, 95, 63, 0.04);
+}
+
+.ed-price-row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  margin-bottom: 28px;
+}
+.ed-price {
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--ink);
+}
+.ed-price-sub { font-size: 11px; color: var(--ink-faint); letter-spacing: 0.08em; }
+
+.ed-actions {
+  display: flex;
+  gap: 12px;
+}
+.btn-buy {
+  background: var(--ink);
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: none;
+  transition: background 0.3s;
+}
+.btn-buy:hover { background: var(--green); }
+.btn-wish {
+  background: none;
+  color: var(--ink-dim);
+  border: 1px solid var(--paper-3);
+  padding: 14px 20px;
+  font-family: var(--sans);
+  font-size: 13px;
+  cursor: none;
+  transition: all 0.25s;
+}
+.btn-wish:hover { border-color: var(--copper); color: var(--copper); }
+
+/* ── AI CONCIERGE — FLOATING PANEL ── */
+.ai-panel {
+  background: var(--ink);
+  color: white;
+  padding: 80px 48px;
+  position: relative;
+  overflow: hidden;
+}
+/* Decorative paint strokes */
+.ai-panel::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: var(--green-dim);
+  opacity: 0.2;
+}
+.ai-panel::after {
+  content: '';
+  position: absolute;
+  bottom: -60px;
+  left: 30%;
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background: var(--copper-dim);
+  opacity: 0.15;
+}
+
+.ai-panel-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.ai-panel-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--green-2);
+  margin-bottom: 24px;
+}
+.ai-live-dot {
+  width: 8px; height: 8px;
+  background: var(--green-2);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+.ai-panel-title {
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.5vw, 48px);
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.ai-panel-title em { color: var(--copper-light); font-style: italic; }
+.ai-panel-body {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+/* Cards showing AI suggestions */
+.ai-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ai-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 16px 20px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  cursor: none;
+  transition: background 0.3s, border-color 0.3s;
+}
+.ai-card:hover { background: rgba(255,255,255,0.08); border-color: rgba(44,95,63,0.4); }
+.ai-card-swatch {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.ai-card-info { flex: 1; }
+.ai-card-name { font-family: var(--serif); font-size: 16px; font-weight: 400; margin-bottom: 2px; }
+.ai-card-desc { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; }
+.ai-card-price { font-size: 13px; color: var(--copper-light); font-weight: 500; white-space: nowrap; }
+
+/* Input */
+.ai-input-section {
+  margin-top: 28px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 24px;
+}
+.ai-input-label {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  margin-bottom: 12px;
+}
+.ai-input-row {
+  display: flex;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.ai-input-row input {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 14px 18px;
+  color: white;
+  font-family: var(--sans);
+  font-size: 13px;
+  outline: none;
+}
+.ai-input-row input::placeholder { color: rgba(255,255,255,0.25); }
+.ai-input-send {
+  background: var(--green-dim);
+  border: none;
+  padding: 14px 20px;
+  color: white;
+  font-size: 16px;
+  cursor: none;
+  transition: background 0.25s;
+}
+.ai-input-send:hover { background: var(--green); }
+.ai-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.ai-suggestion {
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 5px 12px;
+  cursor: none;
+  transition: all 0.2s;
+}
+.ai-suggestion:hover { color: white; border-color: rgba(255,255,255,0.2); }
+
+/* ── MOOD BOARD SECTION ── */
+.moodboard {
+  padding: 100px 48px;
+  background: var(--paper-2);
+}
+.mb-header {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 60px;
+  margin-bottom: 60px;
+  align-items: end;
+}
+.mb-title {
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.2;
+}
+.mb-title em { font-style: italic; color: var(--copper); }
+.mb-body {
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--ink-dim);
+}
+
+/* Scattered product "cards" like physical objects on a table */
+.moodboard-stage {
+  position: relative;
+  height: 560px;
+}
+.mb-card {
+  position: absolute;
+  cursor: none;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, z-index 0s;
+  z-index: 1;
+}
+.mb-card:hover { z-index: 10; }
+.mb-card-img {
+  display: block;
+  border: 8px solid white;
+  box-shadow: 4px 4px 20px rgba(0,0,0,0.12);
+}
+.mb-card-label {
+  padding: 8px 0 0;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-dim);
+}
+
+/* Card positions */
+.mb-c1 { width: 220px; top: 20px; left: 40px; transform: rotate(-5deg); }
+.mb-c1:hover { transform: rotate(0deg) scale(1.05); box-shadow: 12px 16px 40px rgba(0,0,0,0.2); }
+
+.mb-c2 { width: 180px; top: 100px; left: 280px; transform: rotate(7deg); }
+.mb-c2:hover { transform: rotate(0deg) scale(1.06); }
+
+.mb-c3 { width: 260px; top: 30px; left: 460px; transform: rotate(-3deg); }
+.mb-c3:hover { transform: rotate(0deg) scale(1.04); }
+
+.mb-c4 { width: 200px; top: 240px; left: 120px; transform: rotate(4deg); }
+.mb-c4:hover { transform: rotate(0deg) scale(1.05); }
+
+.mb-c5 { width: 160px; top: 300px; left: 400px; transform: rotate(-8deg); }
+.mb-c5:hover { transform: rotate(0deg) scale(1.06); }
+
+.mb-c6 { width: 240px; top: 160px; right: 60px; transform: rotate(5deg); }
+.mb-c6:hover { transform: rotate(0deg) scale(1.04); }
+
+.mb-c7 { width: 140px; bottom: 40px; left: 300px; transform: rotate(-4deg); }
+.mb-c7:hover { transform: rotate(0deg) scale(1.07); }
+
+.mb-c8 { width: 180px; bottom: 30px; right: 200px; transform: rotate(6deg); }
+.mb-c8:hover { transform: rotate(0deg) scale(1.05); }
+
+/* Sticky note on the board */
+.mb-note {
+  position: absolute;
+  bottom: 60px;
+  left: 50px;
+  background: #FFF8D6;
+  padding: 16px 20px;
+  width: 160px;
+  transform: rotate(3deg);
+  font-size: 11px;
+  line-height: 1.6;
+  color: #5A5020;
+  box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+  font-family: var(--sans);
+  z-index: 5;
+}
+.mb-note strong { display: block; font-weight: 500; margin-bottom: 4px; font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: #8A7030; }
+
+/* Card visuals */
+.cv { width: 100%; aspect-ratio: 4/3; display: block; }
+.cv-velvet { background: linear-gradient(150deg, #3D2060, #2D1550); }
+.cv-marble { background: linear-gradient(135deg, #EDE8E1, #D8D0C4, #E8E2D8); }
+.cv-brass { background: linear-gradient(135deg, #C9A53A, #DFC060, #B8902A); }
+.cv-oak { background: linear-gradient(145deg, #6B4A32, #4A3020); }
+.cv-copper { background: linear-gradient(135deg, #B87333, #CC8844); }
+.cv-concrete { background: linear-gradient(135deg, #6A6A6A, #7A7A7A, #5A5A5A); }
+.cv-linen { background: linear-gradient(160deg, #D4C8B5, #C4B8A0); }
+.cv-glass { background: linear-gradient(135deg, #B8D4E8, #8DBAD4); opacity:0.85; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  color: white;
+  padding: 80px 48px 40px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  margin-bottom: 40px;
+}
+.footer-logo {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 16px;
+}
+.footer-logo strong { font-style: normal; }
+.footer-desc {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.7;
+  margin-bottom: 28px;
+  max-width: 260px;
+}
+.footer-col-title {
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--green-2);
+  margin-bottom: 20px;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.footer-links a:hover { color: white; }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.05em;
+}
+
+/* ── ANIMATIONS / SCROLL REVEAL ── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── PHOTO OVERRIDES ── */
+
+/* Hero fragments — tekstury materiałów */
+.frag.frag-velvet { background-image: url('../image_gen/generated/academia/material-velvet.png'); background-size: cover; background-position: center; }
+.frag.frag-velvet::before, .frag.frag-velvet::after { content: none !important; }
+.frag.frag-marble { background-image: url('../image_gen/generated/academia/material-marble.png'); background-size: cover; background-position: center; }
+.frag.frag-marble::before, .frag.frag-marble::after { content: none !important; }
+.frag.frag-brass { background-image: url('../image_gen/generated/academia/material-brass.png'); background-size: cover; background-position: center; }
+.frag.frag-brass::after { content: none !important; }
+.frag.frag-oak { background-image: url('../image_gen/generated/academia/material-oak.png'); background-size: cover; background-position: center; }
+.frag.frag-oak::before { content: none !important; }
+.frag.frag-linen { background-image: url('../image_gen/generated/academia/material-linen.png'); background-size: cover; background-position: center; }
+.frag.frag-copper { background-image: url('../image_gen/generated/academia/material-brass.png'); background-size: cover; background-position: center; filter: hue-rotate(-20deg) saturate(1.3); }
+
+/* Editorial mozaiki — każdy fragment to wycinek prawdziwego zdjęcia produktu */
+.ed-item-1 .fm-piece-1,
+.ed-item-1 .fm-piece-2,
+.ed-item-1 .fm-piece-3,
+.ed-item-1 .fm-piece-4 {
+  background-image: url('../image_gen/generated/academia/salone-chair-studio.png');
+  background-size: cover; background-position: center;
+}
+.ed-item-2 .fm-piece-1,
+.ed-item-2 .fm-piece-2,
+.ed-item-2 .fm-piece-3 {
+  background-image: url('../image_gen/generated/academia/meridian-table-studio.png');
+  background-size: cover; background-position: center;
+}
+.ed-item-3 .fm-piece-1,
+.ed-item-3 .fm-piece-2,
+.ed-item-3 .fm-piece-3 {
+  background-image: url('../image_gen/generated/academia/forma-lamp-studio.png');
+  background-size: cover; background-position: center;
+}
+
+/* Mood board karty */
+.cv.cv-velvet { background-image: url('../image_gen/generated/academia/material-velvet.png'); background-size: cover; background-position: center; }
+.cv.cv-marble { background-image: url('../image_gen/generated/academia/material-marble.png'); background-size: cover; background-position: center; }
+.cv.cv-brass { background-image: url('../image_gen/generated/academia/material-brass.png'); background-size: cover; background-position: center; }
+.cv.cv-oak { background-image: url('../image_gen/generated/academia/material-oak.png'); background-size: cover; background-position: center; }
+.cv.cv-copper { background-image: url('../image_gen/generated/academia/material-brass.png'); background-size: cover; background-position: center; filter: hue-rotate(-20deg) saturate(1.4); }
+.cv.cv-linen { background-image: url('../image_gen/generated/academia/material-linen.png'); background-size: cover; background-position: center; }
+.cv.cv-concrete { background-image: url('../image_gen/generated/academia/material-concrete.png'); background-size: cover; background-position: center; }
+.cv.cv-glass { background-image: url('../image_gen/generated/academia/fragment-materials-overhead.png'); background-size: cover; background-position: center; }
+</style>
+</head>
+<body>
+
+<!-- Crosshair cursor -->
+<div id="xhair">
+  <div id="xhair-h"></div>
+  <div id="xhair-v"></div>
+  <div id="xhair-label"></div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo"><strong>Academia</strong> Architektury</a>
+  <ul class="nav-center">
+    <li><a href="#">Kolekcje</a></li>
+    <li><a href="#">Materiały</a></li>
+    <li><a href="#">Projektanci</a></li>
+    <li><a href="#">Realizacje</a></li>
+    <li><a href="#">Kontakt</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-dot"></div>
+    <span class="nav-ai-label">AI Doradca aktywny</span>
+    <button class="nav-cart-btn">Koszyk (0)</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Fragment stage -->
+  <div class="frag-stage">
+    <div class="frag frag-velvet frag-1">
+      <div class="frag-name">Aksamit · Fiolet</div>
+    </div>
+    <div class="frag frag-marble frag-2">
+      <div class="frag-name">Marmur Carrara</div>
+    </div>
+    <div class="frag frag-brass frag-3">
+      <div class="frag-name">Mosiądz · Złoty</div>
+    </div>
+    <div class="frag frag-oak frag-4">
+      <div class="frag-name">Dąb europejski</div>
+    </div>
+    <div class="frag frag-linen frag-5">
+      <div class="frag-name">Len · Ecru</div>
+    </div>
+    <div class="frag frag-copper frag-6">
+      <div class="frag-name">Miedź</div>
+    </div>
+
+    <!-- Floating labels connecting fragments to whole -->
+    <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 480 600" preserveAspectRatio="none">
+      <line x1="160" y1="320" x2="300" y2="280" stroke="rgba(44,95,63,0.2)" stroke-width="0.8" stroke-dasharray="4 3"/>
+      <line x1="360" y1="120" x2="300" y2="200" stroke="rgba(44,95,63,0.15)" stroke-width="0.8" stroke-dasharray="4 3"/>
+    </svg>
+  </div>
+
+  <!-- Hero text -->
+  <div class="hero-text">
+    <div class="hero-kicker">Kolekcja 2025 · Fragmenty piękna</div>
+    <h1 class="hero-title">
+      Każdy materiał<br>
+      opowiada<br>
+      <em>własną historię.</em>
+    </h1>
+    <p class="hero-lead">Tworzymy przestrzenie dla tych, którzy słuchają. Nasze obiekty to nie meble — to fragmenty czasu, rzemiosła i przekonania, że materia ma znaczenie.</p>
+    <div class="hero-cta-row">
+      <a href="#" class="cta-primary">Odkryj kolekcję</a>
+      <a href="#" class="cta-secondary">lub porozmawiaj z AI →</a>
+    </div>
+  </div>
+
+  <!-- Floating badge -->
+  <div class="hero-badge">
+    <div class="hero-badge-num">134</div>
+    <div class="hero-badge-label">obiekty w kolekcji</div>
+  </div>
+</section>
+
+<!-- SWATCHES -->
+<div class="swatches">
+  <div class="swatches-label">Materiały &amp; kolory</div>
+  <div class="swatch-group">
+    <div class="swatch active">
+      <div class="swatch-color sc-velvet"></div>
+      <div class="swatch-name">Aksamit</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color sc-emerald"></div>
+      <div class="swatch-name">Szmaragd</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color sc-camel"></div>
+      <div class="swatch-name">Camel</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color sc-slate"></div>
+      <div class="swatch-name">Łupek</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color sc-white"></div>
+      <div class="swatch-name">Ecru</div>
+    </div>
+  </div>
+  <div style="width:1px;height:40px;background:var(--paper-3);flex-shrink:0;"></div>
+  <div class="swatch-group">
+    <div class="swatch">
+      <div class="swatch-color sc-marble"></div>
+      <div class="swatch-name">Marmur</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color sc-brass"></div>
+      <div class="swatch-name">Mosiądz</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color sc-copper"></div>
+      <div class="swatch-name">Miedź</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color sc-black"></div>
+      <div class="swatch-name">Obsydian</div>
+    </div>
+  </div>
+  <div style="width:1px;height:40px;background:var(--paper-3);flex-shrink:0;"></div>
+  <div class="swatch-group">
+    <div class="swatch">
+      <div class="swatch-color sc-oak"></div>
+      <div class="swatch-name">Dąb</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color sc-walnut"></div>
+      <div class="swatch-name">Orzech</div>
+    </div>
+    <div class="swatch">
+      <div class="swatch-color sc-ash"></div>
+      <div class="swatch-name">Jesion</div>
+    </div>
+  </div>
+</div>
+
+<!-- EDITORIAL PRODUCTS -->
+<section class="editorial">
+
+  <!-- Product 1 — Salone Chair -->
+  <div class="ed-item ed-item-1 reveal" itemscope itemtype="https://schema.org/Product">
+    <meta itemprop="name" content="Salone — Fotel Wypoczynkowy">
+
+    <div class="ed-visual">
+      <div class="fragment-mosaic">
+        <div class="fm-piece fm-piece-1"></div>
+        <div class="fm-piece fm-piece-2"></div>
+        <div class="fm-piece fm-piece-3"></div>
+        <div class="fm-piece fm-piece-4"></div>
+      </div>
+      <div class="mosaic-hint">Najedź aby zobaczyć</div>
+    </div>
+
+    <div class="ed-content">
+      <div class="ed-series">Siedziska · REF-AA-CH-001</div>
+      <h2 class="ed-name"><em>Salone</em><br>Chair</h2>
+      <div class="ed-sub">Milano, Włochy · 2024</div>
+      <p class="ed-body" itemprop="description">Fotel projektu Giulia Rozzano — architekta i rzeźbiarki, której prace można znaleźć w kolekcjach prywatnych od Mediolanu po Tokio. Siedzisko rzeźbione ręcznie, tapicerka szyta szwem widocznym.</p>
+      <div class="ed-materials">
+        <span class="mat-tag">Aksamit Loro Piana</span>
+        <span class="mat-tag">Dąb olejowany</span>
+        <span class="mat-tag">Puch syberyjski</span>
+      </div>
+      <div class="ed-price-row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+        <meta itemprop="priceCurrency" content="PLN">
+        <meta itemprop="price" content="18900">
+        <span class="ed-price">18 900 PLN</span>
+        <span class="ed-price-sub">Dostawa: 6–8 tyg.</span>
+      </div>
+      <div class="ed-actions">
+        <button class="btn-buy">Dodaj do koszyka</button>
+        <button class="btn-wish">♡</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product 2 — Meridian Table -->
+  <div class="ed-item ed-item-2 reveal" itemscope itemtype="https://schema.org/Product">
+    <meta itemprop="name" content="Meridian — Stół z Marmuru Carrara">
+
+    <div class="ed-visual">
+      <div class="fragment-mosaic">
+        <div class="fm-piece fm-piece-1"></div>
+        <div class="fm-piece fm-piece-2"></div>
+        <div class="fm-piece fm-piece-3"></div>
+      </div>
+      <div class="mosaic-hint">Najedź aby zobaczyć</div>
+    </div>
+
+    <div class="ed-content">
+      <div class="ed-series">Stoły · REF-AA-TB-002</div>
+      <h2 class="ed-name"><em>Meridian</em><br>Dining Table</h2>
+      <div class="ed-sub">Carrara, Włochy · 2025</div>
+      <p class="ed-body" itemprop="description">Blat z jednego bloku marmuru Calacatta Oro. Żyły prowadzone symetrycznie od osi centralnej — każdy egzemplarz jest unikalnym dokumentem geologicznym. Podstawa ze stali szczotkowanej spawana ręcznie.</p>
+      <div class="ed-materials">
+        <span class="mat-tag">Marmur Calacatta Oro</span>
+        <span class="mat-tag">Stal szczotkowana</span>
+        <span class="mat-tag">Jedno źródło kamienia</span>
+      </div>
+      <div class="ed-price-row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+        <meta itemprop="priceCurrency" content="PLN">
+        <meta itemprop="price" content="42000">
+        <span class="ed-price">42 000 PLN</span>
+        <span class="ed-price-sub">Dostawa: 10–12 tyg.</span>
+      </div>
+      <div class="ed-actions">
+        <button class="btn-buy">Dodaj do koszyka</button>
+        <button class="btn-wish">♡</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product 3 — Forma Lamp -->
+  <div class="ed-item ed-item-3 reveal" itemscope itemtype="https://schema.org/Product">
+    <meta itemprop="name" content="Forma — Lampa Podłogowa">
+
+    <div class="ed-visual">
+      <div class="fragment-mosaic">
+        <div class="fm-piece fm-piece-1"></div>
+        <div class="fm-piece fm-piece-2"></div>
+        <div class="fm-piece fm-piece-3"></div>
+      </div>
+      <div class="mosaic-hint">Najedź aby zobaczyć</div>
+    </div>
+
+    <div class="ed-content">
+      <div class="ed-series">Oświetlenie · REF-AA-LT-003</div>
+      <h2 class="ed-name"><em>Forma</em><br>Floor Lamp</h2>
+      <div class="ed-sub">Kopenhaga, Dania · 2024</div>
+      <p class="ed-body" itemprop="description">Klosz z hartowanego szkła dmuchanego ręcznie przez szklarzy z Murano. Noga toczona z litego mosiądzu, ważąca 6 kilogramów — tak ciężka, że nigdy się nie przewróci. Regulacja barwy światła bez pilota, przez dotyk.</p>
+      <div class="ed-materials">
+        <span class="mat-tag">Szkło Murano</span>
+        <span class="mat-tag">Mosiądz lity</span>
+        <span class="mat-tag">LED 2700K–4000K</span>
+      </div>
+      <div class="ed-price-row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+        <meta itemprop="priceCurrency" content="PLN">
+        <meta itemprop="price" content="7800">
+        <span class="ed-price">7 800 PLN</span>
+        <span class="ed-price-sub">Dostawa: 4–6 tyg.</span>
+      </div>
+      <div class="ed-actions">
+        <button class="btn-buy">Dodaj do koszyka</button>
+        <button class="btn-wish">♡</button>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- AI PANEL -->
+<div class="ai-panel reveal">
+  <div class="ai-panel-inner">
+    <div>
+      <div class="ai-panel-tag">
+        <span class="ai-live-dot"></span>
+        Asystent AI · zawsze online
+      </div>
+      <h2 class="ai-panel-title">Powiedz mi<br>o swoim<br><em>wnętrzu</em></h2>
+      <p class="ai-panel-body">Opisz styl, kolory, przestrzeń lub nastrój. Nasz asystent AI zna każdy obiekt z kolekcji i ułoży dla Ciebie spójny zestaw.</p>
+
+      <div class="ai-input-section">
+        <div class="ai-input-label">Twoje zapytanie</div>
+        <div class="ai-input-row">
+          <input type="text" placeholder="np. sypialnia skandynawska, ciepłe drewno i biel...">
+          <button class="ai-input-send">→</button>
+        </div>
+        <div class="ai-suggestions">
+          <span class="ai-suggestion">Japandi pracownia</span>
+          <span class="ai-suggestion">Salon z czarnym marmurem</span>
+          <span class="ai-suggestion">Loft industrialny</span>
+          <span class="ai-suggestion">Villa minimalistyczna</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-cards">
+      <div class="ai-card">
+        <div class="ai-card-swatch" style="background: linear-gradient(135deg, #3D2060, #2D1550);"></div>
+        <div class="ai-card-info">
+          <div class="ai-card-name">Salone · Aksamit Fiolet</div>
+          <div class="ai-card-desc">Pasuje do: jasny marmur + mosiądz</div>
+        </div>
+        <div class="ai-card-price">18 900 PLN</div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-card-swatch" style="background: linear-gradient(135deg, #C9A53A, #DFC060);"></div>
+        <div class="ai-card-info">
+          <div class="ai-card-name">Forma · Brass Edition</div>
+          <div class="ai-card-desc">Uzupełnia: velvet + ciemne drewno</div>
+        </div>
+        <div class="ai-card-price">7 800 PLN</div>
+      </div>
+      <div class="ai-card">
+        <div class="ai-card-swatch" style="background: linear-gradient(135deg, #EDE8E1, #D8D0C4);"></div>
+        <div class="ai-card-info">
+          <div class="ai-card-name">Meridian · Calacatta Oro</div>
+          <div class="ai-card-desc">Centrum aranżacji: każde wnętrze</div>
+        </div>
+        <div class="ai-card-price">42 000 PLN</div>
+      </div>
+      <div class="ai-card" style="border: 1px dashed rgba(255,255,255,0.15); background: transparent; justify-content: center; color: rgba(255,255,255,0.3); font-size:12px; letter-spacing:0.1em;">
+        + Poproś AI o więcej propozycji
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOOD BOARD -->
+<section class="moodboard reveal">
+  <div class="mb-header">
+    <h2 class="mb-title">Inspiracje<br><em>&amp; materiały</em></h2>
+    <p class="mb-body">Każdy projekt zaczyna się od tablicy inspiracji. Poniżej nasz wewnętrzny mood board kolekcji 2025 — fragmenty materiałów, tekstur i form, które złożyły się na tegoroczną selekcję obiektów.</p>
+  </div>
+
+  <div class="moodboard-stage">
+    <div class="mb-card mb-c1">
+      <div class="cv cv-velvet mb-card-img"></div>
+      <div class="mb-card-label">Aksamit · Głęboki Fiolet</div>
+    </div>
+    <div class="mb-card mb-c2">
+      <div class="cv cv-marble mb-card-img"></div>
+      <div class="mb-card-label">Calacatta Oro</div>
+    </div>
+    <div class="mb-card mb-c3">
+      <div class="cv cv-brass mb-card-img"></div>
+      <div class="mb-card-label">Mosiądz · Antique</div>
+    </div>
+    <div class="mb-card mb-c4">
+      <div class="cv cv-oak mb-card-img"></div>
+      <div class="mb-card-label">Dąb olejowany</div>
+    </div>
+    <div class="mb-card mb-c5">
+      <div class="cv cv-copper mb-card-img"></div>
+      <div class="mb-card-label">Miedź patynowana</div>
+    </div>
+    <div class="mb-card mb-c6">
+      <div class="cv cv-linen mb-card-img"></div>
+      <div class="mb-card-label">Len belgijski</div>
+    </div>
+    <div class="mb-card mb-c7">
+      <div class="cv cv-concrete mb-card-img"></div>
+      <div class="mb-card-label">Beton architektoniczny</div>
+    </div>
+    <div class="mb-card mb-c8">
+      <div class="cv cv-glass mb-card-img"></div>
+      <div class="mb-card-label">Szkło Murano</div>
+    </div>
+
+    <!-- Sticky note -->
+    <div class="mb-note">
+      <strong>Notatka</strong>
+      Połączenie: aksamit + mosiądz + marmur = nasza kompozycja roku 2025
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer itemscope itemtype="https://schema.org/HomeGoodsStore">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo"><strong>Academia</strong> Architektury</div>
+      <p class="footer-desc" itemprop="description">Ekskluzywne wyposażenie wnętrz dla architektów, kolekcjonerów i tych, którzy wiedzą, że piękno tkwi w detalach.</p>
+      <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress" style="font-size:11px; color:rgba(255,255,255,0.25);">
+        <span itemprop="streetAddress">ul. Mokotowska 12</span>, <span itemprop="addressLocality">Warszawa</span>
+        <meta itemprop="addressCountry" content="PL">
+      </span>
+    </div>
+    <div>
+      <div class="footer-col-title">Kolekcja</div>
+      <ul class="footer-links">
+        <li><a href="#">Nowe obiekty</a></li>
+        <li><a href="#">Siedziska</a></li>
+        <li><a href="#">Stoły i blaty</a></li>
+        <li><a href="#">Oświetlenie</a></li>
+        <li><a href="#">Dekoracje</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Serwis</div>
+      <ul class="footer-links">
+        <li><a href="#">Dla architektów</a></li>
+        <li><a href="#">Próbki materiałów</a></li>
+        <li><a href="#">Dostawa i montaż</a></li>
+        <li><a href="#">Gwarancja</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Kontakt</div>
+      <ul class="footer-links">
+        <li><a href="#" itemprop="telephone">+48 22 000 00 00</a></li>
+        <li><a href="#" itemprop="email">hello@academia.pl</a></li>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Pinterest</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Academia Architektury. Wszelkie prawa zastrzeżone.</span>
+    <span>Projekt: Layout IV — <em>Fragment</em></span>
+  </div>
+</footer>
+
+<script>
+// ── CROSSHAIR CURSOR ──
+const xhair = document.getElementById('xhair');
+const label = document.getElementById('xhair-label');
+let mx = 0, my = 0;
+
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  xhair.style.left = mx + 'px';
+  xhair.style.top = my + 'px';
+});
+
+// Set product name in crosshair on hover
+document.querySelectorAll('.frag, .ed-item, .mb-card, .ai-card').forEach(el => {
+  const name = el.querySelector('.frag-name, .ed-name, .mb-card-label, .ai-card-name');
+  el.addEventListener('mouseenter', () => {
+    if (name) {
+      label.textContent = name.textContent.trim().split('\n')[0];
+      document.body.classList.add('on-product');
+    }
+  });
+  el.addEventListener('mouseleave', () => {
+    document.body.classList.remove('on-product');
+    label.textContent = '';
+  });
+});
+
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+reveals.forEach(el => obs.observe(el));
+
+// ── SWATCH CLICK ──
+document.querySelectorAll('.swatch').forEach(sw => {
+  sw.addEventListener('click', () => {
+    sw.closest('.swatch-group').querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+    sw.classList.add('active');
+  });
+});
+
+// ── AI INPUT ──
+const aiInput = document.querySelector('.ai-input-row input');
+document.querySelectorAll('.ai-suggestion').forEach(s => {
+  s.addEventListener('click', () => {
+    aiInput.value = s.textContent;
+    aiInput.focus();
+  });
+});
+document.querySelector('.ai-input-send').addEventListener('click', () => {
+  if (aiInput.value.trim()) { aiInput.value = ''; }
+});
+
+// ── WISHLIST ──
+document.querySelectorAll('.btn-wish').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.textContent = btn.textContent === '♡' ? '♥' : '♡';
+    btn.style.color = btn.textContent === '♥' ? 'var(--copper)' : '';
+    btn.style.borderColor = btn.textContent === '♥' ? 'var(--copper)' : '';
+  });
+});
+</script>
+</body>
+</html>

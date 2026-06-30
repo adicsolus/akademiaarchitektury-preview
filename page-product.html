@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salone — fotel wypoczynkowy | Poliform | Academia Architektury</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Salone — fotel wypoczynkowy",
+  "description": "Fotel wypoczynkowy Salone projektu Antonio Citterio. Tapicerka aksamit, rama jesion lakierowany. Poliform.",
+  "sku": "AA-CH-001",
+  "brand": {
+    "@type": "Brand",
+    "name": "Poliform"
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "PLN",
+    "price": "14200",
+    "priceValidUntil": "2026-12-31",
+    "availability": "https://schema.org/InStock",
+    "seller": {
+      "@type": "Organization",
+      "name": "Academia Architektury"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "reviewCount": "2"
+  }
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --p: #F6F4F0;
+  --chalk: #FAFAF8;
+  --ink: #1A1916;
+  --muted: #6B6860;
+  --sand: #A09880;
+  --gold: #C8A96E;
+  --fog: #E5E3DC;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --mono: 'Space Mono', monospace;
+  --nav: 60px;
+  --w: 1360px;
+  --gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--p); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.6; overflow-x: hidden; cursor: none; }
+
+/* ─── CURSOR ─── */
+#cur {
+  position: fixed; width: 20px; height: 20px; pointer-events: none;
+  z-index: 9999; transform: translate(-50%,-50%);
+  transition: transform .08s;
+}
+#cur::before,#cur::after {
+  content:''; position: absolute; background: var(--ink);
+}
+#cur::before { width:1px; height:100%; left:50%; top:0; }
+#cur::after  { height:1px; width:100%; top:50%; left:0; }
+
+/* ─── HEADER ─── */
+.hdr {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  height: var(--nav);
+  background: rgba(246,244,240,.93); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--fog);
+  display: flex; align-items: center;
+  transition: height .3s, box-shadow .3s;
+}
+.hdr.up { height:50px; box-shadow:0 1px 18px rgba(0,0,0,.05); }
+.hdr-in {
+  max-width: var(--w); margin: 0 auto; padding: 0 var(--gap);
+  width:100%; display:flex; align-items:center; gap:2.5rem;
+}
+.logo {
+  font-family: var(--serif); font-size:1.25rem; font-weight:400;
+  color: var(--ink); text-decoration:none; white-space:nowrap; flex-shrink:0;
+}
+.logo em { font-style:italic; color: var(--gold); }
+
+.nav { display:flex; gap:0; list-style:none; }
+.nav a {
+  display:block; padding:.45rem 1rem;
+  font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+  color: var(--muted); text-decoration:none;
+  position:relative; transition:color .2s;
+}
+.nav a::after {
+  content:''; position:absolute; bottom:-1px; left:1rem; right:1rem;
+  height:1px; background:var(--gold);
+  transform:scaleX(0); transform-origin:left; transition:transform .3s;
+}
+.nav a:hover { color:var(--ink); }
+.nav a:hover::after { transform:scaleX(1); }
+
+.hdr-acts { display:flex; align-items:center; gap:1rem; margin-left:auto; }
+.icon-btn {
+  background:none; border:none; cursor:none; color:var(--muted);
+  display:flex; align-items:center; justify-content:center;
+  padding:.4rem; transition:color .2s;
+}
+.icon-btn:hover { color:var(--ink); }
+.btn-arc-hdr {
+  background:var(--ink); color:var(--p); border:none; cursor:none;
+  padding:.4rem .9rem; font-size:11px; font-family:var(--sans);
+  font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+  display:flex; align-items:center; gap:.5rem;
+  transition:background .25s, color .25s;
+}
+.btn-arc-hdr:hover { background:var(--gold); color:var(--ink); }
+.btn-arc-hdr svg { color:var(--gold); transition:color .25s; }
+.btn-arc-hdr:hover svg { color:var(--ink); }
+
+/* ─── BREADCRUMB ─── */
+.breadcrumb {
+  padding-top: calc(var(--nav) + 1.2rem);
+  padding-bottom: 1.2rem;
+  max-width: var(--w); margin: 0 auto; padding-left: var(--gap); padding-right: var(--gap);
+}
+.breadcrumb nav { display:flex; align-items:center; gap:.5rem; flex-wrap:wrap; }
+.breadcrumb a {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing:.12em; text-transform:uppercase;
+  color: var(--sand); text-decoration:none; transition:color .2s;
+}
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb span {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing:.12em; text-transform:uppercase;
+  color: var(--muted);
+}
+.bc-sep { color: var(--fog); font-size: 10px; }
+
+/* ─── PRODUCT LAYOUT ─── */
+.product-wrap {
+  max-width: var(--w); margin: 0 auto;
+  padding: 0 var(--gap) 5rem;
+  display: grid;
+  grid-template-columns: 55% 1fr;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
+}
+
+/* ─── GALLERY ─── */
+.gallery { position: relative; }
+.gallery-main {
+  position: relative; aspect-ratio: 4/3; overflow: hidden;
+  background: var(--chalk);
+}
+.gallery-main img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .6s cubic-bezier(.16,1,.3,1);
+}
+.gallery-main:hover img { transform: scale(1.03); }
+.gallery-badge {
+  position: absolute; top: 1rem; left: 1rem; z-index: 2;
+  font-family: var(--mono); font-size: 9px; letter-spacing: .15em; text-transform: uppercase;
+  background: var(--ink); color: var(--p); padding: .22rem .6rem;
+}
+.gallery-thumbs {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: .65rem; margin-top: .65rem;
+}
+.thumb {
+  aspect-ratio: 1; overflow: hidden; background: var(--chalk); cursor: none;
+  border: 1.5px solid transparent; transition: border-color .2s;
+}
+.thumb.active { border-color: var(--gold); }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.thumb:hover img { transform: scale(1.07); }
+.thumb:hover { border-color: var(--sand); }
+.thumb.active:hover { border-color: var(--gold); }
+
+/* ─── PRODUCT INFO (sticky sidebar) ─── */
+.product-info {
+  position: sticky; top: calc(var(--nav) + 1.5rem);
+  display: flex; flex-direction: column; gap: 1.5rem;
+}
+
+.pi-brand {
+  font-family: var(--mono); font-size: 10px; color: var(--sand);
+  letter-spacing: .22em; text-transform: uppercase;
+}
+.pi-ref {
+  font-family: var(--mono); font-size: 9px; color: rgba(160,152,128,.55);
+  letter-spacing: .14em; margin-top: .3rem;
+}
+.pi-title {
+  font-family: var(--serif); font-size: 2.8rem; font-weight: 300;
+  line-height: 1.08; letter-spacing: -.01em; margin-top: .2rem;
+}
+.pi-price-wrap { display: flex; flex-direction: column; gap: .2rem; }
+.pi-price {
+  font-family: var(--serif); font-size: 2rem; font-weight: 400; color: var(--ink);
+}
+.pi-price-eur {
+  font-family: var(--mono); font-size: 11px; color: var(--muted); letter-spacing: .08em;
+}
+.pi-desc {
+  font-size: 13.5px; color: var(--muted); line-height: 1.7;
+  border-top: 1px solid var(--fog); padding-top: 1.2rem;
+}
+.pi-desc strong { color: var(--ink); font-weight: 500; }
+
+/* ─── MATERIAL SWATCHES ─── */
+.swatch-block { display: flex; flex-direction: column; gap: .65rem; }
+.swatch-label {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--sand);
+}
+.swatch-label strong { color: var(--ink); font-weight: 500; font-family: var(--sans); font-size: 12px; letter-spacing: 0; text-transform: none; }
+.swatches { display: flex; gap: .55rem; flex-wrap: wrap; }
+.sw {
+  width: 30px; height: 30px; border-radius: 50%; cursor: none;
+  border: 2px solid transparent;
+  transition: transform .2s, border-color .2s;
+  position: relative;
+}
+.sw:hover { transform: scale(1.12); }
+.sw.active { border-color: var(--gold); box-shadow: 0 0 0 1px var(--fog); }
+.sw[title]::after {
+  content: attr(title); position: absolute; bottom: calc(100% + 6px); left: 50%;
+  transform: translateX(-50%); white-space: nowrap;
+  font-family: var(--mono); font-size: 8.5px; letter-spacing: .1em; text-transform: uppercase;
+  background: var(--ink); color: var(--p); padding: .2rem .5rem;
+  opacity: 0; pointer-events: none; transition: opacity .18s;
+}
+.sw:hover::after { opacity: 1; }
+
+/* ─── QTY + CTA ─── */
+.qty-row { display: flex; gap: .8rem; align-items: center; }
+.qty-ctrl {
+  display: flex; align-items: center; border: 1px solid var(--fog); background: var(--chalk);
+  flex-shrink: 0;
+}
+.qty-btn {
+  background: none; border: none; width: 38px; height: 44px; cursor: none;
+  font-size: 18px; color: var(--muted); transition: color .2s, background .2s;
+  display: flex; align-items: center; justify-content: center;
+}
+.qty-btn:hover { color: var(--ink); background: var(--fog); }
+.qty-val {
+  width: 40px; text-align: center; font-family: var(--mono); font-size: 13px;
+  border: none; background: transparent; color: var(--ink); outline: none;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: .7rem;
+  background: var(--ink); color: var(--p);
+  padding: .8rem 1.8rem; font-size: 11.5px; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+  transition: background .25s, color .25s; cursor: none; border: none;
+  width: 100%; font-family: var(--sans);
+}
+.btn-primary:hover { background: var(--gold); color: var(--ink); }
+.btn-ghost-full {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  width: 100%; padding: .75rem; font-size: 11.5px; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--muted); background: none;
+  border: 1px solid var(--fog); cursor: none; font-family: var(--sans);
+  transition: color .2s, border-color .2s;
+}
+.btn-ghost-full:hover { color: var(--ink); border-color: var(--sand); }
+
+/* ─── ARC BLOCK ─── */
+.arc-block {
+  background: var(--ink); border: 1px solid rgba(200,169,110,.28);
+  padding: 1.15rem 1.3rem; display: flex; flex-direction: column; gap: .9rem;
+}
+.arc-block-head {
+  display: flex; align-items: center; gap: .8rem;
+}
+.arc-block-label {
+  font-family: var(--mono); font-size: 9px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--gold); display: block; margin-bottom: .25rem;
+}
+.arc-block-text {
+  font-size: 13px; color: rgba(246,244,240,.75); line-height: 1.65;
+}
+.arc-block-text em { color: var(--gold); font-style: normal; }
+.btn-arc-prod {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: .15em; text-transform: uppercase;
+  background: none; border: 1px solid rgba(200,169,110,.35); color: var(--gold);
+  padding: .45rem .9rem; cursor: none; transition: background .2s, color .2s;
+  align-self: flex-start;
+}
+.btn-arc-prod:hover { background: var(--gold); color: var(--ink); }
+
+/* ─── DELIVERY BAR ─── */
+.delivery-bar {
+  border: 1px solid var(--fog); background: var(--chalk);
+  display: flex; gap: 0;
+}
+.del-item {
+  flex: 1; display: flex; align-items: center; gap: .65rem;
+  padding: .75rem .85rem; font-size: 11.5px; color: var(--muted);
+  border-right: 1px solid var(--fog);
+}
+.del-item:last-child { border-right: none; }
+.del-item svg { color: var(--gold); flex-shrink: 0; }
+
+.consult-link {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--sand); text-decoration: none; border-bottom: 1px solid var(--fog);
+  padding-bottom: 2px; transition: color .2s, border-color .2s; cursor: none;
+  display: inline-block;
+}
+.consult-link:hover { color: var(--gold); border-color: var(--gold); }
+
+/* ─── TABS ─── */
+.tabs-section {
+  max-width: var(--w); margin: 0 auto;
+  padding: 0 var(--gap) 5rem;
+  border-top: 1px solid var(--fog);
+}
+.tabs-nav {
+  display: flex; border-bottom: 1px solid var(--fog); margin-bottom: 0;
+}
+.tab-btn {
+  background: none; border: none; cursor: none;
+  font-family: var(--sans); font-size: 11.5px; font-weight: 500;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: var(--muted); padding: 1.1rem 1.5rem;
+  border-bottom: 2px solid transparent; margin-bottom: -1px;
+  transition: color .2s, border-color .2s;
+}
+.tab-btn:hover { color: var(--ink); }
+.tab-btn.active { color: var(--ink); border-bottom-color: var(--gold); }
+
+.tab-pane { display: none; padding: 2.5rem 0; }
+.tab-pane.active { display: block; }
+
+.tab-desc { max-width: 760px; }
+.tab-desc p { font-size: 15px; color: var(--muted); line-height: 1.85; }
+.tab-desc p + p { margin-top: 1.1em; }
+.tab-desc p strong { color: var(--ink); }
+
+/* SPEC TABLE */
+.spec-table { width: 100%; max-width: 560px; border-collapse: collapse; }
+.spec-table tr { border-bottom: 1px solid var(--fog); }
+.spec-table tr:last-child { border-bottom: none; }
+.spec-table td { padding: .75rem 0; font-size: 13.5px; }
+.spec-table td:first-child {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--sand); width: 42%; padding-right: 1rem;
+}
+.spec-table td:last-child { color: var(--ink); }
+
+/* DELIVERY TEXT */
+.delivery-text { max-width: 700px; }
+.delivery-text h4 {
+  font-family: var(--serif); font-size: 1.3rem; font-weight: 300;
+  margin-bottom: .8rem; margin-top: 1.8rem;
+}
+.delivery-text h4:first-child { margin-top: 0; }
+.delivery-text p { font-size: 13.5px; color: var(--muted); line-height: 1.8; }
+.delivery-text ul { list-style: none; display: flex; flex-direction: column; gap: .35rem; margin-top: .6rem; }
+.delivery-text ul li { font-size: 13.5px; color: var(--muted); }
+.delivery-text ul li::before { content: '— '; color: var(--gold); }
+
+/* REVIEWS */
+.reviews-list { display: flex; flex-direction: column; gap: 2rem; max-width: 680px; }
+.review-card { border-bottom: 1px solid var(--fog); padding-bottom: 1.8rem; }
+.review-card:last-child { border-bottom: none; }
+.review-head { display: flex; align-items: center; gap: 1rem; margin-bottom: .65rem; flex-wrap: wrap; }
+.stars { color: var(--gold); font-size: 14px; letter-spacing: 2px; }
+.rev-author { font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--sand); }
+.rev-date { font-family: var(--mono); font-size: 9px; color: rgba(160,152,128,.5); letter-spacing: .08em; margin-left: auto; }
+.rev-text { font-size: 14px; color: var(--muted); line-height: 1.75; }
+.rev-verified { font-family: var(--mono); font-size: 9px; letter-spacing: .1em; color: #6cbb6c; text-transform: uppercase; margin-top: .5rem; }
+
+/* ─── RELATED PRODUCTS ─── */
+.related-section {
+  background: var(--chalk); padding: 5rem var(--gap);
+}
+.related-in { max-width: var(--w); margin: 0 auto; }
+.sec-hdr { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:2.8rem; gap:2rem; }
+.sec-label { font-family:var(--mono); font-size:10px; color:var(--sand); letter-spacing:.2em; text-transform:uppercase; }
+.sec-title { font-family:var(--serif); font-size:clamp(1.8rem,3vw,2.8rem); font-weight:300; }
+.sec-more {
+  font-size:11px; color:var(--sand); letter-spacing:.1em; text-transform:uppercase;
+  text-decoration:none; border-bottom:1px solid var(--fog); padding-bottom:2px;
+  transition:color .2s, border-color .2s; flex-shrink:0; cursor:none;
+}
+.sec-more:hover { color:var(--gold); border-color:var(--gold); }
+
+.pg { display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; }
+.pc { text-decoration:none; color:inherit; display:flex; flex-direction:column; }
+.pc-vis {
+  position:relative; aspect-ratio:3/4; overflow:hidden;
+  background:var(--chalk); margin-bottom:.9rem;
+}
+.pc-photo {
+  position:absolute; inset:0;
+  background:center/cover no-repeat;
+  transition:transform .6s cubic-bezier(.16,1,.3,1);
+}
+.pc:hover .pc-photo { transform:scale(1.04); }
+.pc-vis svg.bd {
+  position:absolute; inset:0; width:100%; height:100%;
+  pointer-events:none; z-index:2; overflow:visible;
+}
+.pc-vis svg.bd rect {
+  fill:none; stroke:var(--gold); stroke-width:1.5;
+  vector-effect:non-scaling-stroke;
+  stroke-dasharray:462; stroke-dashoffset:462;
+  transition:stroke-dashoffset .55s cubic-bezier(.16,1,.3,1);
+}
+.pc:hover .pc-vis svg.bd rect { stroke-dashoffset:0; }
+.badge {
+  position:absolute; top:.85rem; left:.85rem; z-index:3;
+  font-family:var(--mono); font-size:9px; letter-spacing:.15em; text-transform:uppercase;
+  background:var(--ink); color:var(--p); padding:.2rem .55rem;
+}
+.brand { font-family:var(--mono); font-size:9.5px; color:var(--sand); letter-spacing:.18em; text-transform:uppercase; margin-bottom:.25rem; }
+.pname { font-family:var(--serif); font-size:1.15rem; font-weight:400; line-height:1.3; margin-bottom:.35rem; }
+.price { font-size:13px; color:var(--muted); }
+.price strong { font-weight:500; color:var(--ink); font-size:15px; }
+
+/* ─── FOOTER ─── */
+.ftr { background:var(--ink); color:rgba(246,244,240,.55); padding:5rem var(--gap) 2.5rem; }
+.ftr-in { max-width:var(--w); margin:0 auto; }
+.ftr-grid {
+  display:grid; grid-template-columns:1.5fr repeat(3,1fr); gap:4rem;
+  border-bottom:1px solid rgba(255,255,255,.07); padding-bottom:3rem; margin-bottom:2rem;
+}
+.ftr-logo { font-family:var(--serif); font-size:1.4rem; color:var(--p); margin-bottom:.9rem; }
+.ftr-logo em { font-style:italic; color:var(--gold); }
+.ftr-desc { font-size:13.5px; line-height:1.75; }
+.ftr-addr { margin-top:1.2rem; font-family:var(--mono); font-size:10px; letter-spacing:.1em; line-height:2; color:rgba(246,244,240,.3); }
+.ftr-addr a { color:var(--gold); text-decoration:none; }
+.fc-t { font-family:var(--mono); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1.1rem; }
+.ftr-col ul { list-style:none; display:flex; flex-direction:column; gap:.55rem; }
+.ftr-col a { color:rgba(246,244,240,.45); text-decoration:none; font-size:13.5px; transition:color .2s; cursor:none; }
+.ftr-col a:hover { color:var(--p); }
+.ftr-bot { display:flex; justify-content:space-between; align-items:center; }
+.copy { font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; }
+.legal { display:flex; gap:1.3rem; }
+.legal a { font-family:var(--mono); font-size:9.5px; letter-spacing:.09em; color:rgba(246,244,240,.25); text-decoration:none; cursor:none; }
+
+/* ─── FLOATING ARC ─── */
+.arc-float {
+  position:fixed; bottom:2rem; right:2rem; z-index:200;
+  display:flex; flex-direction:column; align-items:flex-end; gap:.65rem;
+}
+.arc-lbl {
+  background:var(--ink); color:var(--p); border:1px solid rgba(200,169,110,.3);
+  font-family:var(--mono); font-size:9px; letter-spacing:.15em; padding:.3rem .65rem;
+  opacity:0; transform:translateX(8px); transition:opacity .25s, transform .25s;
+  pointer-events:none; white-space:nowrap;
+}
+.arc-float:hover .arc-lbl { opacity:1; transform:none; }
+.arc-btn {
+  width:52px; height:52px; border-radius:50%;
+  background:var(--ink); border:1px solid var(--gold);
+  cursor:none; display:flex; align-items:center; justify-content:center;
+  transition:background .25s, transform .25s; position:relative;
+}
+.arc-btn:hover { background:var(--gold); transform:scale(1.06); }
+.arc-btn:hover .arc-ico { color:var(--ink); }
+.arc-ico { color:var(--gold); transition:color .25s; }
+.arc-ndot {
+  position:absolute; top:-3px; right:-3px;
+  width:10px; height:10px; border-radius:50%; background:#6cbb6c;
+  border:2px solid var(--p); animation:pulse 2s ease infinite;
+}
+
+/* ─── ARC PANEL ─── */
+.arc-panel {
+  position:fixed; bottom:0; right:2rem;
+  width:370px; z-index:199;
+  background:var(--ink); border:1px solid rgba(200,169,110,.25); border-bottom:none;
+  border-radius:2px 2px 0 0; overflow:hidden;
+  transform:translateY(calc(100% + 90px));
+  transition:transform .45s cubic-bezier(.16,1,.3,1);
+}
+.arc-panel.open { transform:translateY(0); }
+.ap-hdr {
+  display:flex; align-items:center; gap:.9rem; padding:.9rem 1.1rem;
+  border-bottom:1px solid rgba(200,169,110,.14);
+  background:rgba(200,169,110,.07);
+}
+.ap-hdr-text { flex:1; }
+.ap-hdr-n { font-family:var(--serif); font-size:1.05rem; color:var(--p); }
+.ap-hdr-s { font-family:var(--mono); font-size:9px; letter-spacing:.13em; color:var(--gold); }
+.ap-close {
+  background:none; border:none; cursor:none; color:rgba(246,244,240,.35);
+  font-size:17px; line-height:1; transition:color .2s;
+}
+.ap-close:hover { color:var(--p); }
+.ap-msgs { height:270px; overflow-y:auto; padding:1rem 1.1rem; display:flex; flex-direction:column; gap:.7rem; }
+.msg { display:flex; gap:.65rem; }
+.msg.u { flex-direction:row-reverse; }
+.av {
+  width:26px; height:26px; border-radius:50%; background:var(--gold); flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:8.5px; color:var(--ink); font-weight:700;
+}
+.msg.u .av { background:var(--sand); }
+.bbl {
+  padding:.55rem .9rem; font-size:13.5px; line-height:1.5; max-width:82%;
+  border-radius:1px;
+}
+.msg:not(.u) .bbl { background:rgba(255,255,255,.07); color:rgba(246,244,240,.85); }
+.msg.u .bbl { background:var(--gold); color:var(--ink); }
+.dots { padding:.55rem .9rem; display:flex; gap:4px; }
+.dots span {
+  width:5px; height:5px; border-radius:50%; background:rgba(200,169,110,.5);
+  animation:dot 1.4s ease infinite;
+}
+.dots span:nth-child(2){animation-delay:.2s}
+.dots span:nth-child(3){animation-delay:.4s}
+.ap-chips { padding:0 1.1rem .65rem; display:flex; gap:.4rem; flex-wrap:wrap; }
+.chip {
+  font-family:var(--mono); font-size:9px; letter-spacing:.1em;
+  border:1px solid rgba(200,169,110,.3); color:var(--gold);
+  padding:.28rem .65rem; cursor:none; background:none;
+  transition:background .2s, color .2s;
+}
+.chip:hover { background:var(--gold); color:var(--ink); }
+.ap-inp {
+  display:flex; align-items:center; gap:.8rem;
+  border-top:1px solid rgba(200,169,110,.14); padding:.75rem 1.1rem;
+}
+.ap-inp input {
+  flex:1; background:transparent; border:none; outline:none;
+  color:var(--p); font-family:var(--sans); font-size:13px;
+}
+.ap-inp input::placeholder { color:rgba(246,244,240,.3); }
+.ap-send { background:none; border:none; cursor:none; color:var(--gold); font-size:17px; transition:transform .2s; }
+.ap-send:hover { transform:translateX(3px); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+@keyframes dot { 0%,80%,100%{transform:scale(.75);opacity:.5} 40%{transform:scale(1.1);opacity:1} }
+@keyframes arcFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+@keyframes legL { 0%,100%{transform:rotate(-9deg)} 50%{transform:rotate(5deg)} }
+@keyframes legR { 0%,100%{transform:rotate(9deg)} 50%{transform:rotate(-5deg)} }
+
+.arc-svg-anim { animation:arcFloat 3.2s ease-in-out infinite; }
+.ll { animation:legL 1.9s ease-in-out infinite; transform-origin:0 0; }
+.lr { animation:legR 1.9s ease-in-out infinite; transform-origin:0 0; }
+
+/* ─── FADE IN ─── */
+.fi { opacity:0; transform:translateY(20px); transition:opacity .65s ease, transform .65s ease; }
+.fi.on { opacity:1; transform:none; }
+
+/* ─── DOT LIVE ─── */
+.dot { width:7px; height:7px; border-radius:50%; background:#6cbb6c; animation:pulse 2s ease infinite; }
+</style>
+</head>
+<body itemscope itemtype="https://schema.org/Product">
+
+<div id="cur"></div>
+
+<!-- ══ HEADER ══════════════════════════════════════════════ -->
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a href="#" class="logo">Academia <em>Architektury</em></a>
+    <nav><ul class="nav">
+      <li><a href="#">Meble</a></li>
+      <li><a href="#">Oświetlenie</a></li>
+      <li><a href="#">Tkaniny</a></li>
+      <li><a href="#">Kolekcje</a></li>
+      <li><a href="#">Galeria</a></li>
+      <li><a href="#">O nas</a></li>
+    </ul></nav>
+    <div class="hdr-acts">
+      <button class="icon-btn" aria-label="Szukaj">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5l3.5 3.5"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Lista życzeń">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 21C12 21 3 14.5 3 8.5a5 5 0 0 1 9-3A5 5 0 0 1 21 8.5c0 6-9 12.5-9 12.5z"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Koszyk">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </button>
+      <button class="btn-arc-hdr" onclick="togglePanel()">
+        <svg width="12" height="18" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <circle cx="20" cy="8" r="5"/><line x1="20" y1="13" x2="10" y2="54"/><line x1="20" y1="13" x2="30" y2="54"/>
+        </svg>
+        Zapytaj ARC
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ BREADCRUMB ═══════════════════════════════════════════ -->
+<div class="breadcrumb">
+  <nav aria-label="Breadcrumb">
+    <a href="#">Strona główna</a>
+    <span class="bc-sep">/</span>
+    <a href="#">Meble</a>
+    <span class="bc-sep">/</span>
+    <a href="#">Krzesła i fotele</a>
+    <span class="bc-sep">/</span>
+    <span>Salone — fotel wypoczynkowy</span>
+  </nav>
+</div>
+
+<!-- ══ PRODUCT MAIN ══════════════════════════════════════════ -->
+<div class="product-wrap">
+
+  <!-- GALERIA -->
+  <div class="gallery fi">
+    <div class="gallery-main" id="mainImg">
+      <span class="gallery-badge">Nowość</span>
+      <img
+        id="mainPhoto"
+        src="../image_gen/generated/academia/salone-chair-studio.png"
+        alt="Salone — fotel wypoczynkowy Poliform, widok główny"
+        itemprop="image"
+      >
+    </div>
+    <div class="gallery-thumbs">
+      <div class="thumb active" onclick="changePhoto(this, '../image_gen/generated/academia/salone-chair-studio.png', 'Salone — widok główny')">
+        <img src="../image_gen/generated/academia/salone-chair-studio.png" alt="Salone — widok studio">
+      </div>
+      <div class="thumb" onclick="changePhoto(this, '../image_gen/generated/academia/monolith-salone-dark.png', 'Salone — wariant ciemny')">
+        <img src="../image_gen/generated/academia/monolith-salone-dark.png" alt="Salone — wariant ciemny">
+      </div>
+      <div class="thumb" onclick="changePhoto(this, '../image_gen/generated/academia/velato-sofa-studio.png', 'Salone — kontekst z sofą')">
+        <img src="../image_gen/generated/academia/velato-sofa-studio.png" alt="Salone — zestawienie z sofą">
+      </div>
+      <div class="thumb" onclick="changePhoto(this, '../image_gen/generated/academia/meridian-table-studio.png', 'Salone — kontekst ze stolikiem')">
+        <img src="../image_gen/generated/academia/meridian-table-studio.png" alt="Salone — zestawienie ze stolikiem Meridian">
+      </div>
+    </div>
+  </div>
+
+  <!-- INFO PRODUKTU -->
+  <div class="product-info fi" style="transition-delay:.12s">
+
+    <!-- Brand + REF -->
+    <div>
+      <p class="pi-brand" itemprop="brand" itemscope itemtype="https://schema.org/Brand">
+        <span itemprop="name">POLIFORM</span>
+      </p>
+      <p class="pi-ref">REF: <span itemprop="sku">AA-CH-001</span></p>
+    </div>
+
+    <!-- Tytuł -->
+    <h1 class="pi-title" itemprop="name">Salone — fotel wypoczynkowy</h1>
+
+    <!-- Cena -->
+    <div class="pi-price-wrap" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+      <meta itemprop="priceCurrency" content="PLN">
+      <meta itemprop="availability" content="https://schema.org/InStock">
+      <p class="pi-price"><span itemprop="price" content="14200">14 200 PLN</span></p>
+      <p class="pi-price-eur">≈ 3 298 EUR</p>
+    </div>
+
+    <!-- Opis krótki -->
+    <p class="pi-desc">
+      <strong>Projektant:</strong> Antonio Citterio &nbsp;·&nbsp;
+      <strong>Tapicerka:</strong> aksamit &nbsp;·&nbsp;
+      <strong>Rama:</strong> jesion lakierowany
+    </p>
+
+    <!-- Swatche materiałów -->
+    <div class="swatch-block">
+      <p class="swatch-label">Materiał: <strong id="swatchLabel">Aksamit Sage</strong></p>
+      <div class="swatches">
+        <button class="sw" style="background:#C8A96E" title="Złoty" onclick="selectSwatch(this,'Aksamit Złoty')"></button>
+        <button class="sw active" style="background:#8A9E8A" title="Sage" onclick="selectSwatch(this,'Aksamit Sage')"></button>
+        <button class="sw" style="background:#A09880" title="Sand" onclick="selectSwatch(this,'Aksamit Sand')"></button>
+        <button class="sw" style="background:#1A1916" title="Ink" onclick="selectSwatch(this,'Aksamit Ink')"></button>
+        <button class="sw" style="background:#B87058" title="Terracotta" onclick="selectSwatch(this,'Aksamit Terracotta')"></button>
+        <button class="sw" style="background:#8EA8C3" title="Błękit" onclick="selectSwatch(this,'Aksamit Błękit')"></button>
+      </div>
+    </div>
+
+    <!-- Ilość + Koszyk -->
+    <div style="display:flex;flex-direction:column;gap:.7rem">
+      <div class="qty-row">
+        <div class="qty-ctrl">
+          <button class="qty-btn" onclick="changeQty(-1)" aria-label="Zmniejsz ilość">−</button>
+          <input class="qty-val" type="number" id="qtyInput" value="1" min="1" max="99" readonly>
+          <button class="qty-btn" onclick="changeQty(1)" aria-label="Zwiększ ilość">+</button>
+        </div>
+        <button class="btn-primary" style="gap:.6rem" onclick="addToCart()">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Dodaj do koszyka
+        </button>
+      </div>
+      <button class="btn-ghost-full" onclick="toggleWishlist(this)">
+        <svg id="wishSvg" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 21C12 21 3 14.5 3 8.5a5 5 0 0 1 9-3A5 5 0 0 1 21 8.5c0 6-9 12.5-9 12.5z"/></svg>
+        Dodaj do listy życzeń
+      </button>
+    </div>
+
+    <!-- ARC BLOCK -->
+    <div class="arc-block">
+      <div class="arc-block-head">
+        <svg class="arc-svg-anim" width="24" height="36" viewBox="0 0 40 60" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round">
+          <circle cx="20" cy="8" r="5"/>
+          <g transform="translate(20,13)">
+            <line class="ll" x1="0" y1="0" x2="-12" y2="43"/>
+            <line class="lr" x1="0" y1="0" x2="12" y2="43"/>
+            <line x1="-8.5" y1="26" x2="8.5" y2="26" stroke-width="1" opacity=".4"/>
+          </g>
+        </svg>
+        <div>
+          <span class="arc-block-label">ARC sugeruje</span>
+          <div class="dot"></div>
+        </div>
+      </div>
+      <p class="arc-block-text">
+        Ten fotel doskonale współgra z dywanami wełnianymi w odcieniach <em>camel</em>. Do zestawu?
+        <em>Meridian stolik</em> z marmurowym blatem + <em>Forma lampa</em> podłogowa od Flos.
+        Proporcje i materiały rozmawiają ze sobą.
+      </p>
+      <button class="btn-arc-prod" onclick="togglePanel(); sendProductContext()">
+        <svg width="10" height="15" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <circle cx="20" cy="8" r="5"/><line x1="20" y1="13" x2="10" y2="54"/><line x1="20" y1="13" x2="30" y2="54"/>
+        </svg>
+        Zapytaj ARC o ten produkt
+      </button>
+    </div>
+
+    <!-- DELIVERY BAR -->
+    <div class="delivery-bar">
+      <div class="del-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13" rx="1"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <span>Dostawa 4–6 tygodni</span>
+      </div>
+      <div class="del-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        <span>Montaż w cenie</span>
+      </div>
+      <div class="del-item">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>24 mies. gwarancja</span>
+      </div>
+    </div>
+
+    <!-- Konsultacja link -->
+    <div>
+      <a href="#" class="consult-link">Umów konsultację z projektantem →</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ TABY ══════════════════════════════════════════════════ -->
+<div class="tabs-section fi">
+  <div class="tabs-nav" role="tablist">
+    <button class="tab-btn active" role="tab" aria-selected="true" onclick="switchTab(this,'tabOpis')">Opis</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab(this,'tabSpec')">Specyfikacja</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab(this,'tabDostawa')">Dostawa i zwroty</button>
+    <button class="tab-btn" role="tab" aria-selected="false" onclick="switchTab(this,'tabOpinie')">Opinie (2)</button>
+  </div>
+
+  <!-- OPIS -->
+  <div id="tabOpis" class="tab-pane active">
+    <div class="tab-desc" itemprop="description">
+      <p>
+        Salone to kwintesentyczny fotel Antonia Citterio — projektanta, który przez dekady definiował włoski modernizm w meblach premium. Forma jest jednocześnie architektoniczna i biologicznie trafna: proporcje siedziska zaprojektowano tak, by ciało naturalnie opadało w pozycję wypoczynkową bez utraty elegancji sylwetki. <strong>Nie ma w nim ani jednej przypadkowej linii.</strong>
+      </p>
+      <p>
+        Tapicerka z aksamitu o gęstości splotu 480 g/m² przyjmuje światło inaczej z każdego kąta — rano wygląda jak szałwia, wieczorem jak mech. Rama z jesionu lakierowanego na kolor jasnego wosku tworzy ciepłe, organiczne przejście między tkanką a strukturą. Każdy egzemplarz tapicerowany jest ręcznie w zakładzie Poliform w Inverigo, Lombardia. Czas realizacji: 4–6 tygodni od zamówienia.
+      </p>
+    </div>
+  </div>
+
+  <!-- SPECYFIKACJA -->
+  <div id="tabSpec" class="tab-pane">
+    <table class="spec-table">
+      <tbody>
+        <tr><td>Wysokość całkowita</td><td>85 cm</td></tr>
+        <tr><td>Szerokość</td><td>90 cm</td></tr>
+        <tr><td>Głębokość</td><td>82 cm</td></tr>
+        <tr><td>Wysokość siedziska</td><td>42 cm</td></tr>
+        <tr><td>Materiał tapicerki</td><td>Aksamit 480 g/m²</td></tr>
+        <tr><td>Materiał ramy</td><td>Jesion lakierowany</td></tr>
+        <tr><td>Waga</td><td>34 kg</td></tr>
+        <tr><td>Producent</td><td>Poliform, Inverigo (IT)</td></tr>
+        <tr><td>Projektant</td><td>Antonio Citterio</td></tr>
+        <tr><td>Dostępne tapicerki</td><td>Aksamit, skóra naturalna, len</td></tr>
+        <tr><td>Certyfikaty</td><td>OEKO-TEX Standard 100</td></tr>
+        <tr><td>Nogi</td><td>Jesion / opcja: metal szczotkowany</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DOSTAWA -->
+  <div id="tabDostawa" class="tab-pane">
+    <div class="delivery-text">
+      <h4>Czas realizacji i dostawa</h4>
+      <p>
+        Fotel Salone produkowany jest na indywidualne zamówienie w zakładzie Poliform w Inverigo. Czas produkcji wynosi <strong>4–6 tygodni</strong> od potwierdzenia zamówienia. Dostawa do Krakowa, Warszawy i Trójmiasta realizowana jest przez naszą własną ekipę z autem dedykowanym.
+      </p>
+      <ul>
+        <li>Wycena transportu poza aglomeracjami — na zapytanie</li>
+        <li>Dostawa do pomieszczenia docelowego w cenie</li>
+        <li>Montaż i rozstawienie w cenie</li>
+        <li>Wywóz opakowania w cenie</li>
+      </ul>
+      <h4>Zwroty i reklamacje</h4>
+      <p>
+        Produkty tapicerowane produkowane na zamówienie nie podlegają standardowemu prawu zwrotu (art. 38 pkt 3 ustawy o prawach konsumenta). W przypadku wady fabrycznej przyjmujemy reklamację i bezpłatnie wymieniamy produkt lub zlecamy naprawę w Polsce. <strong>Gwarancja: 24 miesiące.</strong>
+      </p>
+      <ul>
+        <li>Reklamacje przyjmujemy mailowo i telefonicznie</li>
+        <li>Czas reakcji: do 48 h roboczych</li>
+        <li>Serwis tapicerski dostępny w Krakowie i Warszawie</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- OPINIE -->
+  <div id="tabOpinie" class="tab-pane">
+    <div class="reviews-list">
+
+      <div class="review-card" itemprop="review" itemscope itemtype="https://schema.org/Review">
+        <div class="review-head">
+          <span class="stars">★★★★★</span>
+          <span class="rev-author" itemprop="author">Katarzyna W.</span>
+          <span class="rev-date">marzec 2026</span>
+        </div>
+        <p class="rev-text" itemprop="reviewBody">
+          Fotel stoi w moim salonie od trzech miesięcy i za każdym razem gdy na niego patrzę jest doskonały. Proporcje są idealne — nie za duży, nie za mały, a głębokość siedziska sprawia, że naprawdę można w nim odpocząć. Aksamit sage to był strzał — zmienia barwę w zależności od pory dnia. Przyszedł bez jednej rysy, montaż zajął 20 minut.
+        </p>
+        <meta itemprop="ratingValue" content="5">
+        <p class="rev-verified">Zakup zweryfikowany</p>
+      </div>
+
+      <div class="review-card" itemprop="review" itemscope itemtype="https://schema.org/Review">
+        <div class="review-head">
+          <span class="stars">★★★★★</span>
+          <span class="rev-author" itemprop="author">Marek & Joanna R.</span>
+          <span class="rev-date">styczeń 2026</span>
+        </div>
+        <p class="rev-text" itemprop="reviewBody">
+          Kupiliśmy dwa fotele Salone w tapicerce Ink do gabinetu. Zestawienie z białymi ścianami i dębową podłogą jest dokładnie tym, co ARC nam zasugerował. Jakość wykonania powyżej oczekiwań — widać, że każdy szew jest ręczny. Czas dostawy 5,5 tygodnia, zgodnie z informacją. Polecamy całą obsługę Academii — konsultacja z ARC pomogła nam podjąć decyzję.
+        </p>
+        <meta itemprop="ratingValue" content="5">
+        <p class="rev-verified">Zakup zweryfikowany</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ PRODUKTY POWIĄZANE ════════════════════════════════════ -->
+<div class="related-section">
+  <div class="related-in">
+    <div class="sec-hdr fi">
+      <div>
+        <p class="sec-label">Doskonałe zestawienie</p>
+        <h2 class="sec-title">Pasuje do tego fotela</h2>
+      </div>
+      <a href="#" class="sec-more">Przeglądaj kolekcję →</a>
+    </div>
+    <div class="pg">
+
+      <article class="pc fi" itemscope itemtype="https://schema.org/Product">
+        <div class="pc-vis">
+          <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/meridian-table-studio.png')"></div>
+          <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+        </div>
+        <p class="brand" itemprop="brand">Minotti</p>
+        <h3 class="pname" itemprop="name">Meridian — stolik marmurowy</h3>
+        <p class="price">od <strong>28 500 PLN</strong></p>
+      </article>
+
+      <article class="pc fi" style="transition-delay:.1s" itemscope itemtype="https://schema.org/Product">
+        <div class="pc-vis">
+          <span class="badge">bestseller</span>
+          <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/forma-lamp-studio.png')"></div>
+          <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+        </div>
+        <p class="brand" itemprop="brand">Flos</p>
+        <h3 class="pname" itemprop="name">Forma — lampa podłogowa</h3>
+        <p class="price">od <strong>9 800 PLN</strong></p>
+      </article>
+
+      <article class="pc fi" style="transition-delay:.2s" itemscope itemtype="https://schema.org/Product">
+        <div class="pc-vis">
+          <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/velato-sofa-studio.png')"></div>
+          <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+        </div>
+        <p class="brand" itemprop="brand">B&amp;B Italia</p>
+        <h3 class="pname" itemprop="name">Velato — sofa modułowa</h3>
+        <p class="price">od <strong>42 000 PLN</strong></p>
+      </article>
+
+      <article class="pc fi" style="transition-delay:.3s" itemscope itemtype="https://schema.org/Product">
+        <div class="pc-vis">
+          <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/material-velvet.png')"></div>
+          <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+        </div>
+        <p class="brand">Dedar Milano</p>
+        <h3 class="pname">Mohair Lux — dywan wełniany</h3>
+        <p class="price">od <strong>6 400 PLN</strong></p>
+      </article>
+
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════ -->
+<footer class="ftr" itemscope itemtype="https://schema.org/HomeGoodsStore">
+  <div class="ftr-in">
+    <div class="ftr-grid">
+      <div>
+        <p class="ftr-logo">Academia <em>Architektury</em></p>
+        <p class="ftr-desc">Galeria mebli i oświetlenia premium. Kuratowana kolekcja dla wymagających wnętrz — od projektu do realizacji.</p>
+        <div class="ftr-addr" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <span itemprop="streetAddress">ul. Grodzka 12</span><br>
+          <span itemprop="addressLocality">30-001 Kraków</span><br>
+          <a href="tel:+48123456789" itemprop="telephone">+48 12 345 67 89</a>
+        </div>
+      </div>
+      <div class="ftr-col"><p class="fc-t">Kategorie</p><ul>
+        <li><a href="#">Meble do siedzenia</a></li>
+        <li><a href="#">Stoły i stoliki</a></li>
+        <li><a href="#">Oświetlenie</a></li>
+        <li><a href="#">Przechowywanie</a></li>
+        <li><a href="#">Akcesoria</a></li>
+      </ul></div>
+      <div class="ftr-col"><p class="fc-t">Marki</p><ul>
+        <li><a href="#">Poliform</a></li>
+        <li><a href="#">Minotti</a></li>
+        <li><a href="#">B&amp;B Italia</a></li>
+        <li><a href="#">Flos</a></li>
+        <li><a href="#">Cassina</a></li>
+      </ul></div>
+      <div class="ftr-col"><p class="fc-t">Galeria</p><ul>
+        <li><a href="#">Realizacje</a></li>
+        <li><a href="#">Poradniki</a></li>
+        <li><a href="#">Konsultacje z ARC</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul></div>
+    </div>
+    <div class="ftr-bot">
+      <p class="copy">© 2025 Academia Architektury</p>
+      <div class="legal">
+        <a href="#">Polityka prywatności</a>
+        <a href="#">Regulamin</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ FLOATING ARC ════════════════════════════════════════ -->
+<div class="arc-float">
+  <span class="arc-lbl">Zapytaj ARC — architekta AI</span>
+  <button class="arc-btn" onclick="togglePanel()" aria-label="Otwórz ARC">
+    <svg class="arc-ico arc-svg-anim" width="24" height="36" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <circle cx="20" cy="8" r="5"/>
+      <g transform="translate(20,13)">
+        <line class="ll" x1="0" y1="0" x2="-12" y2="43"/>
+        <line class="lr" x1="0" y1="0" x2="12" y2="43"/>
+        <line x1="-8.5" y1="26" x2="8.5" y2="26" stroke-width="1" opacity=".4"/>
+      </g>
+    </svg>
+    <span class="arc-ndot"></span>
+  </button>
+</div>
+
+<!-- ══ ARC PANEL ═══════════════════════════════════════════ -->
+<div class="arc-panel" id="arcPanel">
+  <div class="ap-hdr">
+    <svg class="arc-svg-anim" width="26" height="39" viewBox="0 0 40 60" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round">
+      <circle cx="20" cy="8" r="5"/>
+      <g transform="translate(20,13)">
+        <line class="ll" x1="0" y1="0" x2="-12" y2="43"/>
+        <line class="lr" x1="0" y1="0" x2="12" y2="43"/>
+        <line x1="-8.5" y1="26" x2="8.5" y2="26" stroke-width="1" opacity=".4"/>
+      </g>
+    </svg>
+    <div class="ap-hdr-text">
+      <div class="ap-hdr-n">ARC</div>
+      <div class="ap-hdr-s">Asystent Projektu &nbsp;·&nbsp; Dostępny</div>
+    </div>
+    <button class="ap-close" onclick="togglePanel()">✕</button>
+  </div>
+  <div class="ap-msgs" id="apMsgs">
+    <div class="msg">
+      <div class="av">ARC</div>
+      <div class="bbl">Cześć. Jestem ARC — znam każdy produkt w naszej galerii i rozumiem architekturę wnętrz. Opisz mi swoją przestrzeń.</div>
+    </div>
+  </div>
+  <div class="ap-chips">
+    <button class="chip" onclick="send('Co pasuje do fotela Salone?')">Co pasuje do Salone?</button>
+    <button class="chip" onclick="send('Jaki dywan do fotela w kolorze sage?')">Dywan do sage</button>
+    <button class="chip" onclick="send('Jak ustawić fotel w salonie 30m²?')">Salon 30m²</button>
+  </div>
+  <div class="ap-inp">
+    <input id="apInp" type="text" placeholder="Opisz przestrzeń lub zadaj pytanie..." onkeydown="if(event.key==='Enter')send()">
+    <button class="ap-send" onclick="send()">→</button>
+  </div>
+</div>
+
+<script>
+/* ── CURSOR ─── */
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top  = e.clientY + 'px';
+});
+
+/* ── HEADER SHRINK ─── */
+const hdr = document.getElementById('hdr');
+window.addEventListener('scroll', () => hdr.classList.toggle('up', scrollY > 50), {passive:true});
+
+/* ── FADE IN OBSERVER ─── */
+const obs = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) e.target.classList.add('on');
+}), {threshold:.08});
+document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+/* ── GALLERY THUMB SWITCH ─── */
+function changePhoto(thumb, src, alt) {
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+  const mp = document.getElementById('mainPhoto');
+  mp.style.opacity = '0';
+  mp.style.transform = 'scale(1.015)';
+  mp.style.transition = 'opacity .25s ease, transform .25s ease';
+  setTimeout(() => {
+    mp.src = src;
+    mp.alt = alt;
+    mp.style.opacity = '1';
+    mp.style.transform = 'scale(1)';
+  }, 240);
+}
+
+/* ── MATERIAL SWATCHES ─── */
+function selectSwatch(btn, name) {
+  document.querySelectorAll('.sw').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('swatchLabel').textContent = name;
+}
+
+/* ── QUANTITY ─── */
+function changeQty(delta) {
+  const inp = document.getElementById('qtyInput');
+  const v = Math.max(1, Math.min(99, parseInt(inp.value) + delta));
+  inp.value = v;
+}
+
+/* ── ADD TO CART ─── */
+function addToCart() {
+  const btn = event.currentTarget;
+  const orig = btn.innerHTML;
+  btn.innerHTML = '✓ &nbsp; Dodano do koszyka';
+  btn.style.background = 'var(--gold)';
+  btn.style.color = 'var(--ink)';
+  setTimeout(() => {
+    btn.innerHTML = orig;
+    btn.style.background = '';
+    btn.style.color = '';
+  }, 2200);
+}
+
+/* ── WISHLIST TOGGLE ─── */
+function toggleWishlist(btn) {
+  const active = btn.dataset.active === '1';
+  btn.dataset.active = active ? '0' : '1';
+  const svg = btn.querySelector('svg');
+  if (!active) {
+    svg.setAttribute('fill', 'var(--gold)');
+    svg.setAttribute('stroke', 'var(--gold)');
+    btn.style.color = 'var(--gold)';
+    btn.style.borderColor = 'var(--gold)';
+  } else {
+    svg.setAttribute('fill', 'none');
+    svg.setAttribute('stroke', 'currentColor');
+    btn.style.color = '';
+    btn.style.borderColor = '';
+  }
+}
+
+/* ── TABS ─── */
+function switchTab(btn, paneId) {
+  document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  btn.setAttribute('aria-selected','true');
+  document.getElementById(paneId).classList.add('active');
+}
+
+/* ── ARC PANEL ─── */
+let open = false;
+function togglePanel() {
+  open = !open;
+  document.getElementById('arcPanel').classList.toggle('open', open);
+  if (open) setTimeout(() => document.getElementById('apInp').focus(), 460);
+}
+
+function sendProductContext() {
+  setTimeout(() => {
+    send('Mam fotel Salone Poliform w tapicerce Aksamit Sage. Co do niego pasuje?');
+  }, 500);
+}
+
+const replies = [
+  'Do fotela Salone w sage polecam dywan wełniany w odcieniach camel lub kości słoniowej — Dedar Milano ma świetne opcje. Stolik Meridian z marmurowym blatem domknie zestawienie.',
+  'Jesion jesionu fotela "lubi" inne naturalne materiały — len, wełna, marmur. Unikaj połysku i chromu. Metal szczotkowany mosiądz zadziała świetnie.',
+  'Przy salonie do 35m² jeden fotel Salone wystarczy jako "kotwica" wnętrza. Postaw go pod kątem 15° do sofy — nie równolegle. To klasyczny zabieg Citterio.',
+  'Kolor sage w aksamicie będzie się inaczej zachowywał rano (zieleń) i wieczorem (szarość). Oświetlenie ciepłe (2700K) wzmacnia zieleń — to celowe.',
+  'Do fotela dobrze pasuje lampa Forma od Flos stojąca po lewej stronie i dywan minimum 200×300 — fotel musi stać całkowicie na dywanie, nie częściowo.',
+];
+let ri = 0;
+
+function send(txt) {
+  const inp = document.getElementById('apInp');
+  const msg = txt || inp.value.trim();
+  if (!msg) return;
+  inp.value = '';
+  const msgs = document.getElementById('apMsgs');
+
+  const u = document.createElement('div');
+  u.className = 'msg u';
+  u.innerHTML = `<div class="av">TY</div><div class="bbl">${msg}</div>`;
+  msgs.appendChild(u);
+
+  const t = document.createElement('div');
+  t.className = 'msg';
+  t.innerHTML = `<div class="av">ARC</div><div class="dots"><span></span><span></span><span></span></div>`;
+  msgs.appendChild(t);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    msgs.removeChild(t);
+    const r = document.createElement('div');
+    r.className = 'msg';
+    r.innerHTML = `<div class="av">ARC</div><div class="bbl">${replies[ri++ % replies.length]}</div>`;
+    msgs.appendChild(r);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1300);
+}
+</script>
+</body>
+</html>

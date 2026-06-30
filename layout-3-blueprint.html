@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ACADEMIA — Blueprint</title>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HomeGoodsStore",
+  "name": "Academia Architektury",
+  "description": "Ekskluzywne wyposażenie wnętrz — projektowane z precyzją architekta",
+  "url": "https://akademiaarchitektury.pl",
+  "priceRange": "$$$$$",
+  "currenciesAccepted": "PLN"
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=JetBrains+Mono:wght@300;400&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blueprint: #0C2744;
+  --blueprint-2: #0F3056;
+  --blueprint-3: #163C68;
+  --grid-line: rgba(120, 170, 220, 0.15);
+  --grid-strong: rgba(120, 170, 220, 0.06);
+  --sky: #E8F2FF;
+  --sky-2: #D0E4F8;
+  --ivory: #F5F2EB;
+  --white: #FFFFFF;
+  --brass: #C9A53A;
+  --brass-light: #DFC060;
+  --brass-dim: #8A6E1E;
+  --mono: 'JetBrains Mono', monospace;
+  --serif: 'EB Garamond', Georgia, serif;
+  --sans: 'Inter', system-ui, sans-serif;
+  --transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--blueprint);
+  color: var(--sky);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── BLUEPRINT GRID BACKGROUND ── */
+.blueprint-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+.blueprint-bg svg {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 0 48px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--grid-line);
+  background: rgba(12, 39, 68, 0.9);
+  backdrop-filter: blur(12px);
+}
+.nav-logo {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass-light);
+  text-decoration: none;
+}
+.nav-ref {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--grid-line);
+  letter-spacing: 0.15em;
+}
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(232, 242, 255, 0.5);
+  text-decoration: none;
+  transition: color 0.25s;
+}
+.nav-links a:hover { color: var(--brass-light); }
+.nav-cta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brass-light);
+  border: 1px solid var(--brass-dim);
+  padding: 8px 20px;
+  text-decoration: none;
+  transition: all 0.25s;
+}
+.nav-cta:hover { background: var(--brass-dim); color: var(--blueprint); }
+
+/* ── HERO — BLUEPRINT DRAW-IN ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  padding: 120px 48px 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  z-index: 1;
+}
+
+/* Technical reference lines */
+.hero-ref-v {
+  position: absolute;
+  left: 200px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--grid-line);
+}
+.hero-ref-h {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 40%;
+  height: 1px;
+  background: var(--grid-line);
+}
+.hero-ref-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(120,170,220,0.3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.ref-top-left {
+  position: absolute;
+  top: 70px;
+  left: 48px;
+}
+.ref-bottom-right {
+  position: absolute;
+  bottom: 80px;
+  right: 48px;
+  text-align: right;
+}
+
+/* Crosshair markers */
+.crosshair {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+.crosshair::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--brass-dim);
+}
+.crosshair::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--brass-dim);
+}
+
+.hero-number {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--brass-dim);
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.hero-number::before {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--brass-dim);
+}
+
+.hero-title {
+  font-family: var(--serif);
+  font-size: clamp(52px, 8vw, 112px);
+  font-weight: 400;
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 48px;
+  position: relative;
+}
+.hero-title em {
+  font-style: italic;
+  color: var(--brass-light);
+  display: block;
+}
+
+/* SVG drawing animation overlay */
+.hero-drawing {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 55%;
+  height: 100%;
+  pointer-events: none;
+}
+.hero-drawing svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Chair outline drawing */
+.draw-path {
+  fill: none;
+  stroke: rgba(201, 165, 58, 0.35);
+  stroke-width: 1.5;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 2000;
+  animation: drawIn 3s ease 0.5s forwards;
+}
+.draw-fill {
+  fill: rgba(201, 165, 58, 0.04);
+  opacity: 0;
+  animation: fadeIn 1s ease 3s forwards;
+}
+.draw-dim {
+  fill: none;
+  stroke: rgba(120, 170, 220, 0.15);
+  stroke-width: 0.5;
+  stroke-dasharray: 6 4;
+  stroke-dashoffset: 1000;
+  animation: drawIn 2s ease 1s forwards;
+}
+@keyframes drawIn {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}
+
+/* Dimension annotations */
+.dim-line {
+  opacity: 0;
+  animation: fadeIn 0.5s ease 2.5s forwards;
+}
+.dim-text {
+  font-family: var(--mono);
+  font-size: 10px;
+  fill: rgba(201, 165, 58, 0.6);
+  opacity: 0;
+  animation: fadeIn 0.5s ease 3s forwards;
+}
+
+/* Hero meta */
+.hero-meta-row {
+  display: flex;
+  gap: 60px;
+  align-items: flex-end;
+}
+.hero-spec-block {
+  min-width: 160px;
+}
+.hero-spec-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(232,242,255,0.35);
+  margin-bottom: 4px;
+}
+.hero-spec-value {
+  font-family: var(--mono);
+  font-size: 14px;
+  color: var(--sky);
+  letter-spacing: 0.05em;
+}
+.hero-cta {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid var(--brass-dim);
+  color: var(--brass-light);
+  padding: 16px 32px;
+  text-decoration: none;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  transition: all 0.3s;
+  position: relative;
+}
+.hero-cta:hover { background: var(--brass-dim); color: var(--blueprint); }
+
+/* ── PRODUCT SPECS SECTION ── */
+.specs {
+  position: relative;
+  z-index: 1;
+  padding: 100px 48px;
+  border-top: 1px solid var(--grid-line);
+}
+.specs-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 60px;
+}
+.specs-title {
+  font-family: var(--serif);
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--white);
+}
+.specs-title em { color: var(--brass-light); font-style: italic; }
+.specs-ref {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgba(232,242,255,0.25);
+  letter-spacing: 0.15em;
+}
+
+/* Product cards with technical styling */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--grid-line);
+}
+.product-card {
+  background: var(--blueprint-2);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.product-card:hover { background: var(--blueprint-3); }
+
+/* Product visual area */
+.product-visual {
+  height: 320px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--grid-line);
+}
+
+/* CSS art visuals - Blueprint aesthetic */
+.pv-chair {
+  background: linear-gradient(180deg, var(--blueprint) 0%, var(--blueprint-3) 100%);
+}
+.pv-chair::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 55%;
+  background: linear-gradient(160deg, rgba(201,165,58,0.2), rgba(201,165,58,0.08));
+  clip-path: polygon(8% 0%, 92% 0%, 100% 100%, 0% 100%);
+  border: 1px solid rgba(201,165,58,0.25);
+}
+.pv-chair::after {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 55%;
+  height: 35%;
+  background: linear-gradient(160deg, rgba(201,165,58,0.15), rgba(201,165,58,0.05));
+  border: 1px solid rgba(201,165,58,0.2);
+  border-radius: 6px 6px 0 0;
+}
+
+.pv-table {
+  background: linear-gradient(180deg, var(--blueprint) 0%, var(--blueprint-3) 100%);
+}
+.pv-table::before {
+  content: '';
+  position: absolute;
+  top: 35%;
+  left: 15%; right: 15%;
+  height: 8px;
+  background: rgba(201,165,58,0.3);
+  border: 1px solid rgba(201,165,58,0.4);
+}
+.pv-table::after {
+  content: '';
+  position: absolute;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 35%;
+  background: rgba(201,165,58,0.3);
+  border-left: 1px solid rgba(201,165,58,0.4);
+}
+
+.pv-lamp {
+  background: linear-gradient(180deg, var(--blueprint) 0%, var(--blueprint-3) 100%);
+}
+.pv-lamp::before {
+  content: '';
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  height: 30%;
+  background: rgba(201,165,58,0.08);
+  border: 1px solid rgba(201,165,58,0.25);
+  clip-path: polygon(20% 0, 80% 0, 100% 100%, 0% 100%);
+}
+.pv-lamp::after {
+  content: '';
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1.5px;
+  height: 50%;
+  background: rgba(201,165,58,0.35);
+}
+
+/* Dimension labels on product */
+.product-dims {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.product-dims svg {
+  width: 100%;
+  height: 100%;
+}
+.dim-annotation {
+  font-family: var(--mono);
+  font-size: 9px;
+  fill: rgba(201,165,58,0.5);
+}
+
+/* Technical info panel */
+.product-info {
+  padding: 28px;
+}
+.product-ref {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--brass-dim);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.product-name {
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 4px;
+  line-height: 1.1;
+}
+.product-origin {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgba(232,242,255,0.35);
+  letter-spacing: 0.1em;
+  margin-bottom: 20px;
+}
+
+/* Spec table */
+.product-specs-table {
+  border-top: 1px solid var(--grid-line);
+  padding-top: 16px;
+  margin-bottom: 20px;
+}
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(120,170,220,0.06);
+}
+.spec-key {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(232,242,255,0.3);
+}
+.spec-val {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgba(232,242,255,0.7);
+}
+
+.product-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.product-price {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--brass-light);
+}
+.product-add {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blueprint);
+  background: var(--brass-dim);
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.25s;
+}
+.product-add:hover { background: var(--brass); }
+
+/* Corner markers */
+.corner-mark {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: var(--brass-dim);
+  border-style: solid;
+  border-width: 0;
+}
+.corner-mark.tl { top: 0; left: 0; border-top-width: 1px; border-left-width: 1px; }
+.corner-mark.tr { top: 0; right: 0; border-top-width: 1px; border-right-width: 1px; }
+.corner-mark.bl { bottom: 0; left: 0; border-bottom-width: 1px; border-left-width: 1px; }
+.corner-mark.br { bottom: 0; right: 0; border-bottom-width: 1px; border-right-width: 1px; }
+
+/* ── FLOOR PLAN SECTION ── */
+.floorplan {
+  position: relative;
+  z-index: 1;
+  padding: 100px 48px;
+  border-top: 1px solid var(--grid-line);
+}
+.floorplan-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: start;
+  margin-bottom: 60px;
+}
+.floorplan-title {
+  font-family: var(--serif);
+  font-size: 42px;
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.2;
+}
+.floorplan-title em { color: var(--brass-light); font-style: italic; }
+.floorplan-body {
+  padding-top: 12px;
+  color: rgba(232,242,255,0.5);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+/* Interactive-looking floor plan */
+.floorplan-canvas {
+  border: 1px solid var(--grid-line);
+  position: relative;
+  height: 480px;
+  background: rgba(15, 48, 86, 0.5);
+  overflow: hidden;
+}
+.floorplan-canvas svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Rooms and furniture placement */
+.fp-room { fill: none; stroke: rgba(120,170,220,0.2); stroke-width: 1.5; }
+.fp-furniture { fill: rgba(201,165,58,0.12); stroke: rgba(201,165,58,0.5); stroke-width: 1; }
+.fp-furniture-pulse {
+  fill: none;
+  stroke: rgba(201,165,58,0.3);
+  stroke-width: 1;
+  animation: fpPulse 2s ease-in-out infinite;
+}
+@keyframes fpPulse {
+  0%, 100% { stroke-width: 1; opacity: 1; r: 20; }
+  50% { stroke-width: 0; opacity: 0; r: 35; }
+}
+.fp-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  fill: rgba(232,242,255,0.3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.fp-label-product {
+  font-family: var(--mono);
+  font-size: 8px;
+  fill: rgba(201,165,58,0.7);
+  letter-spacing: 0.1em;
+}
+.fp-dim {
+  stroke: rgba(120,170,220,0.2);
+  stroke-width: 0.5;
+  stroke-dasharray: 3 3;
+}
+.fp-dim-text {
+  font-family: var(--mono);
+  font-size: 8px;
+  fill: rgba(120,170,220,0.3);
+}
+
+/* ── AI SECTION ── */
+.ai-section {
+  position: relative;
+  z-index: 1;
+  padding: 80px 48px;
+  border-top: 1px solid var(--grid-line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.ai-tag {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--brass-dim);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ai-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--brass-light);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.ai-title {
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.5vw, 46px);
+  font-weight: 400;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+.ai-title em { font-style: italic; color: var(--brass-light); }
+.ai-body {
+  font-size: 13px;
+  color: rgba(232,242,255,0.45);
+  line-height: 1.8;
+  margin-bottom: 32px;
+}
+
+/* Terminal-style chat */
+.terminal {
+  background: rgba(6, 18, 32, 0.8);
+  border: 1px solid var(--grid-line);
+  padding: 24px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.terminal-line { display: flex; gap: 8px; margin-bottom: 4px; }
+.terminal-prompt { color: var(--brass-dim); }
+.terminal-input { color: rgba(232,242,255,0.5); }
+.terminal-response { color: rgba(232,242,255,0.8); padding-left: 24px; margin-bottom: 12px; }
+.terminal-highlight { color: var(--brass-light); }
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 14px;
+  background: var(--brass-light);
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+.terminal-input-row {
+  display: flex;
+  gap: 8px;
+  border-top: 1px solid var(--grid-line);
+  margin-top: 16px;
+  padding-top: 16px;
+  align-items: center;
+}
+.terminal-input-row input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--sky);
+  font-family: var(--mono);
+  font-size: 12px;
+}
+.terminal-input-row input::placeholder { color: rgba(232,242,255,0.2); }
+.terminal-send {
+  color: var(--brass-dim);
+  font-family: var(--mono);
+  font-size: 10px;
+  background: none;
+  border: 1px solid var(--brass-dim);
+  padding: 4px 12px;
+  cursor: pointer;
+  letter-spacing: 0.1em;
+  transition: all 0.2s;
+}
+.terminal-send:hover { background: var(--brass-dim); color: var(--blueprint); }
+
+/* ── FOOTER ── */
+footer {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid var(--grid-line);
+  padding: 60px 48px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+}
+.footer-logo {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--brass-light);
+  margin-bottom: 12px;
+}
+.footer-tagline {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: rgba(232,242,255,0.25);
+  line-height: 1.7;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+  max-width: 240px;
+}
+.footer-col-h {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--brass-dim);
+  margin-bottom: 20px;
+}
+.footer-links { list-style: none; }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: rgba(232,242,255,0.35);
+  text-decoration: none;
+  letter-spacing: 0.05em;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--brass-light); }
+.footer-bottom {
+  grid-column: 1 / -1;
+  border-top: 1px solid var(--grid-line);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: rgba(232,242,255,0.2);
+  letter-spacing: 0.1em;
+}
+
+/* ── REVEAL ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── PHOTO OVERRIDES ── */
+.product-visual.pv-chair {
+  background-image: url('../image_gen/generated/academia/salone-chair-studio.png');
+  background-size: cover; background-position: center;
+}
+.product-visual.pv-chair::before, .product-visual.pv-chair::after { content: none !important; }
+
+.product-visual.pv-table {
+  background-image: url('../image_gen/generated/academia/meridian-table-studio.png');
+  background-size: cover; background-position: center;
+}
+.product-visual.pv-table::before, .product-visual.pv-table::after { content: none !important; }
+
+.product-visual.pv-lamp {
+  background-image: url('../image_gen/generated/academia/forma-lamp-studio.png');
+  background-size: cover; background-position: center;
+}
+.product-visual.pv-lamp::before, .product-visual.pv-lamp::after { content: none !important; }
+</style>
+</head>
+<body>
+
+<!-- Blueprint grid background -->
+<div class="blueprint-bg">
+  <svg viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="small" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+        <line x1="0" y1="0" x2="20" y2="0" stroke="rgba(120,170,220,0.06)" stroke-width="0.5"/>
+        <line x1="0" y1="0" x2="0" y2="20" stroke="rgba(120,170,220,0.06)" stroke-width="0.5"/>
+      </pattern>
+      <pattern id="large" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+        <rect width="100" height="100" fill="url(#small)"/>
+        <line x1="0" y1="0" x2="100" y2="0" stroke="rgba(120,170,220,0.12)" stroke-width="0.5"/>
+        <line x1="0" y1="0" x2="0" y2="100" stroke="rgba(120,170,220,0.12)" stroke-width="0.5"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#large)"/>
+  </svg>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">ACADEMIA · AA</a>
+  <span class="nav-ref">REF: AA-2025-MAIN</span>
+  <ul class="nav-links">
+    <li><a href="#">Kolekcja</a></li>
+    <li><a href="#">Projektanci</a></li>
+    <li><a href="#">Materiały</a></li>
+    <li><a href="#">Realizacje</a></li>
+    <li><a href="#">Kontakt</a></li>
+  </ul>
+  <a href="#" class="nav-cta">Koszyk [0]</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <!-- Reference lines -->
+  <div class="hero-ref-v"></div>
+  <div class="hero-ref-h"></div>
+  <div class="ref-top-left">
+    <div class="hero-ref-label">ACADEMIA ARCHITEKTURY — KOLEKCJA 2025</div>
+    <div class="hero-ref-label" style="margin-top:4px;">ARKUSZ: 001/012 · SKALA 1:1</div>
+  </div>
+  <div class="ref-bottom-right">
+    <div class="hero-ref-label">© 2025 AA · Wszelkie prawa zastrzeżone</div>
+  </div>
+
+  <!-- Corner crosshairs -->
+  <div class="crosshair" style="position:absolute; top:64px; left:44px;"></div>
+  <div class="crosshair" style="position:absolute; top:64px; right:44px;"></div>
+  <div class="crosshair" style="position:absolute; bottom:72px; left:44px;"></div>
+  <div class="crosshair" style="position:absolute; bottom:72px; right:44px;"></div>
+
+  <!-- SVG drawing animation (chair silhouette) -->
+  <div class="hero-drawing">
+    <svg viewBox="0 0 700 700" preserveAspectRatio="xMidYMid meet">
+      <!-- Main chair back -->
+      <path class="draw-path" d="M 200 150 L 200 400 Q 200 420 220 420 L 480 420 Q 500 420 500 400 L 500 150 Q 500 130 480 130 L 220 130 Q 200 130 200 150"/>
+      <!-- Seat -->
+      <rect class="draw-path" x="160" y="380" width="380" height="60" rx="4"/>
+      <!-- Legs -->
+      <line class="draw-path" x1="200" y1="440" x2="180" y2="600"/>
+      <line class="draw-path" x1="500" y1="440" x2="520" y2="600"/>
+      <line class="draw-path" x1="220" y1="440" x2="220" y2="580"/>
+      <line class="draw-path" x1="480" y1="440" x2="480" y2="580"/>
+      <!-- Crossbar -->
+      <line class="draw-path" x1="180" y1="540" x2="520" y2="540"/>
+      <!-- Armrests -->
+      <path class="draw-path" d="M 160 380 Q 140 370 140 340 L 140 250 Q 140 230 160 230"/>
+      <path class="draw-path" d="M 540 380 Q 560 370 560 340 L 560 250 Q 560 230 540 230"/>
+      <!-- Dashed dimension lines -->
+      <line class="draw-dim" x1="130" y1="130" x2="130" y2="600"/>
+      <line class="draw-dim" x1="120" y1="130" x2="140" y2="130"/>
+      <line class="draw-dim" x1="120" y1="600" x2="140" y2="600"/>
+      <line class="draw-dim" x1="200" y1="620" x2="500" y2="620"/>
+      <line class="draw-dim" x1="200" y1="610" x2="200" y2="630"/>
+      <line class="draw-dim" x1="500" y1="610" x2="500" y2="630"/>
+      <!-- Fill -->
+      <rect class="draw-fill" x="200" y="130" width="300" height="270" rx="4" style="animation-delay:3.5s"/>
+
+      <!-- Dimension labels -->
+      <g class="dim-line" style="animation-delay:3.2s">
+        <text class="dim-text" x="80" y="375">H 920mm</text>
+        <text class="dim-text" x="290" y="640">W 660mm</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="hero-number">REF-AA-0001 · SALONE CHAIR</div>
+  <h1 class="hero-title">
+    Precyzja<br>
+    <em>architekta.</em><br>
+    Komfort<br>artysty.
+  </h1>
+
+  <div class="hero-meta-row">
+    <div class="hero-spec-block">
+      <div class="hero-spec-label">Materiał</div>
+      <div class="hero-spec-value">Aksamit / Dąb</div>
+    </div>
+    <div class="hero-spec-block">
+      <div class="hero-spec-label">Wymiary</div>
+      <div class="hero-spec-value">660 × 720 × 920mm</div>
+    </div>
+    <div class="hero-spec-block">
+      <div class="hero-spec-label">Producent</div>
+      <div class="hero-spec-value">Milano · IT</div>
+    </div>
+    <div class="hero-spec-block">
+      <div class="hero-spec-label">Cena od</div>
+      <div class="hero-spec-value" style="color: var(--brass-light);">18 900 PLN</div>
+    </div>
+    <a href="#" class="hero-cta">Zamów próbkę →</a>
+  </div>
+</section>
+
+<!-- PRODUCT SPECS GRID -->
+<section class="specs reveal">
+  <div class="specs-header">
+    <h2 class="specs-title">Obiekty <em>kolekcji</em></h2>
+    <span class="specs-ref">KAT: AA-2025 · 134 obiekty · Aktualizacja: 2025-01</span>
+  </div>
+
+  <div class="product-grid">
+
+    <!-- Product 1 -->
+    <article class="product-card" itemscope itemtype="https://schema.org/Product">
+      <meta itemprop="name" content="Salone — Fotel Wypoczynkowy">
+      <div class="product-visual pv-chair">
+        <div class="corner-mark tl"></div>
+        <div class="corner-mark tr"></div>
+        <div class="corner-mark bl"></div>
+        <div class="corner-mark br"></div>
+        <div class="product-dims">
+          <svg viewBox="0 0 300 320">
+            <line class="draw-dim" x1="10" y1="10" x2="10" y2="310" style="animation-delay:0s"/>
+            <text class="dim-annotation" x="14" y="165">920mm</text>
+          </svg>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-ref">REF: AA-CH-001 · Siedziska</div>
+        <div class="product-name" itemprop="name">Salone</div>
+        <div class="product-origin">Milano, Włochy · 2024</div>
+        <div class="product-specs-table">
+          <div class="spec-row"><span class="spec-key">Materiał</span><span class="spec-val">Aksamit, Dąb</span></div>
+          <div class="spec-row"><span class="spec-key">Wymiary</span><span class="spec-val">660×720×920mm</span></div>
+          <div class="spec-row"><span class="spec-key">Waga</span><span class="spec-val">24 kg</span></div>
+          <div class="spec-row"><span class="spec-key">Dostawa</span><span class="spec-val">6–8 tyg.</span></div>
+        </div>
+        <div class="product-price-row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <meta itemprop="priceCurrency" content="PLN">
+          <meta itemprop="price" content="18900">
+          <span class="product-price">18 900 PLN</span>
+          <button class="product-add">+ Koszyk</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 2 -->
+    <article class="product-card" itemscope itemtype="https://schema.org/Product">
+      <meta itemprop="name" content="Meridian — Stół z Carrara">
+      <div class="product-visual pv-table">
+        <div class="corner-mark tl"></div>
+        <div class="corner-mark tr"></div>
+        <div class="corner-mark bl"></div>
+        <div class="corner-mark br"></div>
+      </div>
+      <div class="product-info">
+        <div class="product-ref">REF: AA-TB-002 · Stoły</div>
+        <div class="product-name">Meridian</div>
+        <div class="product-origin">Carrara, Włochy · 2025</div>
+        <div class="product-specs-table">
+          <div class="spec-row"><span class="spec-key">Materiał</span><span class="spec-val">Marmur, Stal</span></div>
+          <div class="spec-row"><span class="spec-key">Wymiary</span><span class="spec-val">220×90×74mm</span></div>
+          <div class="spec-row"><span class="spec-key">Waga</span><span class="spec-val">180 kg</span></div>
+          <div class="spec-row"><span class="spec-key">Dostawa</span><span class="spec-val">10–12 tyg.</span></div>
+        </div>
+        <div class="product-price-row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <meta itemprop="priceCurrency" content="PLN">
+          <meta itemprop="price" content="42000">
+          <span class="product-price">42 000 PLN</span>
+          <button class="product-add">+ Koszyk</button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Product 3 -->
+    <article class="product-card" itemscope itemtype="https://schema.org/Product">
+      <meta itemprop="name" content="Forma — Lampa Podłogowa">
+      <div class="product-visual pv-lamp">
+        <div class="corner-mark tl"></div>
+        <div class="corner-mark tr"></div>
+        <div class="corner-mark bl"></div>
+        <div class="corner-mark br"></div>
+      </div>
+      <div class="product-info">
+        <div class="product-ref">REF: AA-LT-003 · Oświetlenie</div>
+        <div class="product-name">Forma</div>
+        <div class="product-origin">Kopenhaga, Dania · 2024</div>
+        <div class="product-specs-table">
+          <div class="spec-row"><span class="spec-key">Materiał</span><span class="spec-val">Mosiądz, Marmur</span></div>
+          <div class="spec-row"><span class="spec-key">Wymiary</span><span class="spec-val">ø35 × H160cm</span></div>
+          <div class="spec-row"><span class="spec-key">Waga</span><span class="spec-val">8 kg</span></div>
+          <div class="spec-row"><span class="spec-key">Dostawa</span><span class="spec-val">4–6 tyg.</span></div>
+        </div>
+        <div class="product-price-row" itemprop="offers" itemscope itemtype="https://schema.org/Offer">
+          <meta itemprop="priceCurrency" content="PLN">
+          <meta itemprop="price" content="7800">
+          <span class="product-price">7 800 PLN</span>
+          <button class="product-add">+ Koszyk</button>
+        </div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- FLOOR PLAN -->
+<section class="floorplan reveal">
+  <div class="floorplan-header">
+    <h2 class="floorplan-title">Wizualizuj <em>aranżację</em><br>w swoim wnętrzu</h2>
+    <p class="floorplan-body">Każdy obiekt dostępny jest w plikach DWG i BIM. Poniżej przykładowy rzut salonu z zastosowaniem obiektów z kolekcji — kliknij produkt aby zobaczyć specyfikację.</p>
+  </div>
+
+  <div class="floorplan-canvas">
+    <svg viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid meet">
+      <!-- Room outline -->
+      <rect class="fp-room" x="100" y="40" width="1000" height="400" rx="0"/>
+
+      <!-- Windows -->
+      <rect fill="none" stroke="rgba(120,170,220,0.4)" stroke-width="1" x="100" y="80" width="2" height="160"/>
+      <line stroke="rgba(120,170,220,0.2)" stroke-dasharray="2,2" x1="100" y1="160" x2="60" y2="160"/>
+
+      <!-- Door -->
+      <path fill="none" stroke="rgba(120,170,220,0.35)" stroke-width="1" d="M 1100 180 A 80 80 0 0 0 1020 100"/>
+      <line stroke="rgba(120,170,220,0.35)" x1="1020" y1="100" x2="1020" y2="180"/>
+
+      <!-- Sofa -->
+      <rect class="fp-furniture" x="300" y="180" width="300" height="120" rx="8"/>
+      <text class="fp-label-product" x="390" y="246">VELATO · SOFA</text>
+
+      <!-- Chair -->
+      <rect class="fp-furniture" x="650" y="160" width="100" height="90" rx="6"/>
+      <text class="fp-label-product" x="660" y="210">SALONE</text>
+
+      <!-- Coffee table -->
+      <ellipse class="fp-furniture" cx="450" cy="330" rx="80" ry="50"/>
+      <text class="fp-label-product" x="400" y="334">PIETRA</text>
+
+      <!-- Lamp -->
+      <circle class="fp-furniture" cx="750" cy="300" r="20"/>
+      <circle class="fp-furniture-pulse" cx="750" cy="300" r="30"/>
+      <text class="fp-label-product" x="762" y="314">FORMA</text>
+
+      <!-- Dining table -->
+      <rect class="fp-furniture" x="750" y="60" width="220" height="100" rx="4"/>
+      <text class="fp-label-product" x="810" y="116">MERIDIAN</text>
+      <!-- Chairs around table -->
+      <rect class="fp-furniture" x="790" y="40" width="50" height="20" rx="3"/>
+      <rect class="fp-furniture" x="870" y="40" width="50" height="20" rx="3"/>
+      <rect class="fp-furniture" x="790" y="160" width="50" height="20" rx="3"/>
+      <rect class="fp-furniture" x="870" y="160" width="50" height="20" rx="3"/>
+      <rect class="fp-furniture" x="730" y="80" width="20" height="60" rx="3"/>
+      <rect class="fp-furniture" x="970" y="80" width="20" height="60" rx="3"/>
+
+      <!-- Dimension lines -->
+      <line class="fp-dim" x1="100" y1="450" x2="1100" y2="450"/>
+      <text class="fp-dim-text" x="570" y="465">8500 mm</text>
+      <line class="fp-dim" x1="60" y1="40" x2="60" y2="440"/>
+      <text class="fp-dim-text" x="10" y="245" transform="rotate(-90, 35, 245)">4200 mm</text>
+
+      <!-- Room labels -->
+      <text class="fp-label" x="160" y="390">Strefa wypoczynkowa</text>
+      <text class="fp-label" x="750" y="390">Strefa jadalna</text>
+
+      <!-- North indicator -->
+      <g transform="translate(1070, 60)">
+        <circle fill="none" stroke="rgba(120,170,220,0.25)" cx="20" cy="20" r="18"/>
+        <path fill="rgba(201,165,58,0.5)" d="M 20 6 L 24 20 L 20 14 Z"/>
+        <path fill="rgba(120,170,220,0.2)" d="M 20 34 L 16 20 L 20 26 Z"/>
+        <text class="fp-dim-text" x="16" y="8">N</text>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- AI SECTION -->
+<section class="ai-section reveal">
+  <div>
+    <div class="ai-tag">
+      <span class="ai-dot"></span>
+      AI ADVISOR · ONLINE
+    </div>
+    <h2 class="ai-title">Twój cyfrowy<br><em>konsultant</em><br>wyposażenia</h2>
+    <p class="ai-body">Zna każdy obiekt w kolekcji — wymiary, materiały, dostępność, historię projektanta. Powiedz mu o swoim wnętrzu, a dobierze idealne obiekty.</p>
+  </div>
+
+  <div class="terminal">
+    <div class="terminal-line">
+      <span class="terminal-prompt">USER &gt;</span>
+      <span class="terminal-input">fotel do gabinetu, nowoczesny japonisme, dąb + wełna naturalna</span>
+    </div>
+    <div class="terminal-response">
+      <span class="terminal-highlight">AA-CH-001 SALONE CHAIR</span> — aksamit zamieniony na wełnę Loro Piana w barwie ecru, podstawa z masywneg dębu olejowanego.<br>
+      Pasuje do: <span class="terminal-highlight">AA-LT-003 FORMA LAMP</span> (mosiądz + marmur bianco).<br>
+      Czas realizacji: <span class="terminal-highlight">8 tygodni</span> · Próbki bezpłatne.
+    </div>
+    <div class="terminal-line">
+      <span class="terminal-prompt">USER &gt;</span>
+      <span class="terminal-input">chcę zobaczyć próbkę wełny<span class="terminal-cursor"></span></span>
+    </div>
+
+    <div class="terminal-input-row">
+      <span class="terminal-prompt">&gt;</span>
+      <input type="text" placeholder="Wpisz zapytanie...">
+      <button class="terminal-send">[ENTER]</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer itemscope itemtype="https://schema.org/HomeGoodsStore">
+  <div>
+    <div class="footer-logo">ACADEMIA · AA</div>
+    <p class="footer-tagline" itemprop="description">Ekskluzywne wyposażenie wnętrz. Projekty, które są zarówno dokumentem architektonicznym jak i dziełem sztuki użytkowej.</p>
+    <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress" style="font-family: var(--mono); font-size:9px; color: rgba(232,242,255,0.2);">
+      <span itemprop="streetAddress">ul. Mokotowska 12</span>, <span itemprop="addressLocality">Warszawa</span>
+      <meta itemprop="addressCountry" content="PL">
+    </span>
+  </div>
+  <div>
+    <div class="footer-col-h">Kolekcja</div>
+    <ul class="footer-links">
+      <li><a href="#">Nowe obiekty</a></li>
+      <li><a href="#">Siedziska</a></li>
+      <li><a href="#">Stoły i blaty</a></li>
+      <li><a href="#">Oświetlenie</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-h">Architekci</div>
+    <ul class="footer-links">
+      <li><a href="#">Program AA+</a></li>
+      <li><a href="#">Pliki BIM/DWG</a></li>
+      <li><a href="#">Próbki materiałów</a></li>
+      <li><a href="#">Showroom</a></li>
+    </ul>
+  </div>
+  <div>
+    <div class="footer-col-h">Kontakt</div>
+    <ul class="footer-links">
+      <li><a href="#" itemprop="telephone">+48 22 000 00 00</a></li>
+      <li><a href="#" itemprop="email">hello@academia.pl</a></li>
+      <li><a href="#">Instagram</a></li>
+      <li><a href="#">LinkedIn</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 ACADEMIA ARCHITEKTURY · WSZELKIE PRAWA ZASTRZEŻONE</span>
+    <span>PROJEKT: LAYOUT III — BLUEPRINT · REF: AA-2025-MAIN-003</span>
+  </div>
+</footer>
+
+<script>
+// ── SCROLL REVEAL ──
+const reveals = document.querySelectorAll('.reveal');
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => revealObs.observe(el));
+
+// ── FLOOR PLAN INTERACTIVITY ──
+document.querySelectorAll('.fp-furniture').forEach(el => {
+  el.style.cursor = 'pointer';
+  el.addEventListener('mouseenter', function() {
+    this.style.fill = 'rgba(201,165,58,0.25)';
+    this.style.stroke = 'rgba(201,165,58,0.8)';
+  });
+  el.addEventListener('mouseleave', function() {
+    this.style.fill = '';
+    this.style.stroke = '';
+  });
+});
+
+// ── TERMINAL TYPING ──
+const input = document.querySelector('.terminal-input-row input');
+const btn = document.querySelector('.terminal-send');
+btn.addEventListener('click', () => {
+  if (input.value.trim()) {
+    console.log('Query:', input.value);
+    input.value = '';
+  }
+});
+</script>
+</body>
+</html>

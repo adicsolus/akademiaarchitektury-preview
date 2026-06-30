@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academia Architektury — Meble i Oświetlenie z Duszą</title>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HomeGoodsStore","name":"Academia Architektury","url":"https://akademiaarchitektury.pl","telephone":"+48 12 345 67 89","address":{"@type":"PostalAddress","streetAddress":"ul. Grodzka 12","addressLocality":"Kraków","addressCountry":"PL"},"priceRange":"$$$$"}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --p: #F6F4F0;       /* parchment bg */
+  --chalk: #FAFAF8;   /* card bg */
+  --ink: #1A1916;     /* primary text */
+  --muted: #6B6860;   /* secondary text */
+  --sand: #A09880;    /* borders, labels */
+  --gold: #C8A96E;    /* ARC accent */
+  --fog: #E5E3DC;     /* dividers */
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --mono: 'Space Mono', monospace;
+  --nav: 60px;
+  --w: 1360px;
+  --gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--p); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.6; overflow-x: hidden; cursor: none; }
+
+/* ─── CURSOR ─── */
+#cur {
+  position: fixed; width: 20px; height: 20px; pointer-events: none;
+  z-index: 9999; transform: translate(-50%,-50%);
+  transition: transform .08s;
+}
+#cur::before,#cur::after {
+  content:''; position: absolute; background: var(--ink);
+}
+#cur::before { width:1px; height:100%; left:50%; top:0; }
+#cur::after  { height:1px; width:100%; top:50%; left:0; }
+
+/* ─── HEADER ─── */
+.hdr {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  height: var(--nav);
+  background: rgba(246,244,240,.93); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--fog);
+  display: flex; align-items: center;
+  transition: height .3s, box-shadow .3s;
+}
+.hdr.up { height:50px; box-shadow:0 1px 18px rgba(0,0,0,.05); }
+.hdr-in {
+  max-width: var(--w); margin: 0 auto; padding: 0 var(--gap);
+  width:100%; display:flex; align-items:center; gap:2.5rem;
+}
+.logo {
+  font-family: var(--serif); font-size:1.25rem; font-weight:400;
+  color: var(--ink); text-decoration:none; white-space:nowrap; flex-shrink:0;
+}
+.logo em { font-style:italic; color: var(--gold); }
+
+.nav { display:flex; gap:0; list-style:none; }
+.nav a {
+  display:block; padding:.45rem 1rem;
+  font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+  color: var(--muted); text-decoration:none;
+  position:relative; transition:color .2s;
+}
+.nav a::after {
+  content:''; position:absolute; bottom:-1px; left:1rem; right:1rem;
+  height:1px; background:var(--gold);
+  transform:scaleX(0); transform-origin:left; transition:transform .3s;
+}
+.nav a:hover { color:var(--ink); }
+.nav a:hover::after { transform:scaleX(1); }
+
+.hdr-acts { display:flex; align-items:center; gap:1rem; margin-left:auto; }
+.icon-btn {
+  background:none; border:none; cursor:none; color:var(--muted);
+  display:flex; align-items:center; justify-content:center;
+  padding:.4rem; transition:color .2s;
+}
+.icon-btn:hover { color:var(--ink); }
+.btn-arc-hdr {
+  background:var(--ink); color:var(--p); border:none; cursor:none;
+  padding:.4rem .9rem; font-size:11px; font-family:var(--sans);
+  font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+  display:flex; align-items:center; gap:.5rem;
+  transition:background .25s, color .25s;
+}
+.btn-arc-hdr:hover { background:var(--gold); color:var(--ink); }
+.btn-arc-hdr svg { color:var(--gold); transition:color .25s; }
+.btn-arc-hdr:hover svg { color:var(--ink); }
+
+/* ─── HERO ─── */
+.hero {
+  min-height:100vh; padding-top:var(--nav);
+  display:grid; grid-template-columns:1fr 1.15fr;
+}
+.hero-l {
+  display:flex; flex-direction:column; justify-content:center;
+  padding:5rem var(--gap) 5rem max(var(--gap), calc((100vw - var(--w))/2 + var(--gap)));
+  gap:2rem;
+}
+.eyebrow {
+  font-family:var(--mono); font-size:10.5px; color:var(--sand);
+  letter-spacing:.2em; text-transform:uppercase;
+  display:flex; align-items:center; gap:.8rem;
+}
+.eyebrow::before { content:''; width:28px; height:1px; background:var(--gold); flex-shrink:0; }
+
+.h1 {
+  font-family:var(--serif); font-size:clamp(3rem,5.5vw,5.5rem);
+  font-weight:300; line-height:1.05; letter-spacing:-.01em;
+}
+.h1 em { font-style:italic; color:var(--gold); }
+.rl { overflow:hidden; display:block; }
+.rl span {
+  display:block; transform:translateY(110%);
+  animation:up 1s cubic-bezier(.16,1,.3,1) forwards;
+}
+.rl:nth-child(1) span{animation-delay:.08s}
+.rl:nth-child(2) span{animation-delay:.22s}
+.rl:nth-child(3) span{animation-delay:.36s}
+@keyframes up { to{transform:translateY(0)} }
+
+.hero-p { font-size:16px; color:var(--muted); line-height:1.75; max-width:390px; }
+.hero-btns { display:flex; align-items:center; gap:1.8rem; }
+
+.btn-primary {
+  display:inline-flex; align-items:center; gap:.7rem;
+  background:var(--ink); color:var(--p);
+  padding:.8rem 1.8rem; font-size:11.5px; font-weight:500;
+  letter-spacing:.12em; text-transform:uppercase; text-decoration:none;
+  transition:background .25s, color .25s; cursor:none;
+}
+.btn-primary:hover { background:var(--gold); color:var(--ink); }
+.btn-ghost {
+  font-size:11.5px; color:var(--sand); letter-spacing:.08em; text-decoration:none;
+  border-bottom:1px solid var(--fog); padding-bottom:2px;
+  transition:color .2s, border-color .2s; cursor:none;
+}
+.btn-ghost:hover { color:var(--ink); border-color:var(--sand); }
+
+.hero-r { position:relative; overflow:hidden; }
+.hero-img {
+  position:absolute; inset:0;
+  background:url('../image_gen/generated/academia/hero-warm-interior.png') center/cover no-repeat;
+}
+.hero-img::after {
+  content:''; position:absolute; inset:0;
+  background:linear-gradient(to right, var(--p) 0%, transparent 18%);
+}
+.hero-note {
+  position:absolute; bottom:2.5rem; right:2rem; z-index:1;
+  font-family:var(--mono); font-size:9.5px; color:rgba(200,169,110,.75);
+  letter-spacing:.18em; text-align:right; line-height:2;
+}
+
+/* ─── TICKER ─── */
+.ticker { background:var(--ink); overflow:hidden; padding:.75rem 0; }
+.t-track {
+  display:flex; white-space:nowrap;
+  animation:scroll 28s linear infinite;
+}
+.t-track:hover { animation-play-state:paused; }
+@keyframes scroll { to{transform:translateX(-50%)} }
+.t-item { font-family:var(--serif); font-size:15px; font-style:italic; padding:0 2rem; color:rgba(246,244,240,.6); flex-shrink:0; }
+.t-item strong { font-style:normal; font-weight:400; color:var(--gold); }
+.t-dot { color:var(--gold); opacity:.4; padding:0 .5rem; }
+
+/* ─── SECTION WRAPPER ─── */
+.sec { padding:5.5rem var(--gap); max-width:var(--w); margin:0 auto; }
+.sec-hdr { display:flex; align-items:baseline; justify-content:space-between; margin-bottom:2.8rem; gap:2rem; }
+.sec-label { font-family:var(--mono); font-size:10px; color:var(--sand); letter-spacing:.2em; text-transform:uppercase; }
+.sec-title { font-family:var(--serif); font-size:clamp(1.8rem,3vw,2.8rem); font-weight:300; }
+.sec-more {
+  font-size:11px; color:var(--sand); letter-spacing:.1em; text-transform:uppercase;
+  text-decoration:none; border-bottom:1px solid var(--fog); padding-bottom:2px;
+  transition:color .2s, border-color .2s; flex-shrink:0; cursor:none;
+}
+.sec-more:hover { color:var(--gold); border-color:var(--gold); }
+
+/* ─── FADE IN ─── */
+.fi { opacity:0; transform:translateY(20px); transition:opacity .65s ease, transform .65s ease; }
+.fi.on { opacity:1; transform:none; }
+
+/* ─── PRODUCTS ─── */
+.pg { display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; }
+.pc { text-decoration:none; color:inherit; display:flex; flex-direction:column; }
+.pc-vis {
+  position:relative; aspect-ratio:3/4; overflow:hidden;
+  background:var(--chalk); margin-bottom:.9rem;
+}
+.pc-photo {
+  position:absolute; inset:0;
+  background:center/cover no-repeat;
+  transition:transform .6s cubic-bezier(.16,1,.3,1);
+}
+.pc:hover .pc-photo { transform:scale(1.04); }
+
+/* SVG border draw */
+.pc-vis svg.bd {
+  position:absolute; inset:0; width:100%; height:100%;
+  pointer-events:none; z-index:2; overflow:visible;
+}
+.pc-vis svg.bd rect {
+  fill:none; stroke:var(--gold); stroke-width:1.5;
+  vector-effect:non-scaling-stroke;
+  stroke-dasharray:462; stroke-dashoffset:462;
+  transition:stroke-dashoffset .55s cubic-bezier(.16,1,.3,1);
+}
+.pc:hover .pc-vis svg.bd rect { stroke-dashoffset:0; }
+
+.badge {
+  position:absolute; top:.85rem; left:.85rem; z-index:3;
+  font-family:var(--mono); font-size:9px; letter-spacing:.15em; text-transform:uppercase;
+  background:var(--ink); color:var(--p); padding:.2rem .55rem;
+}
+.brand { font-family:var(--mono); font-size:9.5px; color:var(--sand); letter-spacing:.18em; text-transform:uppercase; margin-bottom:.25rem; }
+.pname { font-family:var(--serif); font-size:1.15rem; font-weight:400; line-height:1.3; margin-bottom:.35rem; }
+.price { font-size:13px; color:var(--muted); }
+.price strong { font-weight:500; color:var(--ink); font-size:15px; }
+
+/* ─── EDITORIAL ─── */
+.ed-section { background:var(--ink); color:var(--p); padding:7rem var(--gap); }
+.ed-in {
+  max-width:var(--w); margin:0 auto;
+  display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center;
+}
+.ed-q {
+  font-family:var(--serif); font-size:clamp(2rem,3.8vw,3.8rem);
+  font-weight:300; line-height:1.12;
+  border-left:1px solid var(--gold); padding-left:2rem;
+}
+.ed-q em { font-style:italic; color:var(--gold); }
+.ed-meta { font-family:var(--mono); font-size:10px; letter-spacing:.12em; color:rgba(246,244,240,.35); text-transform:uppercase; margin-top:1.8rem; }
+.ed-body { color:rgba(246,244,240,.6); font-size:15.5px; line-height:1.85; }
+.ed-body p+p { margin-top:1.1em; }
+.stats { display:flex; gap:2.5rem; margin-top:2.5rem; border-top:1px solid rgba(255,255,255,.08); padding-top:2rem; }
+.stat-n { font-family:var(--serif); font-size:2.4rem; font-weight:300; color:var(--gold); display:block; }
+.stat-l { font-family:var(--mono); font-size:9.5px; letter-spacing:.15em; text-transform:uppercase; color:rgba(246,244,240,.35); }
+
+/* ─── CATEGORIES ─── */
+.cg { display:grid; grid-template-columns:repeat(3,1fr) 1.35fr; gap:.9rem; }
+.cc {
+  position:relative; aspect-ratio:4/5; overflow:hidden;
+  display:flex; align-items:flex-end; text-decoration:none;
+}
+.cc-bg {
+  position:absolute; inset:0; background:var(--fog) center/cover no-repeat;
+  transition:transform .6s cubic-bezier(.16,1,.3,1);
+}
+.cc:hover .cc-bg { transform:scale(1.04); }
+.cc-ov { position:absolute; inset:0; background:linear-gradient(to top, rgba(26,25,22,.82) 0%, transparent 55%); }
+.cc-info { position:relative; z-index:1; padding:1.3rem; }
+.cc-n { font-family:var(--serif); font-size:1.35rem; font-weight:300; color:var(--p); }
+.cc-c { font-family:var(--mono); font-size:9.5px; letter-spacing:.14em; color:rgba(246,244,240,.45); }
+
+/* ─── ARC SECTION ─── */
+.arc-sec {
+  background:var(--ink); padding:6rem var(--gap); position:relative; overflow:hidden;
+}
+.arc-sec::before {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background-image:
+    linear-gradient(rgba(200,169,110,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,169,110,.07) 1px, transparent 1px);
+  background-size:44px 44px;
+}
+.arc-sec-in {
+  max-width:var(--w); margin:0 auto; position:relative; z-index:1;
+  display:grid; grid-template-columns:1fr 1fr; gap:5rem; align-items:center;
+}
+.arc-copy { color:var(--p); }
+.arc-copy .sec-label { color:var(--gold); display:block; margin-bottom:1.4rem; }
+.arc-h2 {
+  font-family:var(--serif); font-size:clamp(2.3rem,4vw,4.2rem);
+  font-weight:300; line-height:1.1; margin-bottom:1.5rem;
+}
+.arc-h2 em { font-style:italic; color:var(--gold); }
+.arc-sub { color:rgba(246,244,240,.58); font-size:15.5px; line-height:1.8; }
+
+/* ─── ARC CARD (section demo) ─── */
+.arc-card {
+  border:1px solid rgba(200,169,110,.22); border-radius:1px;
+  overflow:hidden; background:rgba(255,255,255,.03);
+}
+.ac-hdr {
+  display:flex; align-items:center; gap:1rem; padding:.9rem 1.1rem;
+  border-bottom:1px solid rgba(200,169,110,.14);
+  background:rgba(200,169,110,.06);
+}
+.arc-name-wrap { flex:1; }
+.arc-n { font-family:var(--serif); font-size:1.05rem; color:var(--p); }
+.arc-sub-s { font-family:var(--mono); font-size:9px; letter-spacing:.14em; color:var(--gold); }
+.dot { width:7px; height:7px; border-radius:50%; background:#6cbb6c; animation:pulse 2s ease infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+.ac-msgs { padding:1rem 1.1rem; display:flex; flex-direction:column; gap:.75rem; height:260px; overflow-y:auto; }
+.msg { display:flex; gap:.65rem; }
+.msg.u { flex-direction:row-reverse; }
+.av {
+  width:26px; height:26px; border-radius:50%; background:var(--gold); flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:8.5px; color:var(--ink); font-weight:700;
+}
+.msg.u .av { background:var(--sand); }
+.bbl {
+  padding:.55rem .9rem; font-size:13.5px; line-height:1.5; max-width:82%;
+  border-radius:1px;
+}
+.msg:not(.u) .bbl { background:rgba(255,255,255,.07); color:rgba(246,244,240,.85); }
+.msg.u .bbl { background:var(--gold); color:var(--ink); }
+.dots { padding:.55rem .9rem; display:flex; gap:4px; }
+.dots span {
+  width:5px; height:5px; border-radius:50%; background:rgba(200,169,110,.5);
+  animation:dot 1.4s ease infinite;
+}
+.dots span:nth-child(2){animation-delay:.2s}
+.dots span:nth-child(3){animation-delay:.4s}
+@keyframes dot { 0%,80%,100%{transform:scale(.75);opacity:.5} 40%{transform:scale(1.1);opacity:1} }
+
+.ac-chips { padding:0 1.1rem .7rem; display:flex; gap:.45rem; flex-wrap:wrap; }
+.chip {
+  font-family:var(--mono); font-size:9px; letter-spacing:.1em;
+  border:1px solid rgba(200,169,110,.3); color:var(--gold);
+  padding:.28rem .65rem; cursor:none; background:none;
+  transition:background .2s, color .2s;
+}
+.chip:hover { background:var(--gold); color:var(--ink); }
+
+.ac-inp {
+  display:flex; align-items:center; gap:.8rem;
+  border-top:1px solid rgba(200,169,110,.14); padding:.75rem 1.1rem;
+}
+.ac-inp input {
+  flex:1; background:transparent; border:none; outline:none;
+  color:var(--p); font-family:var(--sans); font-size:13px;
+}
+.ac-inp input::placeholder { color:rgba(246,244,240,.3); }
+.ac-inp button { background:none; border:none; cursor:none; color:var(--gold); font-size:17px; transition:transform .2s; }
+.ac-inp button:hover { transform:translateX(3px); }
+
+/* ─── MATERIALS ─── */
+.mg { display:grid; grid-template-columns:repeat(6,1fr); gap:.55rem; }
+.mc { aspect-ratio:1; position:relative; overflow:hidden; cursor:none; }
+.mc-bg {
+  position:absolute; inset:0; background:var(--fog) center/cover no-repeat;
+  transition:transform .4s ease;
+}
+.mc:hover .mc-bg { transform:scale(1.06); }
+.mc-l {
+  position:absolute; bottom:0; left:0; right:0;
+  background:rgba(26,25,22,.72); color:var(--p);
+  font-family:var(--mono); font-size:9px; letter-spacing:.15em; text-transform:uppercase;
+  padding:.45rem .55rem;
+  transform:translateY(100%); transition:transform .28s;
+}
+.mc:hover .mc-l { transform:none; }
+
+/* ─── FOOTER ─── */
+.ftr { background:var(--ink); color:rgba(246,244,240,.55); padding:5rem var(--gap) 2.5rem; }
+.ftr-in { max-width:var(--w); margin:0 auto; }
+.ftr-grid {
+  display:grid; grid-template-columns:1.5fr repeat(3,1fr); gap:4rem;
+  border-bottom:1px solid rgba(255,255,255,.07); padding-bottom:3rem; margin-bottom:2rem;
+}
+.ftr-logo { font-family:var(--serif); font-size:1.4rem; color:var(--p); margin-bottom:.9rem; }
+.ftr-logo em { font-style:italic; color:var(--gold); }
+.ftr-desc { font-size:13.5px; line-height:1.75; }
+.ftr-addr { margin-top:1.2rem; font-family:var(--mono); font-size:10px; letter-spacing:.1em; line-height:2; color:rgba(246,244,240,.3); }
+.ftr-addr a { color:var(--gold); text-decoration:none; }
+.fc-t { font-family:var(--mono); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1.1rem; }
+.ftr-col ul { list-style:none; display:flex; flex-direction:column; gap:.55rem; }
+.ftr-col a { color:rgba(246,244,240,.45); text-decoration:none; font-size:13.5px; transition:color .2s; cursor:none; }
+.ftr-col a:hover { color:var(--p); }
+.ftr-bot { display:flex; justify-content:space-between; align-items:center; }
+.copy { font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; }
+.legal { display:flex; gap:1.3rem; }
+.legal a { font-family:var(--mono); font-size:9.5px; letter-spacing:.09em; color:rgba(246,244,240,.25); text-decoration:none; cursor:none; }
+
+/* ─── FLOATING ARC ─── */
+.arc-float {
+  position:fixed; bottom:2rem; right:2rem; z-index:200;
+  display:flex; flex-direction:column; align-items:flex-end; gap:.65rem;
+}
+.arc-lbl {
+  background:var(--ink); color:var(--p); border:1px solid rgba(200,169,110,.3);
+  font-family:var(--mono); font-size:9px; letter-spacing:.15em; padding:.3rem .65rem;
+  opacity:0; transform:translateX(8px); transition:opacity .25s, transform .25s;
+  pointer-events:none; white-space:nowrap;
+}
+.arc-float:hover .arc-lbl { opacity:1; transform:none; }
+.arc-btn {
+  width:52px; height:52px; border-radius:50%;
+  background:var(--ink); border:1px solid var(--gold);
+  cursor:none; display:flex; align-items:center; justify-content:center;
+  transition:background .25s, transform .25s; position:relative;
+}
+.arc-btn:hover { background:var(--gold); transform:scale(1.06); }
+.arc-btn:hover .arc-ico { color:var(--ink); }
+.arc-ico { color:var(--gold); transition:color .25s; }
+.arc-ndot {
+  position:absolute; top:-3px; right:-3px;
+  width:10px; height:10px; border-radius:50%; background:#6cbb6c;
+  border:2px solid var(--p); animation:pulse 2s ease infinite;
+}
+
+/* ─── ARC PANEL ─── */
+.arc-panel {
+  position:fixed; bottom:0; right:2rem;
+  width:370px; z-index:199;
+  background:var(--ink); border:1px solid rgba(200,169,110,.25); border-bottom:none;
+  border-radius:2px 2px 0 0; overflow:hidden;
+  transform:translateY(calc(100% + 90px));
+  transition:transform .45s cubic-bezier(.16,1,.3,1);
+}
+.arc-panel.open { transform:translateY(0); }
+.ap-hdr {
+  display:flex; align-items:center; gap:.9rem; padding:.9rem 1.1rem;
+  border-bottom:1px solid rgba(200,169,110,.14);
+  background:rgba(200,169,110,.07);
+}
+.ap-hdr-text { flex:1; }
+.ap-hdr-n { font-family:var(--serif); font-size:1.05rem; color:var(--p); }
+.ap-hdr-s { font-family:var(--mono); font-size:9px; letter-spacing:.13em; color:var(--gold); }
+.ap-close {
+  background:none; border:none; cursor:none; color:rgba(246,244,240,.35);
+  font-size:17px; line-height:1; transition:color .2s;
+}
+.ap-close:hover { color:var(--p); }
+.ap-msgs { height:270px; overflow-y:auto; padding:1rem 1.1rem; display:flex; flex-direction:column; gap:.7rem; }
+.ap-chips { padding:0 1.1rem .65rem; display:flex; gap:.4rem; flex-wrap:wrap; }
+.ap-inp {
+  display:flex; align-items:center; gap:.8rem;
+  border-top:1px solid rgba(200,169,110,.14); padding:.75rem 1.1rem;
+}
+.ap-inp input {
+  flex:1; background:transparent; border:none; outline:none;
+  color:var(--p); font-family:var(--sans); font-size:13px;
+}
+.ap-inp input::placeholder { color:rgba(246,244,240,.3); }
+.ap-send { background:none; border:none; cursor:none; color:var(--gold); font-size:17px; transition:transform .2s; }
+.ap-send:hover { transform:translateX(3px); }
+
+/* ─── ARC SVG mascot animations ─── */
+@keyframes arcFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+@keyframes legL { 0%,100%{transform:rotate(-9deg)} 50%{transform:rotate(5deg)} }
+@keyframes legR { 0%,100%{transform:rotate(9deg)} 50%{transform:rotate(-5deg)} }
+
+.arc-svg-anim { animation:arcFloat 3.2s ease-in-out infinite; }
+.ll { animation:legL 1.9s ease-in-out infinite; transform-origin:0 0; }
+.lr { animation:legR 1.9s ease-in-out infinite; transform-origin:0 0; }
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+
+<!-- ══ HEADER ══════════════════════════════════════════════ -->
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a href="#" class="logo">Academia <em>Architektury</em></a>
+    <nav><ul class="nav">
+      <li><a href="#">Meble</a></li>
+      <li><a href="#">Oświetlenie</a></li>
+      <li><a href="#">Tkaniny</a></li>
+      <li><a href="#">Kolekcje</a></li>
+      <li><a href="#">Galeria</a></li>
+      <li><a href="#">O nas</a></li>
+    </ul></nav>
+    <div class="hdr-acts">
+      <button class="icon-btn" aria-label="Szukaj">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5l3.5 3.5"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Lista życzeń">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 21C12 21 3 14.5 3 8.5a5 5 0 0 1 9-3A5 5 0 0 1 21 8.5c0 6-9 12.5-9 12.5z"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Koszyk">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </button>
+      <button class="btn-arc-hdr" onclick="togglePanel()">
+        <!-- ARC mini inline -->
+        <svg width="12" height="18" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <circle cx="20" cy="8" r="5"/><line x1="20" y1="13" x2="10" y2="54"/><line x1="20" y1="13" x2="30" y2="54"/>
+        </svg>
+        Zapytaj ARC
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ HERO ════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-l">
+    <p class="eyebrow">Kolekcja 2025 — Materiał i Forma</p>
+    <h1 class="h1">
+      <span class="rl"><span>Przestrzeń</span></span>
+      <span class="rl"><span>która mówi</span></span>
+      <span class="rl"><span><em>o tobie.</em></span></span>
+    </h1>
+    <p class="hero-p">Nie handlujemy meblami. Kuratujemy przestrzenie. Każdy przedmiot w naszej galerii przeszedł przez filtr nie tylko estetyki, ale i architektury.</p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Przeglądaj kolekcję <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="#" class="btn-ghost">Umów konsultację</a>
+    </div>
+  </div>
+  <div class="hero-r">
+    <div class="hero-img"></div>
+    <div class="hero-note">AA–2025–KOL<br>N 50°03′ E 19°56′</div>
+  </div>
+</section>
+
+<!-- ══ TICKER ══════════════════════════════════════════════ -->
+<div class="ticker" aria-hidden="true">
+  <div class="t-track">
+    <span class="t-item">Forma jest <strong>argumentem</strong></span><span class="t-dot">·</span>
+    <span class="t-item">Materiał ma <strong>historię</strong></span><span class="t-dot">·</span>
+    <span class="t-item">Oświetlenie to <strong>nastrój</strong></span><span class="t-dot">·</span>
+    <span class="t-item">Wnętrze jest <strong>portretem</strong></span><span class="t-dot">·</span>
+    <span class="t-item">Każdy detal <strong>decyduje</strong></span><span class="t-dot">·</span>
+    <span class="t-item">Forma jest <strong>argumentem</strong></span><span class="t-dot">·</span>
+    <span class="t-item">Materiał ma <strong>historię</strong></span><span class="t-dot">·</span>
+    <span class="t-item">Oświetlenie to <strong>nastrój</strong></span><span class="t-dot">·</span>
+    <span class="t-item">Wnętrze jest <strong>portretem</strong></span><span class="t-dot">·</span>
+    <span class="t-item">Każdy detal <strong>decyduje</strong></span><span class="t-dot">·</span>
+  </div>
+</div>
+
+<!-- ══ PRODUKTY ════════════════════════════════════════════ -->
+<div class="sec fi">
+  <div class="sec-hdr">
+    <div>
+      <p class="sec-label">Świeże dostawy</p>
+      <h2 class="sec-title">Co nowego w galerii</h2>
+    </div>
+    <a href="#" class="sec-more">Wszystkie nowości →</a>
+  </div>
+  <div class="pg">
+
+    <article class="pc fi" itemscope itemtype="https://schema.org/Product">
+      <div class="pc-vis">
+        <span class="badge">Nowość</span>
+        <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/salone-chair-studio.png')"></div>
+        <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+      </div>
+      <p class="brand" itemprop="brand">Poliform</p>
+      <h3 class="pname" itemprop="name">Salone — fotel wypoczynkowy</h3>
+      <p class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">od <strong itemprop="price">14 200 PLN</strong><meta itemprop="priceCurrency" content="PLN"></p>
+    </article>
+
+    <article class="pc fi" style="transition-delay:.1s" itemscope itemtype="https://schema.org/Product">
+      <div class="pc-vis">
+        <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/meridian-table-studio.png')"></div>
+        <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+      </div>
+      <p class="brand" itemprop="brand">Minotti</p>
+      <h3 class="pname" itemprop="name">Meridian — stolik marmurowy</h3>
+      <p class="price">od <strong>28 500 PLN</strong></p>
+    </article>
+
+    <article class="pc fi" style="transition-delay:.2s" itemscope itemtype="https://schema.org/Product">
+      <div class="pc-vis">
+        <span class="badge">bestseller</span>
+        <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/forma-lamp-studio.png')"></div>
+        <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+      </div>
+      <p class="brand" itemprop="brand">Flos</p>
+      <h3 class="pname" itemprop="name">Forma — lampa podłogowa</h3>
+      <p class="price">od <strong>9 800 PLN</strong></p>
+    </article>
+
+    <article class="pc fi" style="transition-delay:.3s" itemscope itemtype="https://schema.org/Product">
+      <div class="pc-vis">
+        <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/velato-sofa-studio.png')"></div>
+        <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+      </div>
+      <p class="brand" itemprop="brand">B&amp;B Italia</p>
+      <h3 class="pname" itemprop="name">Velato — sofa modułowa</h3>
+      <p class="price">od <strong>42 000 PLN</strong></p>
+    </article>
+
+  </div>
+</div>
+
+<!-- ══ EDITORIAL ═══════════════════════════════════════════ -->
+<div class="ed-section">
+  <div class="ed-in">
+    <blockquote class="ed-q fi">
+      „Dobry projekt nie krzyczy. <em>Milczy</em> z klasą i mówi precyzją proporcji."
+      <p class="ed-meta">— filozofia doboru, Academia Architektury</p>
+    </blockquote>
+    <div class="ed-body fi" style="transition-delay:.15s">
+      <p>Nie handlujemy meblami. Kuratujemy przestrzenie. Każdy przedmiot przeszedł przez filtr estetyki i architektury — proporcji, materiału, historii projektu.</p>
+      <p>Pracujemy wyłącznie z markami, które mają coś do powiedzenia. Poliform, Minotti, Flos, B&amp;B Italia, Cassina — to nie są brandsy. To argumenty.</p>
+      <div class="stats">
+        <div><span class="stat-n">340+</span><span class="stat-l">marek premium</span></div>
+        <div><span class="stat-n">18</span><span class="stat-l">lat na rynku</span></div>
+        <div><span class="stat-n">4200+</span><span class="stat-l">wnętrz</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ KATEGORIE ═══════════════════════════════════════════ -->
+<div class="sec fi">
+  <div class="sec-hdr">
+    <div>
+      <p class="sec-label">Według kategorii</p>
+      <h2 class="sec-title">Znajdź swój dział</h2>
+    </div>
+  </div>
+  <div class="cg">
+    <a href="#" class="cc">
+      <div class="cc-bg" style="background-image:url('../image_gen/generated/academia/salone-chair-studio.png')"></div>
+      <div class="cc-ov"></div>
+      <div class="cc-info"><p class="cc-c">342 produkty</p><h3 class="cc-n">Siedzenie</h3></div>
+    </a>
+    <a href="#" class="cc">
+      <div class="cc-bg" style="background-image:url('../image_gen/generated/academia/meridian-table-studio.png')"></div>
+      <div class="cc-ov"></div>
+      <div class="cc-info"><p class="cc-c">198 produktów</p><h3 class="cc-n">Stoły i stoliki</h3></div>
+    </a>
+    <a href="#" class="cc">
+      <div class="cc-bg" style="background-image:url('../image_gen/generated/academia/forma-lamp-studio.png')"></div>
+      <div class="cc-ov"></div>
+      <div class="cc-info"><p class="cc-c">276 produktów</p><h3 class="cc-n">Oświetlenie</h3></div>
+    </a>
+    <a href="#" class="cc" style="aspect-ratio:unset">
+      <div class="cc-bg" style="background-image:url('../image_gen/generated/academia/interior-editorial-vignette.png')"></div>
+      <div class="cc-ov"></div>
+      <div class="cc-info"><p class="cc-c">89 projektów</p><h3 class="cc-n" style="font-size:1.65rem">Galeria realizacji</h3></div>
+    </a>
+  </div>
+</div>
+
+<!-- ══ ARC SECTION ═════════════════════════════════════════ -->
+<section class="arc-sec">
+  <div class="arc-sec-in">
+
+    <div class="arc-copy fi">
+      <span class="sec-label">Twój asystent projektu wnętrz</span>
+      <h2 class="arc-h2">Poznaj <em>ARC</em> — architekta, który zawsze jest do dyspozycji</h2>
+      <p class="arc-sub">ARC to nie chatbot. To skrzyżowanie doradcy wnętrzarskiego z architektem z 20-letnim doświadczeniem — zna każdy produkt w galerii, rozumie proporcje, materiały i kolorystykę. Opisz mu swoją przestrzeń.</p>
+    </div>
+
+    <div class="fi" style="transition-delay:.18s">
+      <div class="arc-card">
+        <div class="ac-hdr">
+          <!-- ARC mascot SVG -->
+          <svg class="arc-svg-anim" width="28" height="42" viewBox="0 0 40 60" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round">
+            <circle cx="20" cy="8" r="5"/>
+            <g transform="translate(20,13)">
+              <line class="ll" x1="0" y1="0" x2="-12" y2="43"/>
+              <line class="lr" x1="0" y1="0" x2="12" y2="43"/>
+              <line x1="-8.5" y1="26" x2="8.5" y2="26" stroke-width="1" opacity=".45"/>
+            </g>
+          </svg>
+          <div class="arc-name-wrap">
+            <div class="arc-n">ARC</div>
+            <div class="arc-sub-s">Asystent Projektu · Online</div>
+          </div>
+          <div class="dot"></div>
+        </div>
+        <div class="ac-msgs">
+          <div class="msg">
+            <div class="av">ARC</div>
+            <div class="bbl">Cześć. Opisz mi swoją przestrzeń — wymiary, styl, co już masz — a ja dobiorę meble tak, żeby do siebie mówiły.</div>
+          </div>
+          <div class="msg u">
+            <div class="av">TY</div>
+            <div class="bbl">Mam salon 40m², jasne drewno, białe ściany. Chcę coś z charakterem, ale bez krzykliwości.</div>
+          </div>
+          <div class="msg">
+            <div class="av">ARC</div>
+            <div class="bbl">Doskonały punkt wyjścia. Z jasnym drewnem i bielą idealnie rezonują tkaniny w ziemistych odcieniach. Myślę o Salone od Poliform — jego proporcje działają świetnie w 40 m². Pokazać?</div>
+          </div>
+          <div class="msg">
+            <div class="av">ARC</div>
+            <div class="dots"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+        <div class="ac-chips">
+          <button class="chip">Pokaż mi fotele</button>
+          <button class="chip">Co pasuje do marmuru?</button>
+          <button class="chip">Minimalizm, 30k</button>
+        </div>
+        <div class="ac-inp">
+          <input type="text" placeholder="Opisz swoją przestrzeń lub zadaj pytanie...">
+          <button>→</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══ MATERIAŁY ═══════════════════════════════════════════ -->
+<div class="sec fi">
+  <div class="sec-hdr">
+    <div>
+      <p class="sec-label">Z czego jest zrobiony dobry gust</p>
+      <h2 class="sec-title">Materiały z historią</h2>
+    </div>
+    <a href="#" class="sec-more">Encyklopedia materiałów →</a>
+  </div>
+  <div class="mg">
+    <div class="mc"><div class="mc-bg" style="background-image:url('../image_gen/generated/academia/material-velvet.png')"></div><div class="mc-l">Aksamit</div></div>
+    <div class="mc"><div class="mc-bg" style="background-image:url('../image_gen/generated/academia/material-marble.png')"></div><div class="mc-l">Marmur</div></div>
+    <div class="mc"><div class="mc-bg" style="background-image:url('../image_gen/generated/academia/material-brass.png')"></div><div class="mc-l">Mosiądz</div></div>
+    <div class="mc"><div class="mc-bg" style="background-image:url('../image_gen/generated/academia/material-oak.png')"></div><div class="mc-l">Dąb</div></div>
+    <div class="mc"><div class="mc-bg" style="background-image:url('../image_gen/generated/academia/material-concrete.png')"></div><div class="mc-l">Beton</div></div>
+    <div class="mc"><div class="mc-bg" style="background-image:url('../image_gen/generated/academia/material-linen.png')"></div><div class="mc-l">Len</div></div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════ -->
+<footer class="ftr" itemscope itemtype="https://schema.org/HomeGoodsStore">
+  <div class="ftr-in">
+    <div class="ftr-grid">
+      <div>
+        <p class="ftr-logo">Academia <em>Architektury</em></p>
+        <p class="ftr-desc">Galeria mebli i oświetlenia premium. Kuratowana kolekcja dla wymagających wnętrz — od projektu do realizacji.</p>
+        <div class="ftr-addr" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <span itemprop="streetAddress">ul. Grodzka 12</span><br>
+          <span itemprop="addressLocality">30-001 Kraków</span><br>
+          <a href="tel:+48123456789" itemprop="telephone">+48 12 345 67 89</a>
+        </div>
+      </div>
+      <div class="ftr-col"><p class="fc-t">Kategorie</p><ul>
+        <li><a href="#">Meble do siedzenia</a></li>
+        <li><a href="#">Stoły i stoliki</a></li>
+        <li><a href="#">Oświetlenie</a></li>
+        <li><a href="#">Przechowywanie</a></li>
+        <li><a href="#">Akcesoria</a></li>
+      </ul></div>
+      <div class="ftr-col"><p class="fc-t">Marki</p><ul>
+        <li><a href="#">Poliform</a></li>
+        <li><a href="#">Minotti</a></li>
+        <li><a href="#">B&amp;B Italia</a></li>
+        <li><a href="#">Flos</a></li>
+        <li><a href="#">Cassina</a></li>
+      </ul></div>
+      <div class="ftr-col"><p class="fc-t">Galeria</p><ul>
+        <li><a href="#">Realizacje</a></li>
+        <li><a href="#">Poradniki</a></li>
+        <li><a href="#">Konsultacje z ARC</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul></div>
+    </div>
+    <div class="ftr-bot">
+      <p class="copy">© 2025 Academia Architektury</p>
+      <div class="legal">
+        <a href="#">Polityka prywatności</a>
+        <a href="#">Regulamin</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ FLOATING ARC ════════════════════════════════════════ -->
+<div class="arc-float">
+  <span class="arc-lbl">Zapytaj ARC — architekta AI</span>
+  <button class="arc-btn" onclick="togglePanel()" aria-label="Otwórz ARC">
+    <svg class="arc-ico arc-svg-anim" width="24" height="36" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <circle cx="20" cy="8" r="5"/>
+      <g transform="translate(20,13)">
+        <line class="ll" x1="0" y1="0" x2="-12" y2="43"/>
+        <line class="lr" x1="0" y1="0" x2="12" y2="43"/>
+        <line x1="-8.5" y1="26" x2="8.5" y2="26" stroke-width="1" opacity=".4"/>
+      </g>
+    </svg>
+    <span class="arc-ndot"></span>
+  </button>
+</div>
+
+<!-- ══ ARC PANEL ═══════════════════════════════════════════ -->
+<div class="arc-panel" id="arcPanel">
+  <div class="ap-hdr">
+    <svg class="arc-svg-anim" width="26" height="39" viewBox="0 0 40 60" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round">
+      <circle cx="20" cy="8" r="5"/>
+      <g transform="translate(20,13)">
+        <line class="ll" x1="0" y1="0" x2="-12" y2="43"/>
+        <line class="lr" x1="0" y1="0" x2="12" y2="43"/>
+        <line x1="-8.5" y1="26" x2="8.5" y2="26" stroke-width="1" opacity=".4"/>
+      </g>
+    </svg>
+    <div class="ap-hdr-text">
+      <div class="ap-hdr-n">ARC</div>
+      <div class="ap-hdr-s">Asystent Projektu &nbsp;·&nbsp; Dostępny</div>
+    </div>
+    <button class="ap-close" onclick="togglePanel()">✕</button>
+  </div>
+  <div class="ap-msgs" id="apMsgs">
+    <div class="msg">
+      <div class="av">ARC</div>
+      <div class="bbl">Cześć. Jestem ARC — znam każdy produkt w naszej galerii i rozumiem architekturę wnętrz. Opisz mi swoją przestrzeń.</div>
+    </div>
+  </div>
+  <div class="ap-chips">
+    <button class="chip" onclick="send('Pokaż mi fotele do salonu')">Fotele do salonu</button>
+    <button class="chip" onclick="send('Co pasuje do jasnego drewna?')">Jasne drewno</button>
+    <button class="chip" onclick="send('Minimalizm, budżet 20k')">Do 20 000 PLN</button>
+  </div>
+  <div class="ap-inp">
+    <input id="apInp" type="text" placeholder="Opisz przestrzeń lub zadaj pytanie..." onkeydown="if(event.key==='Enter')send()">
+    <button class="ap-send" onclick="send()">→</button>
+  </div>
+</div>
+
+<script>
+/* cursor */
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top  = e.clientY + 'px';
+});
+
+/* header shrink */
+const hdr = document.getElementById('hdr');
+window.addEventListener('scroll', () => hdr.classList.toggle('up', scrollY > 50), {passive:true});
+
+/* fade-in observer */
+const obs = new IntersectionObserver(es => es.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); }), {threshold:.1});
+document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+/* ARC panel */
+let open = false;
+function togglePanel() {
+  open = !open;
+  document.getElementById('arcPanel').classList.toggle('open', open);
+  if (open) setTimeout(() => document.getElementById('apInp').focus(), 460);
+}
+
+const replies = [
+  'Rozumiem. Z takimi wymaganiami polecam połączenie aksamitu sage z drewnem dębowym — czyste i głębokie jednocześnie.',
+  'Świetny kierunek. Minotti robi właśnie to — proporcje bez krzykliwości. Chcesz zobaczyć konkretne modele?',
+  'Budżet 20 000 PLN to dobry punkt wyjścia. Możemy zacząć od jednego fotela, który ustawi resztę salonu — i to wystarczy.',
+  'Marmur lubi mosiądz i tkaniny lniane. Unikaj chromu — za twarde zestawienie. Drewno orzechowe działa tu pięknie.',
+];
+let ri = 0;
+
+function send(txt) {
+  const inp = document.getElementById('apInp');
+  const msg = txt || inp.value.trim();
+  if (!msg) return;
+  inp.value = '';
+  const msgs = document.getElementById('apMsgs');
+
+  const u = document.createElement('div');
+  u.className = 'msg u';
+  u.innerHTML = `<div class="av">TY</div><div class="bbl">${msg}</div>`;
+  msgs.appendChild(u);
+
+  const t = document.createElement('div');
+  t.className = 'msg';
+  t.innerHTML = `<div class="av">ARC</div><div class="dots"><span></span><span></span><span></span></div>`;
+  msgs.appendChild(t);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    msgs.removeChild(t);
+    const r = document.createElement('div');
+    r.className = 'msg';
+    r.innerHTML = `<div class="av">ARC</div><div class="bbl">${replies[ri++ % replies.length]}</div>`;
+    msgs.appendChild(r);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1300);
+}
+</script>
+</body>
+</html>

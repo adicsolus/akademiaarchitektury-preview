@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Krzesła i fotele — Academia Architektury</title>
+
+<!-- Schema.org BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Strona główna","item":"https://akademiaarchitektury.pl/"},
+    {"@type":"ListItem","position":2,"name":"Meble","item":"https://akademiaarchitektury.pl/kategoria/meble/"},
+    {"@type":"ListItem","position":3,"name":"Krzesła i fotele","item":"https://akademiaarchitektury.pl/kategoria/meble/krzesla-i-fotele/"}
+  ]
+}
+</script>
+
+<!-- Schema.org ItemList dla produktów -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Krzesła i fotele",
+  "description": "Fotele i krzesła od największych światowych projektantów. Od klasyki po modernizm.",
+  "numberOfItems": 284,
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"url":"https://akademiaarchitektury.pl/produkt/salone-fotel/","name":"Salone — fotel wypoczynkowy"},
+    {"@type":"ListItem","position":2,"url":"https://akademiaarchitektury.pl/produkt/meridian-krzeslo/","name":"Meridian — krzesło jadalniane"},
+    {"@type":"ListItem","position":3,"url":"https://akademiaarchitektury.pl/produkt/forma-fotel/","name":"Forma — fotel obrotowy"},
+    {"@type":"ListItem","position":4,"url":"https://akademiaarchitektury.pl/produkt/velato-fotel/","name":"Velato — fotel bujany"},
+    {"@type":"ListItem","position":5,"url":"https://akademiaarchitektury.pl/produkt/strato-krzeslo/","name":"Strato — krzesło konferencyjne"},
+    {"@type":"ListItem","position":6,"url":"https://akademiaarchitektury.pl/produkt/radice-fotel/","name":"Radice — fotel lounge"},
+    {"@type":"ListItem","position":7,"url":"https://akademiaarchitektury.pl/produkt/monolith-krzeslo/","name":"Monolith — krzesło barowe"},
+    {"@type":"ListItem","position":8,"url":"https://akademiaarchitektury.pl/produkt/salone-krzeslo/","name":"Salone — krzesło boczne"}
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --p: #F6F4F0;
+  --chalk: #FAFAF8;
+  --ink: #1A1916;
+  --muted: #6B6860;
+  --sand: #A09880;
+  --gold: #C8A96E;
+  --fog: #E5E3DC;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --mono: 'Space Mono', monospace;
+  --nav: 60px;
+  --w: 1360px;
+  --gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--p); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.6; overflow-x: hidden; cursor: none; }
+
+/* ─── CURSOR ─── */
+#cur {
+  position: fixed; width: 20px; height: 20px; pointer-events: none;
+  z-index: 9999; transform: translate(-50%,-50%);
+  transition: transform .08s;
+}
+#cur::before,#cur::after {
+  content:''; position: absolute; background: var(--ink);
+}
+#cur::before { width:1px; height:100%; left:50%; top:0; }
+#cur::after  { height:1px; width:100%; top:50%; left:0; }
+
+/* ─── HEADER ─── */
+.hdr {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  height: var(--nav);
+  background: rgba(246,244,240,.93); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--fog);
+  display: flex; align-items: center;
+  transition: height .3s, box-shadow .3s;
+}
+.hdr.up { height:50px; box-shadow:0 1px 18px rgba(0,0,0,.05); }
+.hdr-in {
+  max-width: var(--w); margin: 0 auto; padding: 0 var(--gap);
+  width:100%; display:flex; align-items:center; gap:2.5rem;
+}
+.logo {
+  font-family: var(--serif); font-size:1.25rem; font-weight:400;
+  color: var(--ink); text-decoration:none; white-space:nowrap; flex-shrink:0;
+}
+.logo em { font-style:italic; color: var(--gold); }
+
+.nav { display:flex; gap:0; list-style:none; }
+.nav a {
+  display:block; padding:.45rem 1rem;
+  font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+  color: var(--muted); text-decoration:none;
+  position:relative; transition:color .2s;
+}
+.nav a::after {
+  content:''; position:absolute; bottom:-1px; left:1rem; right:1rem;
+  height:1px; background:var(--gold);
+  transform:scaleX(0); transform-origin:left; transition:transform .3s;
+}
+.nav a:hover,
+.nav a.active { color:var(--ink); }
+.nav a:hover::after,
+.nav a.active::after { transform:scaleX(1); }
+
+.hdr-acts { display:flex; align-items:center; gap:1rem; margin-left:auto; }
+.icon-btn {
+  background:none; border:none; cursor:none; color:var(--muted);
+  display:flex; align-items:center; justify-content:center;
+  padding:.4rem; transition:color .2s;
+}
+.icon-btn:hover { color:var(--ink); }
+.btn-arc-hdr {
+  background:var(--ink); color:var(--p); border:none; cursor:none;
+  padding:.4rem .9rem; font-size:11px; font-family:var(--sans);
+  font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+  display:flex; align-items:center; gap:.5rem;
+  transition:background .25s, color .25s;
+}
+.btn-arc-hdr:hover { background:var(--gold); color:var(--ink); }
+.btn-arc-hdr svg { color:var(--gold); transition:color .25s; }
+.btn-arc-hdr:hover svg { color:var(--ink); }
+
+/* ─── BREADCRUMB ─── */
+.breadcrumb-bar {
+  padding-top: calc(var(--nav) + 1.4rem);
+  padding-bottom: 0;
+}
+.breadcrumb-inner {
+  max-width: var(--w); margin: 0 auto; padding: 0 var(--gap);
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: .45rem; list-style: none;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--sand);
+}
+.breadcrumb a { color: var(--sand); text-decoration: none; transition: color .2s; cursor: none; }
+.breadcrumb a:hover { color: var(--gold); }
+.breadcrumb li:not(:last-child)::after { content: '/'; margin-left: .45rem; opacity: .45; }
+.breadcrumb li:last-child { color: var(--ink); }
+
+/* ─── CATEGORY HEADER ─── */
+.cat-hdr {
+  max-width: var(--w); margin: 0 auto; padding: 2rem var(--gap) 2.2rem;
+  display: flex; align-items: flex-end; justify-content: space-between; gap: 3rem;
+  border-bottom: 1px solid var(--fog);
+}
+.cat-hdr-left { max-width: 640px; }
+.cat-h1 {
+  font-family: var(--serif); font-size: 3rem; font-weight: 300;
+  line-height: 1.08; letter-spacing: -.01em; margin-bottom: .6rem;
+}
+.cat-desc { color: var(--muted); font-size: 15px; line-height: 1.7; }
+.cat-count {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--sand); margin-top: .7rem;
+}
+
+/* ─── FILTER BAR ─── */
+.filter-bar {
+  max-width: var(--w); margin: 0 auto; padding: 1.1rem var(--gap);
+  display: flex; align-items: center; gap: 1.2rem;
+  border-bottom: 1px solid var(--fog);
+  flex-wrap: wrap;
+}
+.filter-bar-left {
+  display: flex; align-items: center; gap: .65rem; flex: 1;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--sand);
+}
+.filter-chip {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em;
+  color: var(--ink); background: var(--chalk);
+  border: 1px solid var(--fog); padding: .28rem .7rem;
+  cursor: none; transition: background .2s, border-color .2s;
+}
+.filter-chip:hover { border-color: var(--sand); }
+.filter-chip .rm {
+  color: var(--sand); font-size: 11px; line-height: 1;
+  transition: color .2s;
+}
+.filter-chip:hover .rm { color: var(--ink); }
+
+.filter-bar-right { display: flex; align-items: center; gap: 1rem; }
+.sort-label {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--sand); white-space: nowrap;
+}
+.sort-select {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .1em;
+  color: var(--ink); background: transparent;
+  border: 1px solid var(--fog); padding: .3rem .7rem;
+  cursor: none; outline: none; appearance: none;
+  padding-right: 1.6rem;
+  background-image: url("data:image/svg+xml,%3Csvg width='10' height='6' viewBox='0 0 10 6' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23A09880' stroke-width='1.2' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right .55rem center;
+  transition: border-color .2s;
+}
+.sort-select:hover { border-color: var(--sand); }
+
+.view-toggle { display: flex; gap: .3rem; }
+.view-btn {
+  background: none; border: 1px solid var(--fog); cursor: none;
+  padding: .35rem .5rem; color: var(--muted);
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.view-btn.active { background: var(--ink); color: var(--p); border-color: var(--ink); }
+.view-btn:not(.active):hover { border-color: var(--sand); color: var(--ink); }
+
+/* ─── MAIN LAYOUT: SIDEBAR + GRID ─── */
+.cat-body {
+  max-width: var(--w); margin: 0 auto; padding: 2rem var(--gap) 5rem;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 2.4rem;
+  align-items: start;
+}
+
+/* ─── SIDEBAR ─── */
+.sidebar { position: sticky; top: calc(var(--nav) + 1.5rem); }
+
+.sb-section { border-bottom: 1px solid var(--fog); }
+.sb-section:first-child { border-top: 1px solid var(--fog); }
+
+.sb-toggle {
+  width: 100%; background: none; border: none; cursor: none;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .85rem 0;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--ink); font-weight: 400;
+  transition: color .2s;
+}
+.sb-toggle:hover { color: var(--gold); }
+.sb-toggle svg { flex-shrink: 0; transition: transform .28s; }
+.sb-section.open .sb-toggle svg { transform: rotate(180deg); }
+
+.sb-body {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .35s cubic-bezier(.4,0,.2,1);
+}
+.sb-section.open .sb-body { max-height: 600px; }
+.sb-body-inner { padding-bottom: 1rem; }
+
+/* checkboxes */
+.sb-check-list { display: flex; flex-direction: column; gap: .5rem; }
+.sb-check-label {
+  display: flex; align-items: center; gap: .6rem;
+  font-size: 13.5px; color: var(--muted); cursor: none;
+  transition: color .2s;
+}
+.sb-check-label:hover { color: var(--ink); }
+.sb-check {
+  width: 14px; height: 14px; border: 1px solid var(--sand);
+  appearance: none; cursor: none; flex-shrink: 0;
+  position: relative; transition: background .2s, border-color .2s;
+}
+.sb-check:checked {
+  background: var(--ink); border-color: var(--ink);
+}
+.sb-check:checked::after {
+  content: '';
+  position: absolute; left: 3px; top: 1px;
+  width: 5px; height: 8px;
+  border: 1.5px solid var(--p); border-top: none; border-left: none;
+  transform: rotate(45deg);
+}
+.sb-count { font-family: var(--mono); font-size: 9px; color: var(--sand); margin-left: auto; }
+
+/* price range */
+.price-inputs { display: flex; align-items: center; gap: .6rem; margin-bottom: .9rem; }
+.price-input {
+  flex: 1; border: 1px solid var(--fog); padding: .4rem .6rem;
+  font-family: var(--mono); font-size: 10px; color: var(--ink);
+  background: transparent; outline: none; transition: border-color .2s;
+}
+.price-input:focus { border-color: var(--sand); }
+.price-sep { font-family: var(--mono); font-size: 10px; color: var(--sand); }
+.price-range {
+  position: relative; height: 2px; background: var(--fog);
+  margin: .3rem 0 .5rem;
+}
+.price-range-fill {
+  position: absolute; height: 100%;
+  background: var(--gold);
+  left: 0; right: 20%;
+}
+.price-range input[type=range] {
+  position: absolute; width: 100%; height: 100%;
+  top: -8px; appearance: none; background: transparent;
+  cursor: none;
+}
+.price-range input[type=range]::-webkit-slider-thumb {
+  appearance: none; width: 14px; height: 14px; border-radius: 50%;
+  background: var(--ink); border: 1.5px solid var(--gold); cursor: none;
+}
+.price-note { font-family: var(--mono); font-size: 9px; color: var(--sand); letter-spacing: .1em; }
+
+/* color swatches */
+.sb-colors { display: flex; flex-wrap: wrap; gap: .55rem; }
+.swatch {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 2px solid transparent; cursor: none;
+  position: relative; transition: transform .2s;
+}
+.swatch:hover { transform: scale(1.1); }
+.swatch.active { border-color: var(--gold); }
+.swatch::after {
+  content: ''; position: absolute; inset: -4px; border-radius: 50%;
+  border: 1px solid transparent; transition: border-color .2s;
+}
+.swatch.active::after { border-color: var(--gold); }
+
+.swatch-white  { background: #F8F8F6; box-shadow: inset 0 0 0 1px var(--fog); }
+.swatch-black  { background: #1A1916; }
+.swatch-gray   { background: #8E8E8E; }
+.swatch-beige  { background: #D9C7A8; }
+.swatch-green  { background: #5F7A5F; }
+.swatch-blue   { background: #4A6785; }
+.swatch-terra  { background: #B3604D; }
+
+/* sidebar buttons */
+.sb-actions { display: flex; flex-direction: column; gap: .55rem; padding-top: 1.4rem; }
+.btn-primary {
+  display: inline-flex; align-items: center; justify-content: center; gap: .7rem;
+  background: var(--ink); color: var(--p);
+  padding: .75rem 1.4rem; font-size: 11px; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+  border: none; cursor: none; font-family: var(--sans);
+  transition: background .25s, color .25s;
+}
+.btn-primary:hover { background: var(--gold); color: var(--ink); }
+.btn-ghost {
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--sand); letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none; border: 1px solid var(--fog); padding: .7rem 1.4rem;
+  background: none; cursor: none; font-family: var(--sans);
+  transition: color .2s, border-color .2s;
+}
+.btn-ghost:hover { color: var(--ink); border-color: var(--sand); }
+
+/* ─── PRODUCT GRID ─── */
+.pg { display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; }
+.pg.grid-3 { grid-template-columns:repeat(3,1fr); }
+
+.pc { text-decoration:none; color:inherit; display:flex; flex-direction:column; }
+.pc-vis {
+  position:relative; aspect-ratio:3/4; overflow:hidden;
+  background:var(--chalk); margin-bottom:.9rem;
+}
+.pc-photo {
+  position:absolute; inset:0;
+  background:center/cover no-repeat;
+  transition:transform .6s cubic-bezier(.16,1,.3,1);
+}
+.pc:hover .pc-photo { transform:scale(1.04); }
+
+/* SVG border draw */
+.pc-vis svg.bd {
+  position:absolute; inset:0; width:100%; height:100%;
+  pointer-events:none; z-index:2; overflow:visible;
+}
+.pc-vis svg.bd rect {
+  fill:none; stroke:var(--gold); stroke-width:1.5;
+  vector-effect:non-scaling-stroke;
+  stroke-dasharray:462; stroke-dashoffset:462;
+  transition:stroke-dashoffset .55s cubic-bezier(.16,1,.3,1);
+}
+.pc:hover .pc-vis svg.bd rect { stroke-dashoffset:0; }
+
+.badge {
+  position:absolute; top:.85rem; left:.85rem; z-index:3;
+  font-family:var(--mono); font-size:9px; letter-spacing:.15em; text-transform:uppercase;
+  background:var(--ink); color:var(--p); padding:.2rem .55rem;
+}
+.badge.bs { background: var(--gold); color: var(--ink); }
+
+.brand { font-family:var(--mono); font-size:9.5px; color:var(--sand); letter-spacing:.18em; text-transform:uppercase; margin-bottom:.25rem; }
+.pname { font-family:var(--serif); font-size:1.15rem; font-weight:400; line-height:1.3; margin-bottom:.35rem; }
+.pdesigner { font-family: var(--mono); font-size: 9px; color: var(--sand); letter-spacing: .1em; margin-bottom: .25rem; }
+.price { font-size:13px; color:var(--muted); }
+.price strong { font-weight:500; color:var(--ink); font-size:15px; }
+
+/* quick actions on hover */
+.pc-vis .pc-actions {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 4;
+  display: flex; gap: 0;
+  transform: translateY(100%);
+  transition: transform .3s cubic-bezier(.16,1,.3,1);
+}
+.pc:hover .pc-actions { transform: translateY(0); }
+.pc-action {
+  flex: 1; padding: .65rem .5rem;
+  background: rgba(26,25,22,.88); color: var(--p);
+  border: none; border-right: 1px solid rgba(255,255,255,.07);
+  font-family: var(--mono); font-size: 9px; letter-spacing: .1em;
+  text-transform: uppercase; cursor: none;
+  transition: background .2s, color .2s;
+}
+.pc-action:last-child { border-right: none; }
+.pc-action:hover { background: var(--gold); color: var(--ink); }
+
+/* ─── PAGINATION ─── */
+.pagination {
+  display: flex; align-items: center; justify-content: center;
+  gap: .35rem; padding: 3rem 0 1rem;
+}
+.page-btn {
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 10.5px; letter-spacing: .08em;
+  color: var(--muted); background: none;
+  border: 1px solid var(--fog); cursor: none;
+  transition: background .2s, color .2s, border-color .2s;
+  text-decoration: none;
+}
+.page-btn:hover:not(.active):not(.dots-pg) { border-color: var(--sand); color: var(--ink); }
+.page-btn.active { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.page-btn.dots-pg { border-color: transparent; pointer-events: none; }
+.page-nav {
+  padding: 0 .6rem; font-family: var(--mono); font-size: 13px;
+  color: var(--muted); background: none; border: 1px solid var(--fog);
+  height: 36px; cursor: none; display: inline-flex; align-items: center;
+  transition: border-color .2s, color .2s;
+}
+.page-nav:hover { border-color: var(--sand); color: var(--ink); }
+
+/* ─── FADE IN ─── */
+.fi { opacity:0; transform:translateY(20px); transition:opacity .65s ease, transform .65s ease; }
+.fi.on { opacity:1; transform:none; }
+
+/* ─── FOOTER ─── */
+.ftr { background:var(--ink); color:rgba(246,244,240,.55); padding:5rem var(--gap) 2.5rem; }
+.ftr-in { max-width:var(--w); margin:0 auto; }
+.ftr-grid {
+  display:grid; grid-template-columns:1.5fr repeat(3,1fr); gap:4rem;
+  border-bottom:1px solid rgba(255,255,255,.07); padding-bottom:3rem; margin-bottom:2rem;
+}
+.ftr-logo { font-family:var(--serif); font-size:1.4rem; color:var(--p); margin-bottom:.9rem; }
+.ftr-logo em { font-style:italic; color:var(--gold); }
+.ftr-desc { font-size:13.5px; line-height:1.75; }
+.ftr-addr { margin-top:1.2rem; font-family:var(--mono); font-size:10px; letter-spacing:.1em; line-height:2; color:rgba(246,244,240,.3); }
+.ftr-addr a { color:var(--gold); text-decoration:none; }
+.fc-t { font-family:var(--mono); font-size:9.5px; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); margin-bottom:1.1rem; }
+.ftr-col ul { list-style:none; display:flex; flex-direction:column; gap:.55rem; }
+.ftr-col a { color:rgba(246,244,240,.45); text-decoration:none; font-size:13.5px; transition:color .2s; cursor:none; }
+.ftr-col a:hover { color:var(--p); }
+.ftr-bot { display:flex; justify-content:space-between; align-items:center; }
+.copy { font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; }
+.legal { display:flex; gap:1.3rem; }
+.legal a { font-family:var(--mono); font-size:9.5px; letter-spacing:.09em; color:rgba(246,244,240,.25); text-decoration:none; cursor:none; }
+
+/* ─── FLOATING ARC ─── */
+.arc-float {
+  position:fixed; bottom:2rem; right:2rem; z-index:200;
+  display:flex; flex-direction:column; align-items:flex-end; gap:.65rem;
+}
+.arc-lbl {
+  background:var(--ink); color:var(--p); border:1px solid rgba(200,169,110,.3);
+  font-family:var(--mono); font-size:9px; letter-spacing:.15em; padding:.3rem .65rem;
+  opacity:0; transform:translateX(8px); transition:opacity .25s, transform .25s;
+  pointer-events:none; white-space:nowrap;
+}
+.arc-float:hover .arc-lbl { opacity:1; transform:none; }
+.arc-btn {
+  width:52px; height:52px; border-radius:50%;
+  background:var(--ink); border:1px solid var(--gold);
+  cursor:none; display:flex; align-items:center; justify-content:center;
+  transition:background .25s, transform .25s; position:relative;
+}
+.arc-btn:hover { background:var(--gold); transform:scale(1.06); }
+.arc-btn:hover .arc-ico { color:var(--ink); }
+.arc-ico { color:var(--gold); transition:color .25s; }
+.arc-ndot {
+  position:absolute; top:-3px; right:-3px;
+  width:10px; height:10px; border-radius:50%; background:#6cbb6c;
+  border:2px solid var(--p); animation:pulse 2s ease infinite;
+}
+
+/* ─── ARC PANEL ─── */
+.arc-panel {
+  position:fixed; bottom:0; right:2rem;
+  width:370px; z-index:199;
+  background:var(--ink); border:1px solid rgba(200,169,110,.25); border-bottom:none;
+  border-radius:2px 2px 0 0; overflow:hidden;
+  transform:translateY(calc(100% + 90px));
+  transition:transform .45s cubic-bezier(.16,1,.3,1);
+}
+.arc-panel.open { transform:translateY(0); }
+.ap-hdr {
+  display:flex; align-items:center; gap:.9rem; padding:.9rem 1.1rem;
+  border-bottom:1px solid rgba(200,169,110,.14);
+  background:rgba(200,169,110,.07);
+}
+.ap-hdr-text { flex:1; }
+.ap-hdr-n { font-family:var(--serif); font-size:1.05rem; color:var(--p); }
+.ap-hdr-s { font-family:var(--mono); font-size:9px; letter-spacing:.13em; color:var(--gold); }
+.ap-close {
+  background:none; border:none; cursor:none; color:rgba(246,244,240,.35);
+  font-size:17px; line-height:1; transition:color .2s;
+}
+.ap-close:hover { color:var(--p); }
+.ap-msgs { height:270px; overflow-y:auto; padding:1rem 1.1rem; display:flex; flex-direction:column; gap:.7rem; }
+.msg { display:flex; gap:.65rem; }
+.msg.u { flex-direction:row-reverse; }
+.av {
+  width:26px; height:26px; border-radius:50%; background:var(--gold); flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:8.5px; color:var(--ink); font-weight:700;
+}
+.msg.u .av { background:var(--sand); }
+.bbl {
+  padding:.55rem .9rem; font-size:13.5px; line-height:1.5; max-width:82%;
+  border-radius:1px;
+}
+.msg:not(.u) .bbl { background:rgba(255,255,255,.07); color:rgba(246,244,240,.85); }
+.msg.u .bbl { background:var(--gold); color:var(--ink); }
+.dots { padding:.55rem .9rem; display:flex; gap:4px; }
+.dots span {
+  width:5px; height:5px; border-radius:50%; background:rgba(200,169,110,.5);
+  animation:dot 1.4s ease infinite;
+}
+.dots span:nth-child(2){animation-delay:.2s}
+.dots span:nth-child(3){animation-delay:.4s}
+.ap-chips { padding:0 1.1rem .65rem; display:flex; gap:.4rem; flex-wrap:wrap; }
+.chip {
+  font-family:var(--mono); font-size:9px; letter-spacing:.1em;
+  border:1px solid rgba(200,169,110,.3); color:var(--gold);
+  padding:.28rem .65rem; cursor:none; background:none;
+  transition:background .2s, color .2s;
+}
+.chip:hover { background:var(--gold); color:var(--ink); }
+.ap-inp {
+  display:flex; align-items:center; gap:.8rem;
+  border-top:1px solid rgba(200,169,110,.14); padding:.75rem 1.1rem;
+}
+.ap-inp input {
+  flex:1; background:transparent; border:none; outline:none;
+  color:var(--p); font-family:var(--sans); font-size:13px;
+}
+.ap-inp input::placeholder { color:rgba(246,244,240,.3); }
+.ap-send { background:none; border:none; cursor:none; color:var(--gold); font-size:17px; transition:transform .2s; }
+.ap-send:hover { transform:translateX(3px); }
+
+/* ─── ARC SVG mascot animations ─── */
+@keyframes arcFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+@keyframes legL { 0%,100%{transform:rotate(-9deg)} 50%{transform:rotate(5deg)} }
+@keyframes legR { 0%,100%{transform:rotate(9deg)} 50%{transform:rotate(-5deg)} }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+@keyframes dot { 0%,80%,100%{transform:scale(.75);opacity:.5} 40%{transform:scale(1.1);opacity:1} }
+
+.arc-svg-anim { animation:arcFloat 3.2s ease-in-out infinite; }
+.ll { animation:legL 1.9s ease-in-out infinite; transform-origin:0 0; }
+.lr { animation:legR 1.9s ease-in-out infinite; transform-origin:0 0; }
+.dot { width:7px; height:7px; border-radius:50%; background:#6cbb6c; animation:pulse 2s ease infinite; }
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+
+<!-- ══ HEADER ══════════════════════════════════════════════ -->
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a href="#" class="logo">Academia <em>Architektury</em></a>
+    <nav><ul class="nav">
+      <li><a href="#" class="active">Meble</a></li>
+      <li><a href="#">Oświetlenie</a></li>
+      <li><a href="#">Tkaniny</a></li>
+      <li><a href="#">Kolekcje</a></li>
+      <li><a href="#">Galeria</a></li>
+      <li><a href="#">O nas</a></li>
+    </ul></nav>
+    <div class="hdr-acts">
+      <button class="icon-btn" aria-label="Szukaj">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5l3.5 3.5"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Lista życzeń">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 21C12 21 3 14.5 3 8.5a5 5 0 0 1 9-3A5 5 0 0 1 21 8.5c0 6-9 12.5-9 12.5z"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Koszyk">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      </button>
+      <button class="btn-arc-hdr" onclick="togglePanel()">
+        <svg width="12" height="18" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <circle cx="20" cy="8" r="5"/><line x1="20" y1="13" x2="10" y2="54"/><line x1="20" y1="13" x2="30" y2="54"/>
+        </svg>
+        Zapytaj ARC
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ BREADCRUMB ══════════════════════════════════════════ -->
+<div class="breadcrumb-bar">
+  <div class="breadcrumb-inner">
+    <ol class="breadcrumb" itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="#" itemprop="item"><span itemprop="name">Strona główna</span></a>
+        <meta itemprop="position" content="1">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="#" itemprop="item"><span itemprop="name">Meble</span></a>
+        <meta itemprop="position" content="2">
+      </li>
+      <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <span itemprop="name">Krzesła i fotele</span>
+        <meta itemprop="position" content="3">
+      </li>
+    </ol>
+  </div>
+</div>
+
+<!-- ══ CATEGORY HEADER ════════════════════════════════════ -->
+<div class="cat-hdr fi">
+  <div class="cat-hdr-left">
+    <h1 class="cat-h1">Krzesła i fotele</h1>
+    <p class="cat-desc">Fotele i krzesła od największych światowych projektantów. Od klasyki po modernizm.</p>
+    <p class="cat-count">284 produkty</p>
+  </div>
+</div>
+
+<!-- ══ FILTER BAR ══════════════════════════════════════════ -->
+<div class="filter-bar fi" style="transition-delay:.1s">
+  <div class="filter-bar-left">
+    <span>Filtry:</span>
+    <button class="filter-chip" onclick="removeChip(this)">
+      Materiał: Aksamit <span class="rm">×</span>
+    </button>
+    <button class="filter-chip" onclick="removeChip(this)">
+      Marka: Poliform <span class="rm">×</span>
+    </button>
+  </div>
+  <div class="filter-bar-right">
+    <span class="sort-label">Sortuj:</span>
+    <select class="sort-select" aria-label="Sortowanie">
+      <option>Polecane</option>
+      <option>Cena ↑</option>
+      <option>Cena ↓</option>
+      <option>Nowości</option>
+    </select>
+    <div class="view-toggle" role="group" aria-label="Widok">
+      <button class="view-btn" id="btn3" onclick="setGrid(3)" aria-label="3 kolumny">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="0" y="0" width="3.5" height="14" rx=".5" fill="currentColor"/><rect x="5.25" y="0" width="3.5" height="14" rx=".5" fill="currentColor"/><rect x="10.5" y="0" width="3.5" height="14" rx=".5" fill="currentColor"/></svg>
+      </button>
+      <button class="view-btn active" id="btn4" onclick="setGrid(4)" aria-label="4 kolumny">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="0" y="0" width="2.5" height="14" rx=".5" fill="currentColor"/><rect x="3.83" y="0" width="2.5" height="14" rx=".5" fill="currentColor"/><rect x="7.67" y="0" width="2.5" height="14" rx=".5" fill="currentColor"/><rect x="11.5" y="0" width="2.5" height="14" rx=".5" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MAIN: SIDEBAR + GRID ═══════════════════════════════ -->
+<div class="cat-body">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" aria-label="Filtry produktów">
+
+    <!-- Marka -->
+    <div class="sb-section open">
+      <button class="sb-toggle" onclick="toggleSection(this)" aria-expanded="true">
+        Marka
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+      </button>
+      <div class="sb-body">
+        <div class="sb-body-inner">
+          <ul class="sb-check-list" role="list">
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check" checked> Poliform <span class="sb-count">42</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Minotti <span class="sb-count">38</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> B&amp;B Italia <span class="sb-count">55</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Cassina <span class="sb-count">29</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Flos <span class="sb-count">17</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Artek <span class="sb-count">22</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Menu <span class="sb-count">31</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Materiał -->
+    <div class="sb-section open">
+      <button class="sb-toggle" onclick="toggleSection(this)" aria-expanded="true">
+        Materiał
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+      </button>
+      <div class="sb-body">
+        <div class="sb-body-inner">
+          <ul class="sb-check-list" role="list">
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check" checked> Aksamit <span class="sb-count">68</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Skóra <span class="sb-count">54</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Tkanina <span class="sb-count">91</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Drewno <span class="sb-count">33</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Metal <span class="sb-count">19</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Plastik <span class="sb-count">11</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cena -->
+    <div class="sb-section open">
+      <button class="sb-toggle" onclick="toggleSection(this)" aria-expanded="true">
+        Cena
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+      </button>
+      <div class="sb-body">
+        <div class="sb-body-inner">
+          <div class="price-inputs">
+            <input type="text" class="price-input" value="0" aria-label="Cena od">
+            <span class="price-sep">—</span>
+            <input type="text" class="price-input" value="50 000" aria-label="Cena do">
+            <span class="price-sep" style="white-space:nowrap;font-family:var(--mono);font-size:10px;color:var(--sand)">PLN</span>
+          </div>
+          <div class="price-range">
+            <div class="price-range-fill"></div>
+            <input type="range" min="0" max="50000" value="50000" aria-label="Maksymalna cena">
+          </div>
+          <p class="price-note">0 — 50 000 PLN</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kolor -->
+    <div class="sb-section open">
+      <button class="sb-toggle" onclick="toggleSection(this)" aria-expanded="true">
+        Kolor
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+      </button>
+      <div class="sb-body">
+        <div class="sb-body-inner">
+          <div class="sb-colors" role="group" aria-label="Wybierz kolor">
+            <button class="swatch swatch-white" title="Biały" onclick="toggleSwatch(this)"></button>
+            <button class="swatch swatch-black active" title="Czarny" onclick="toggleSwatch(this)"></button>
+            <button class="swatch swatch-gray" title="Szary" onclick="toggleSwatch(this)"></button>
+            <button class="swatch swatch-beige" title="Beż" onclick="toggleSwatch(this)"></button>
+            <button class="swatch swatch-green" title="Zielony" onclick="toggleSwatch(this)"></button>
+            <button class="swatch swatch-blue" title="Niebieski" onclick="toggleSwatch(this)"></button>
+            <button class="swatch swatch-terra" title="Terracotta" onclick="toggleSwatch(this)"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wymiary -->
+    <div class="sb-section">
+      <button class="sb-toggle" onclick="toggleSection(this)" aria-expanded="false">
+        Wymiary
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+      </button>
+      <div class="sb-body">
+        <div class="sb-body-inner">
+          <ul class="sb-check-list" role="list">
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Małe <span style="font-family:var(--mono);font-size:9px;color:var(--sand);margin-left:.2rem">&lt;60 cm</span> <span class="sb-count">47</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Średnie <span style="font-family:var(--mono);font-size:9px;color:var(--sand);margin-left:.2rem">60–90 cm</span> <span class="sb-count">112</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> Duże <span style="font-family:var(--mono);font-size:9px;color:var(--sand);margin-left:.2rem">&gt;90 cm</span> <span class="sb-count">61</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Projektant -->
+    <div class="sb-section">
+      <button class="sb-toggle" onclick="toggleSection(this)" aria-expanded="false">
+        Projektant
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 4l4 4 4-4"/></svg>
+      </button>
+      <div class="sb-body">
+        <div class="sb-body-inner">
+          <ul class="sb-check-list" role="list">
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> A. Citterio <span class="sb-count">34</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> P. Urquiola <span class="sb-count">28</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> J. Morrison <span class="sb-count">19</span></label></li>
+            <li><label class="sb-check-label"><input type="checkbox" class="sb-check"> R. Bouroullec <span class="sb-count">22</span></label></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sidebar actions -->
+    <div class="sb-actions">
+      <button class="btn-primary">Zastosuj filtry</button>
+      <button class="btn-ghost">Wyczyść wszystko</button>
+    </div>
+
+  </aside>
+
+  <!-- PRODUCT GRID -->
+  <div>
+    <div class="pg fi" id="productGrid" style="transition-delay:.15s">
+
+      <!-- Produkt 1 -->
+      <article class="pc fi" itemscope itemtype="https://schema.org/Product" style="transition-delay:.0s">
+        <div class="pc-vis">
+          <span class="badge">Nowość</span>
+          <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/salone-chair-studio.png')"></div>
+          <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+          <div class="pc-actions">
+            <button class="pc-action">Do koszyka</button>
+            <button class="pc-action">Lista życzeń</button>
+          </div>
+        </div>
+        <p class="brand" itemprop="brand">Poliform</p>
+        <p class="pdesigner">proj. A. Citterio</p>
+        <h3 class="pname" itemprop="name">Salone — fotel wypoczynkowy</h3>
+        <p class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">od <strong itemprop="price">14 200 PLN</strong><meta itemprop="priceCurrency" content="PLN"></p>
+      </article>
+
+      <!-- Produkt 2 -->
+      <article class="pc fi" itemscope itemtype="https://schema.org/Product" style="transition-delay:.08s">
+        <div class="pc-vis">
+          <span class="badge bs">bestseller</span>
+          <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/meridian-table-studio.png')"></div>
+          <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+          <div class="pc-actions">
+            <button class="pc-action">Do koszyka</button>
+            <button class="pc-action">Lista życzeń</button>
+          </div>
+        </div>
+        <p class="brand" itemprop="brand">Minotti</p>
+        <p class="pdesigner">proj. R. Bouroullec</p>
+        <h3 class="pname" itemprop="name">Meridian — krzesło jadalniane</h3>
+        <p class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">od <strong itemprop="price">6 800 PLN</strong><meta itemprop="priceCurrency" content="PLN"></p>
+      </article>
+
+      <!-- Produkt 3 -->
+      <article class="pc fi" itemscope itemtype="https://schema.org/Product" style="transition-delay:.16s">
+        <div class="pc-vis">
+          <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/forma-lamp-studio.png')"></div>
+          <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+          <div class="pc-actions">
+            <button class="pc-action">Do koszyka</button>
+            <button class="pc-action">Lista życzeń</button>
+          </div>
+        </div>
+        <p class="brand" itemprop="brand">B&amp;B Italia</p>
+        <p class="pdesigner">proj. P. Urquiola</p>
+        <h3 class="pname" itemprop="name">Forma — fotel obrotowy</h3>
+        <p class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">od <strong itemprop="price">18 500 PLN</strong><meta itemprop="priceCurrency" content="PLN"></p>
+      </article>
+
+      <!-- Produkt 4 -->
+      <article class="pc fi" itemscope itemtype="https://schema.org/Product" style="transition-delay:.24s">
+        <div class="pc-vis">
+          <span class="badge">Nowość</span>
+          <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/velato-sofa-studio.png')"></div>
+          <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+          <div class="pc-actions">
+            <button class="pc-action">Do koszyka</button>
+            <button class="pc-action">Lista życzeń</button>
+          </div>
+        </div>
+        <p class="brand" itemprop="brand">Cassina</p>
+        <p class="pdesigner">proj. J. Morrison</p>
+        <h3 class="pname" itemprop="name">Velato — fotel bujany</h3>
+        <p class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">od <strong itemprop="price">22 000 PLN</strong><meta itemprop="priceCurrency" content="PLN"></p>
+      </article>
+
+      <!-- Produkt 5 -->
+      <article class="pc fi" itemscope itemtype="https://schema.org/Product" style="transition-delay:.06s">
+        <div class="pc-vis">
+          <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/strato-shelf-studio.png')"></div>
+          <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+          <div class="pc-actions">
+            <button class="pc-action">Do koszyka</button>
+            <button class="pc-action">Lista życzeń</button>
+          </div>
+        </div>
+        <p class="brand" itemprop="brand">Artek</p>
+        <p class="pdesigner">proj. A. Aalto</p>
+        <h3 class="pname" itemprop="name">Strato — krzesło konferencyjne</h3>
+        <p class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">od <strong itemprop="price">3 200 PLN</strong><meta itemprop="priceCurrency" content="PLN"></p>
+      </article>
+
+      <!-- Produkt 6 -->
+      <article class="pc fi" itemscope itemtype="https://schema.org/Product" style="transition-delay:.14s">
+        <div class="pc-vis">
+          <span class="badge bs">bestseller</span>
+          <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/radice-shelf-studio.png')"></div>
+          <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+          <div class="pc-actions">
+            <button class="pc-action">Do koszyka</button>
+            <button class="pc-action">Lista życzeń</button>
+          </div>
+        </div>
+        <p class="brand" itemprop="brand">Poliform</p>
+        <p class="pdesigner">proj. A. Citterio</p>
+        <h3 class="pname" itemprop="name">Radice — fotel lounge</h3>
+        <p class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">od <strong itemprop="price">11 900 PLN</strong><meta itemprop="priceCurrency" content="PLN"></p>
+      </article>
+
+      <!-- Produkt 7 -->
+      <article class="pc fi" itemscope itemtype="https://schema.org/Product" style="transition-delay:.22s">
+        <div class="pc-vis">
+          <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/monolith-salone-dark.png')"></div>
+          <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+          <div class="pc-actions">
+            <button class="pc-action">Do koszyka</button>
+            <button class="pc-action">Lista życzeń</button>
+          </div>
+        </div>
+        <p class="brand" itemprop="brand">Menu</p>
+        <p class="pdesigner">proj. N. Trambauer</p>
+        <h3 class="pname" itemprop="name">Monolith — krzesło barowe</h3>
+        <p class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">od <strong itemprop="price">4 600 PLN</strong><meta itemprop="priceCurrency" content="PLN"></p>
+      </article>
+
+      <!-- Produkt 8 -->
+      <article class="pc fi" itemscope itemtype="https://schema.org/Product" style="transition-delay:.30s">
+        <div class="pc-vis">
+          <span class="badge">Nowość</span>
+          <div class="pc-photo" style="background-image:url('../image_gen/generated/academia/salone-chair-studio.png')"></div>
+          <svg class="bd" viewBox="0 0 100 133" preserveAspectRatio="none"><rect x=".75" y=".75" width="98.5" height="131.5"/></svg>
+          <div class="pc-actions">
+            <button class="pc-action">Do koszyka</button>
+            <button class="pc-action">Lista życzeń</button>
+          </div>
+        </div>
+        <p class="brand" itemprop="brand">Minotti</p>
+        <p class="pdesigner">proj. P. Urquiola</p>
+        <h3 class="pname" itemprop="name">Salone — krzesło boczne</h3>
+        <p class="price" itemprop="offers" itemscope itemtype="https://schema.org/Offer">od <strong itemprop="price">5 400 PLN</strong><meta itemprop="priceCurrency" content="PLN"></p>
+      </article>
+
+    </div>
+
+    <!-- PAGINATION -->
+    <nav class="pagination fi" style="transition-delay:.25s" aria-label="Paginacja">
+      <a href="#" class="page-nav" aria-label="Poprzednia strona">←</a>
+      <a href="#" class="page-btn">1</a>
+      <a href="#" class="page-btn active" aria-current="page">2</a>
+      <a href="#" class="page-btn">3</a>
+      <a href="#" class="page-btn">4</a>
+      <span class="page-btn dots-pg">…</span>
+      <a href="#" class="page-btn">24</a>
+      <a href="#" class="page-nav" aria-label="Następna strona">→</a>
+    </nav>
+  </div>
+
+</div>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════ -->
+<footer class="ftr" itemscope itemtype="https://schema.org/HomeGoodsStore">
+  <div class="ftr-in">
+    <div class="ftr-grid">
+      <div>
+        <p class="ftr-logo">Academia <em>Architektury</em></p>
+        <p class="ftr-desc">Galeria mebli i oświetlenia premium. Kuratowana kolekcja dla wymagających wnętrz — od projektu do realizacji.</p>
+        <div class="ftr-addr" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+          <span itemprop="streetAddress">ul. Grodzka 12</span><br>
+          <span itemprop="addressLocality">30-001 Kraków</span><br>
+          <a href="tel:+48123456789" itemprop="telephone">+48 12 345 67 89</a>
+        </div>
+      </div>
+      <div class="ftr-col"><p class="fc-t">Kategorie</p><ul>
+        <li><a href="#">Meble do siedzenia</a></li>
+        <li><a href="#">Stoły i stoliki</a></li>
+        <li><a href="#">Oświetlenie</a></li>
+        <li><a href="#">Przechowywanie</a></li>
+        <li><a href="#">Akcesoria</a></li>
+      </ul></div>
+      <div class="ftr-col"><p class="fc-t">Marki</p><ul>
+        <li><a href="#">Poliform</a></li>
+        <li><a href="#">Minotti</a></li>
+        <li><a href="#">B&amp;B Italia</a></li>
+        <li><a href="#">Flos</a></li>
+        <li><a href="#">Cassina</a></li>
+      </ul></div>
+      <div class="ftr-col"><p class="fc-t">Galeria</p><ul>
+        <li><a href="#">Realizacje</a></li>
+        <li><a href="#">Poradniki</a></li>
+        <li><a href="#">Konsultacje z ARC</a></li>
+        <li><a href="#">Kontakt</a></li>
+      </ul></div>
+    </div>
+    <div class="ftr-bot">
+      <p class="copy">© 2025 Academia Architektury</p>
+      <div class="legal">
+        <a href="#">Polityka prywatności</a>
+        <a href="#">Regulamin</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ FLOATING ARC ════════════════════════════════════════ -->
+<div class="arc-float">
+  <span class="arc-lbl">Zapytaj ARC — architekta AI</span>
+  <button class="arc-btn" onclick="togglePanel()" aria-label="Otwórz ARC">
+    <svg class="arc-ico arc-svg-anim" width="24" height="36" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <circle cx="20" cy="8" r="5"/>
+      <g transform="translate(20,13)">
+        <line class="ll" x1="0" y1="0" x2="-12" y2="43"/>
+        <line class="lr" x1="0" y1="0" x2="12" y2="43"/>
+        <line x1="-8.5" y1="26" x2="8.5" y2="26" stroke-width="1" opacity=".4"/>
+      </g>
+    </svg>
+    <span class="arc-ndot"></span>
+  </button>
+</div>
+
+<!-- ══ ARC PANEL ═══════════════════════════════════════════ -->
+<div class="arc-panel" id="arcPanel">
+  <div class="ap-hdr">
+    <svg class="arc-svg-anim" width="26" height="39" viewBox="0 0 40 60" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round">
+      <circle cx="20" cy="8" r="5"/>
+      <g transform="translate(20,13)">
+        <line class="ll" x1="0" y1="0" x2="-12" y2="43"/>
+        <line class="lr" x1="0" y1="0" x2="12" y2="43"/>
+        <line x1="-8.5" y1="26" x2="8.5" y2="26" stroke-width="1" opacity=".4"/>
+      </g>
+    </svg>
+    <div class="ap-hdr-text">
+      <div class="ap-hdr-n">ARC</div>
+      <div class="ap-hdr-s">Asystent Projektu &nbsp;·&nbsp; Dostępny</div>
+    </div>
+    <button class="ap-close" onclick="togglePanel()">✕</button>
+  </div>
+  <div class="ap-msgs" id="apMsgs">
+    <div class="msg">
+      <div class="av">ARC</div>
+      <div class="bbl">Przeglądasz krzesła i fotele — 284 modele od najlepszych projektantów świata. Powiedz mi czego szukasz, a dobiorę coś idealnego dla Twojej przestrzeni.</div>
+    </div>
+  </div>
+  <div class="ap-chips">
+    <button class="chip" onclick="send('Fotel do salonu 40m²')">Fotel do salonu</button>
+    <button class="chip" onclick="send('Krzesło jadalniane — 6 sztuk')">6 krzeseł do jadalni</button>
+    <button class="chip" onclick="send('Polecasz coś w aksamicie?')">Aksamit i kolor</button>
+  </div>
+  <div class="ap-inp">
+    <input id="apInp" type="text" placeholder="Opisz przestrzeń lub zadaj pytanie..." onkeydown="if(event.key==='Enter')send()">
+    <button class="ap-send" onclick="send()">→</button>
+  </div>
+</div>
+
+<script>
+/* ── cursor ── */
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top  = e.clientY + 'px';
+});
+
+/* ── header shrink ── */
+const hdr = document.getElementById('hdr');
+window.addEventListener('scroll', () => hdr.classList.toggle('up', scrollY > 50), {passive:true});
+
+/* ── fade-in observer ── */
+const obs = new IntersectionObserver(es => es.forEach(e => {
+  if (e.isIntersecting) e.target.classList.add('on');
+}), {threshold: .08});
+document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+
+/* ── accordion ── */
+function toggleSection(btn) {
+  const sec = btn.closest('.sb-section');
+  const isOpen = sec.classList.contains('open');
+  sec.classList.toggle('open', !isOpen);
+  btn.setAttribute('aria-expanded', String(!isOpen));
+}
+
+/* ── filter chips remove ── */
+function removeChip(btn) {
+  btn.style.opacity = '0';
+  btn.style.transform = 'scale(.9)';
+  btn.style.transition = 'opacity .2s, transform .2s';
+  setTimeout(() => btn.remove(), 220);
+}
+
+/* ── color swatches ── */
+function toggleSwatch(el) {
+  el.classList.toggle('active');
+}
+
+/* ── view toggle ── */
+function setGrid(n) {
+  const grid = document.getElementById('productGrid');
+  grid.classList.toggle('grid-3', n === 3);
+  document.getElementById('btn3').classList.toggle('active', n === 3);
+  document.getElementById('btn4').classList.toggle('active', n === 4);
+}
+
+/* ── ARC panel ── */
+let open = false;
+function togglePanel() {
+  open = !open;
+  document.getElementById('arcPanel').classList.toggle('open', open);
+  if (open) setTimeout(() => document.getElementById('apInp').focus(), 460);
+}
+
+const replies = [
+  'Do fotela w salonie z jasnym drewnem polecam aksamit w kolorze sage lub musztardowym. Salone od Poliform — proporcje idealne na 40 m².',
+  'Do jadalni w zestawie 6 sztuk najlepiej sprawdzi się Meridian od Minotti — elegancki, wytrzymały, dostępny w wielu tkaninach.',
+  'Aksamit i Cassina to doskonałe połączenie. Seria Cab — 412 — to klasyk, który nigdy nie wychodzi z mody. Masz konkretny kolor?',
+  'Budżet decyduje o strategii — fotel kotwiczący styl czy krzesła wielofunkcyjne? Opisz mi co już masz w przestrzeni.',
+];
+let ri = 0;
+
+function send(txt) {
+  const inp = document.getElementById('apInp');
+  const msg = txt || inp.value.trim();
+  if (!msg) return;
+  inp.value = '';
+  const msgs = document.getElementById('apMsgs');
+
+  const u = document.createElement('div');
+  u.className = 'msg u';
+  u.innerHTML = `<div class="av">TY</div><div class="bbl">${msg}</div>`;
+  msgs.appendChild(u);
+
+  const t = document.createElement('div');
+  t.className = 'msg';
+  t.innerHTML = `<div class="av">ARC</div><div class="dots"><span></span><span></span><span></span></div>`;
+  msgs.appendChild(t);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    msgs.removeChild(t);
+    const r = document.createElement('div');
+    r.className = 'msg';
+    r.innerHTML = `<div class="av">ARC</div><div class="bbl">${replies[ri++ % replies.length]}</div>`;
+    msgs.appendChild(r);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1300);
+}
+</script>
+</body>
+</html>

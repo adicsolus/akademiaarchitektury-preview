@@ -1,0 +1,972 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finalizacja zamówienia — Academia Architektury</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Space+Mono&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root {
+  --p: #F6F4F0;
+  --chalk: #FAFAF8;
+  --ink: #1A1916;
+  --muted: #6B6860;
+  --sand: #A09880;
+  --gold: #C8A96E;
+  --fog: #E5E3DC;
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --sans: 'DM Sans', system-ui, sans-serif;
+  --mono: 'Space Mono', monospace;
+  --nav: 60px;
+  --w: 1360px;
+  --gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--p); color: var(--ink); font-family: var(--sans); font-size: 15px; line-height: 1.6; overflow-x: hidden; cursor: none; }
+
+/* ─── CURSOR ─── */
+#cur {
+  position: fixed; width: 20px; height: 20px; pointer-events: none;
+  z-index: 9999; transform: translate(-50%,-50%);
+  transition: transform .08s;
+}
+#cur::before,#cur::after {
+  content:''; position: absolute; background: var(--ink);
+}
+#cur::before { width:1px; height:100%; left:50%; top:0; }
+#cur::after  { height:1px; width:100%; top:50%; left:0; }
+
+/* ─── HEADER ─── */
+.hdr {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  height: var(--nav);
+  background: rgba(246,244,240,.93); backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--fog);
+  display: flex; align-items: center;
+  transition: height .3s, box-shadow .3s;
+}
+.hdr.up { height:50px; box-shadow:0 1px 18px rgba(0,0,0,.05); }
+.hdr-in {
+  max-width: var(--w); margin: 0 auto; padding: 0 var(--gap);
+  width:100%; display:flex; align-items:center; gap:2.5rem;
+}
+.logo {
+  font-family: var(--serif); font-size:1.25rem; font-weight:400;
+  color: var(--ink); text-decoration:none; white-space:nowrap; flex-shrink:0;
+}
+.logo em { font-style:italic; color: var(--gold); }
+
+.nav { display:flex; gap:0; list-style:none; }
+.nav a {
+  display:block; padding:.45rem 1rem;
+  font-size:11px; font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+  color: var(--muted); text-decoration:none;
+  position:relative; transition:color .2s;
+}
+.nav a::after {
+  content:''; position:absolute; bottom:-1px; left:1rem; right:1rem;
+  height:1px; background:var(--gold);
+  transform:scaleX(0); transform-origin:left; transition:transform .3s;
+}
+.nav a:hover { color:var(--ink); }
+.nav a:hover::after { transform:scaleX(1); }
+
+.hdr-acts { display:flex; align-items:center; gap:1rem; margin-left:auto; }
+.icon-btn {
+  background:none; border:none; cursor:none; color:var(--muted);
+  display:flex; align-items:center; justify-content:center;
+  padding:.4rem; transition:color .2s;
+}
+.icon-btn:hover { color:var(--ink); }
+.btn-arc-hdr {
+  background:var(--ink); color:var(--p); border:none; cursor:none;
+  padding:.4rem .9rem; font-size:11px; font-family:var(--sans);
+  font-weight:500; letter-spacing:.12em; text-transform:uppercase;
+  display:flex; align-items:center; gap:.5rem;
+  transition:background .25s, color .25s;
+}
+.btn-arc-hdr:hover { background:var(--gold); color:var(--ink); }
+.btn-arc-hdr svg { color:var(--gold); transition:color .25s; }
+.btn-arc-hdr:hover svg { color:var(--ink); }
+
+/* ─── PAGE WRAPPER ─── */
+.page-wrap {
+  max-width: var(--w); margin: 0 auto;
+  padding: calc(var(--nav) + 3rem) var(--gap) 5rem;
+}
+
+/* ─── PAGE HEADER ─── */
+.page-hd { margin-bottom: 2.2rem; }
+.page-hd-eyebrow {
+  font-family: var(--mono); font-size: 10px; color: var(--sand);
+  letter-spacing: .2em; text-transform: uppercase;
+  display: flex; align-items: center; gap: .8rem; margin-bottom: .9rem;
+}
+.page-hd-eyebrow::before { content:''; width:28px; height:1px; background:var(--gold); flex-shrink:0; }
+.page-hd h1 {
+  font-family: var(--serif); font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+  font-weight: 300; line-height: 1.05; margin-bottom: 1.5rem;
+}
+
+/* ─── BREADCRUMB STEPS ─── */
+.steps {
+  display: flex; align-items: center; gap: 0;
+  margin-bottom: 2.5rem;
+}
+.step {
+  display: flex; align-items: center; gap: .6rem;
+  font-family: var(--mono); font-size: 10px; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--sand); text-decoration: none;
+  cursor: none;
+}
+.step.active { color: var(--gold); }
+.step.done { color: var(--muted); }
+.step-num {
+  width: 22px; height: 22px; border-radius: 50%;
+  border: 1px solid currentColor;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 9px; flex-shrink: 0;
+}
+.step.active .step-num { background: var(--gold); color: var(--ink); border-color: var(--gold); }
+.step.done .step-num { background: var(--ink); color: var(--p); border-color: var(--ink); font-size: 10px; }
+.step-arrow {
+  margin: 0 .75rem; color: var(--fog); font-size: 12px; flex-shrink: 0;
+}
+
+/* ─── CHECKOUT LAYOUT ─── */
+.checkout-layout {
+  display: grid; grid-template-columns: 1fr 420px; gap: 3rem; align-items: start;
+}
+
+/* ─── FORM SECTIONS ─── */
+.form-section {
+  margin-bottom: 2.2rem;
+}
+.form-section-title {
+  font-family: var(--mono); font-size: 10px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1.3rem; padding-bottom: .7rem;
+  border-bottom: 1px solid var(--fog);
+  display: flex; align-items: center; gap: .7rem;
+}
+.form-section-title::before {
+  content: ''; width: 18px; height: 1px; background: var(--gold); flex-shrink: 0;
+}
+
+.form-row {
+  display: grid; gap: 1rem; margin-bottom: 1rem;
+}
+.form-row.cols-2 { grid-template-columns: 1fr 1fr; }
+.form-row.cols-3-7 { grid-template-columns: 3fr 7fr; }
+.form-row.single { grid-template-columns: 1fr; }
+
+.field { display: flex; flex-direction: column; gap: .35rem; }
+.field label {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--sand);
+}
+.field input,
+.field select,
+.field textarea {
+  background: var(--chalk); border: 1px solid var(--fog);
+  padding: .7rem .9rem; font-family: var(--sans); font-size: 14px;
+  color: var(--ink); outline: none; transition: border-color .2s;
+  width: 100%; appearance: none;
+}
+.field input:focus,
+.field select:focus,
+.field textarea:focus { border-color: var(--sand); }
+.field input::placeholder,
+.field textarea::placeholder { color: var(--sand); font-size: 13px; }
+.field select { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A09880' stroke-width='1.5' fill='none'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .9rem center; padding-right: 2.2rem; cursor: none; }
+.field textarea { resize: vertical; min-height: 80px; line-height: 1.55; }
+
+/* ─── CHECKBOX TOGGLE (konto) ─── */
+.check-row {
+  display: flex; align-items: center; gap: .75rem;
+  margin-bottom: 1rem; cursor: none;
+}
+.check-row input[type="checkbox"] {
+  width: 16px; height: 16px; border: 1px solid var(--fog);
+  background: var(--chalk); cursor: none; accent-color: var(--gold);
+  flex-shrink: 0; appearance: none; position: relative;
+  transition: border-color .2s;
+}
+.check-row input[type="checkbox"]:checked {
+  background: var(--gold); border-color: var(--gold);
+}
+.check-row input[type="checkbox"]:checked::after {
+  content:''; position:absolute; left:4px; top:1px;
+  width:6px; height:10px; border:1.5px solid var(--ink);
+  border-top:none; border-left:none; transform:rotate(45deg);
+}
+.check-row label {
+  font-size: 13.5px; color: var(--muted); cursor: none;
+}
+.check-row label a { color: var(--gold); text-decoration: none; }
+
+.account-fields {
+  overflow: hidden; max-height: 0; transition: max-height .4s ease, opacity .35s ease;
+  opacity: 0;
+}
+.account-fields.open { max-height: 160px; opacity: 1; }
+
+/* ─── DELIVERY OPTIONS ─── */
+.delivery-options { display: flex; flex-direction: column; gap: .7rem; }
+.d-option {
+  display: flex; align-items: center; gap: .9rem;
+  border: 1px solid var(--fog); padding: .9rem 1.1rem;
+  cursor: none; transition: border-color .2s, background .2s;
+  position: relative;
+}
+.d-option:hover { border-color: var(--sand); background: var(--chalk); }
+.d-option.selected { border-color: var(--gold); background: var(--chalk); }
+.d-option input[type="radio"] {
+  width: 16px; height: 16px; flex-shrink: 0; cursor: none;
+  accent-color: var(--gold); appearance: none; border: 1.5px solid var(--sand);
+  border-radius: 50%; position: relative; transition: border-color .2s;
+}
+.d-option input[type="radio"]:checked {
+  border-color: var(--gold);
+}
+.d-option input[type="radio"]:checked::after {
+  content:''; position:absolute; width:8px; height:8px; border-radius:50%;
+  background: var(--gold); top:50%; left:50%; transform:translate(-50%,-50%);
+}
+.d-opt-info { flex: 1; }
+.d-opt-name { font-size: 14px; color: var(--ink); font-weight: 500; }
+.d-opt-desc { font-size: 12.5px; color: var(--muted); margin-top: .1rem; }
+.badge-gold {
+  font-family: var(--mono); font-size: 8.5px; letter-spacing: .14em;
+  text-transform: uppercase; background: var(--gold); color: var(--ink);
+  padding: .18rem .55rem; flex-shrink: 0;
+}
+
+/* ─── PAYMENT OPTIONS ─── */
+.pay-options { display: flex; flex-direction: column; gap: .7rem; }
+.p-option {
+  display: flex; align-items: center; gap: .9rem;
+  border: 1px solid var(--fog); padding: .85rem 1.1rem;
+  cursor: none; transition: border-color .2s, background .2s;
+}
+.p-option:hover { border-color: var(--sand); background: var(--chalk); }
+.p-option.selected { border-color: var(--gold); background: var(--chalk); }
+.p-option input[type="radio"] {
+  width: 16px; height: 16px; flex-shrink: 0; cursor: none;
+  accent-color: var(--gold); appearance: none; border: 1.5px solid var(--sand);
+  border-radius: 50%; position: relative; transition: border-color .2s;
+}
+.p-option input[type="radio"]:checked { border-color: var(--gold); }
+.p-option input[type="radio"]:checked::after {
+  content:''; position:absolute; width:8px; height:8px; border-radius:50%;
+  background: var(--gold); top:50%; left:50%; transform:translate(-50%,-50%);
+}
+.p-opt-name { flex: 1; font-size: 14px; color: var(--ink); }
+.p-opt-icons { display: flex; align-items: center; gap: .4rem; }
+.p-ico {
+  height: 18px; border: 1px solid var(--fog); border-radius: 2px;
+  padding: 1px 6px; display: flex; align-items: center; justify-content: center;
+  background: #fff; font-family: var(--mono); font-size: 7.5px; font-weight: 700;
+  color: var(--muted); white-space: nowrap;
+}
+
+/* ─── SUBMIT ─── */
+.form-submit { margin-top: 1.8rem; }
+.terms-row {
+  display: flex; align-items: flex-start; gap: .75rem;
+  margin-bottom: 1.4rem;
+}
+.terms-row input[type="checkbox"] {
+  width: 16px; height: 16px; border: 1px solid var(--fog);
+  background: var(--chalk); cursor: none; accent-color: var(--gold);
+  flex-shrink: 0; margin-top: 3px; appearance: none; position: relative;
+  transition: border-color .2s;
+}
+.terms-row input[type="checkbox"]:checked {
+  background: var(--gold); border-color: var(--gold);
+}
+.terms-row input[type="checkbox"]:checked::after {
+  content:''; position:absolute; left:4px; top:1px;
+  width:6px; height:10px; border:1.5px solid var(--ink);
+  border-top:none; border-left:none; transform:rotate(45deg);
+}
+.terms-row label { font-size: 13px; color: var(--muted); line-height: 1.55; }
+.terms-row label a { color: var(--gold); text-decoration: none; }
+.terms-row label a:hover { text-decoration: underline; }
+
+.btn-submit {
+  display: flex; align-items: center; justify-content: center; gap: .7rem;
+  background: var(--ink); color: var(--p);
+  padding: 1rem 2rem; font-size: 12px; font-weight: 500;
+  letter-spacing: .12em; text-transform: uppercase; text-decoration: none;
+  transition: background .25s, color .25s; cursor: none;
+  border: none; width: 100%;
+}
+.btn-submit:hover { background: var(--gold); color: var(--ink); }
+.btn-submit svg { flex-shrink: 0; }
+
+/* ─── ORDER SUMMARY PANEL ─── */
+.order-summary {
+  position: sticky; top: calc(var(--nav) + 1.5rem);
+  background: var(--chalk); border: 1px solid var(--fog);
+}
+
+.os-title {
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gold);
+  padding: 1.2rem 1.5rem; border-bottom: 1px solid var(--fog);
+  display: flex; align-items: center; gap: .6rem;
+}
+.os-title::before { content:''; width:16px; height:1px; background:var(--gold); flex-shrink:0; }
+
+.os-items { padding: 1.2rem 1.5rem; display: flex; flex-direction: column; gap: 1rem; border-bottom: 1px solid var(--fog); }
+.os-item { display: flex; align-items: center; gap: .9rem; }
+.os-img {
+  width: 56px; height: 72px; background: var(--fog) center/cover no-repeat; flex-shrink: 0;
+}
+.os-item-info { flex: 1; }
+.os-item-brand { font-family: var(--mono); font-size: 8.5px; color: var(--sand); letter-spacing: .16em; text-transform: uppercase; }
+.os-item-name { font-family: var(--serif); font-size: 1rem; color: var(--ink); line-height: 1.25; margin-top: .1rem; }
+.os-item-variant { font-size: 11.5px; color: var(--muted); margin-top: .1rem; }
+.os-item-price { font-size: 13px; color: var(--ink); font-weight: 500; white-space: nowrap; }
+
+.os-rows { padding: 1.1rem 1.5rem; display: flex; flex-direction: column; gap: .3rem; border-bottom: 1px solid var(--fog); }
+.os-row { display: flex; justify-content: space-between; align-items: baseline; padding: .35rem 0; }
+.os-row-label { font-size: 13px; color: var(--muted); }
+.os-row-val { font-size: 13px; color: var(--ink); font-weight: 500; }
+.os-row-val.muted { color: var(--sand); font-weight: 400; font-style: italic; font-size: 12px; }
+.os-row-val.vat { font-size: 11px; color: var(--sand); font-weight: 400; }
+
+.os-total {
+  padding: 1.2rem 1.5rem; display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 1px solid var(--fog);
+}
+.os-total-label { font-family: var(--mono); font-size: 9.5px; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); }
+.os-total-val { font-family: var(--serif); font-size: 1.8rem; font-weight: 300; color: var(--ink); }
+
+/* ─── COUPON TOGGLE ─── */
+.os-coupon { padding: 1rem 1.5rem; }
+.coupon-toggle {
+  background: none; border: none; cursor: none; width: 100%;
+  text-align: left; display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--mono); font-size: 9.5px; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); padding: 0;
+  transition: color .2s;
+}
+.coupon-toggle:hover { color: var(--gold); }
+.coupon-toggle-arrow { transition: transform .3s; font-size: 11px; }
+.coupon-toggle-arrow.open { transform: rotate(180deg); }
+.coupon-body {
+  overflow: hidden; max-height: 0; transition: max-height .35s ease, opacity .3s ease;
+  opacity: 0;
+}
+.coupon-body.open { max-height: 80px; opacity: 1; }
+.coupon-inner { padding-top: .9rem; display: flex; gap: .6rem; }
+.coupon-inp {
+  flex: 1; border: 1px solid var(--fog); background: var(--p);
+  padding: .6rem .85rem; font-family: var(--sans); font-size: 13px;
+  color: var(--ink); outline: none; transition: border-color .2s;
+}
+.coupon-inp::placeholder { color: var(--sand); font-size: 12px; }
+.coupon-inp:focus { border-color: var(--sand); }
+.coupon-apply {
+  background: none; border: 1px solid var(--fog); cursor: none;
+  padding: .6rem 1rem; font-family: var(--mono); font-size: 9px;
+  letter-spacing: .12em; text-transform: uppercase; color: var(--muted);
+  transition: border-color .2s, color .2s, background .2s; white-space: nowrap;
+}
+.coupon-apply:hover { border-color: var(--sand); color: var(--ink); background: var(--fog); }
+
+/* ─── ARC SVG mascot animations ─── */
+@keyframes arcFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
+@keyframes legL { 0%,100%{transform:rotate(-9deg)} 50%{transform:rotate(5deg)} }
+@keyframes legR { 0%,100%{transform:rotate(9deg)} 50%{transform:rotate(-5deg)} }
+
+.arc-svg-anim { animation:arcFloat 3.2s ease-in-out infinite; }
+.ll { animation:legL 1.9s ease-in-out infinite; transform-origin:0 0; }
+.lr { animation:legR 1.9s ease-in-out infinite; transform-origin:0 0; }
+
+/* ─── FLOATING ARC ─── */
+.arc-float {
+  position:fixed; bottom:2rem; right:2rem; z-index:200;
+  display:flex; flex-direction:column; align-items:flex-end; gap:.65rem;
+}
+.arc-lbl {
+  background:var(--ink); color:var(--p); border:1px solid rgba(200,169,110,.3);
+  font-family:var(--mono); font-size:9px; letter-spacing:.15em; padding:.3rem .65rem;
+  opacity:0; transform:translateX(8px); transition:opacity .25s, transform .25s;
+  pointer-events:none; white-space:nowrap;
+}
+.arc-float:hover .arc-lbl { opacity:1; transform:none; }
+.arc-btn {
+  width:52px; height:52px; border-radius:50%;
+  background:var(--ink); border:1px solid var(--gold);
+  cursor:none; display:flex; align-items:center; justify-content:center;
+  transition:background .25s, transform .25s; position:relative;
+}
+.arc-btn:hover { background:var(--gold); transform:scale(1.06); }
+.arc-btn:hover .arc-ico { color:var(--ink); }
+.arc-ico { color:var(--gold); transition:color .25s; }
+.arc-ndot {
+  position:absolute; top:-3px; right:-3px;
+  width:10px; height:10px; border-radius:50%; background:#6cbb6c;
+  border:2px solid var(--p); animation:pulse 2s ease infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+/* ─── ARC PANEL ─── */
+.arc-panel {
+  position:fixed; bottom:0; right:2rem;
+  width:370px; z-index:199;
+  background:var(--ink); border:1px solid rgba(200,169,110,.25); border-bottom:none;
+  border-radius:2px 2px 0 0; overflow:hidden;
+  transform:translateY(calc(100% + 90px));
+  transition:transform .45s cubic-bezier(.16,1,.3,1);
+}
+.arc-panel.open { transform:translateY(0); }
+.ap-hdr {
+  display:flex; align-items:center; gap:.9rem; padding:.9rem 1.1rem;
+  border-bottom:1px solid rgba(200,169,110,.14);
+  background:rgba(200,169,110,.07);
+}
+.ap-hdr-text { flex:1; }
+.ap-hdr-n { font-family:var(--serif); font-size:1.05rem; color:var(--p); }
+.ap-hdr-s { font-family:var(--mono); font-size:9px; letter-spacing:.13em; color:var(--gold); }
+.ap-close {
+  background:none; border:none; cursor:none; color:rgba(246,244,240,.35);
+  font-size:17px; line-height:1; transition:color .2s;
+}
+.ap-close:hover { color:var(--p); }
+.ap-msgs { height:270px; overflow-y:auto; padding:1rem 1.1rem; display:flex; flex-direction:column; gap:.7rem; }
+.ap-chips { padding:0 1.1rem .65rem; display:flex; gap:.4rem; flex-wrap:wrap; }
+.ap-inp {
+  display:flex; align-items:center; gap:.8rem;
+  border-top:1px solid rgba(200,169,110,.14); padding:.75rem 1.1rem;
+}
+.ap-inp input {
+  flex:1; background:transparent; border:none; outline:none;
+  color:var(--p); font-family:var(--sans); font-size:13px;
+}
+.ap-inp input::placeholder { color:rgba(246,244,240,.3); }
+.ap-send { background:none; border:none; cursor:none; color:var(--gold); font-size:17px; transition:transform .2s; }
+.ap-send:hover { transform:translateX(3px); }
+.msg { display:flex; gap:.65rem; }
+.msg.u { flex-direction:row-reverse; }
+.av {
+  width:26px; height:26px; border-radius:50%; background:var(--gold); flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--mono); font-size:8.5px; color:var(--ink); font-weight:700;
+}
+.msg.u .av { background:var(--sand); }
+.bbl {
+  padding:.55rem .9rem; font-size:13.5px; line-height:1.5; max-width:82%;
+  border-radius:1px;
+}
+.msg:not(.u) .bbl { background:rgba(255,255,255,.07); color:rgba(246,244,240,.85); }
+.msg.u .bbl { background:var(--gold); color:var(--ink); }
+.dots { padding:.55rem .9rem; display:flex; gap:4px; }
+.dots span {
+  width:5px; height:5px; border-radius:50%; background:rgba(200,169,110,.5);
+  animation:dot 1.4s ease infinite;
+}
+.dots span:nth-child(2){animation-delay:.2s}
+.dots span:nth-child(3){animation-delay:.4s}
+@keyframes dot { 0%,80%,100%{transform:scale(.75);opacity:.5} 40%{transform:scale(1.1);opacity:1} }
+.chip {
+  font-family:var(--mono); font-size:9px; letter-spacing:.1em;
+  border:1px solid rgba(200,169,110,.3); color:var(--gold);
+  padding:.28rem .65rem; cursor:none; background:none;
+  transition:background .2s, color .2s;
+}
+.chip:hover { background:var(--gold); color:var(--ink); }
+
+/* ─── FOOTER ─── */
+.ftr { background:var(--ink); color:rgba(246,244,240,.55); padding:2.5rem var(--gap); }
+.ftr-in { max-width:var(--w); margin:0 auto; display:flex; align-items:center; justify-content:space-between; gap:2rem; }
+.ftr-logo { font-family:var(--serif); font-size:1.15rem; color:var(--p); text-decoration:none; }
+.ftr-logo em { font-style:italic; color:var(--gold); }
+.copy { font-family:var(--mono); font-size:9.5px; letter-spacing:.1em; }
+.legal { display:flex; gap:1.3rem; }
+.legal a { font-family:var(--mono); font-size:9.5px; letter-spacing:.09em; color:rgba(246,244,240,.25); text-decoration:none; cursor:none; }
+.legal a:hover { color:rgba(246,244,240,.55); }
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+
+<!-- ══ HEADER ══════════════════════════════════════════════ -->
+<header class="hdr" id="hdr">
+  <div class="hdr-in">
+    <a href="layout-6-arc.html" class="logo">Academia <em>Architektury</em></a>
+    <nav><ul class="nav">
+      <li><a href="#">Meble</a></li>
+      <li><a href="#">Oświetlenie</a></li>
+      <li><a href="#">Tkaniny</a></li>
+      <li><a href="#">Kolekcje</a></li>
+      <li><a href="#">Galeria</a></li>
+      <li><a href="#">O nas</a></li>
+    </ul></nav>
+    <div class="hdr-acts">
+      <button class="icon-btn" aria-label="Szukaj">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5l3.5 3.5"/></svg>
+      </button>
+      <button class="icon-btn" aria-label="Lista życzeń">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M12 21C12 21 3 14.5 3 8.5a5 5 0 0 1 9-3A5 5 0 0 1 21 8.5c0 6-9 12.5-9 12.5z"/></svg>
+      </button>
+      <a href="page-cart.html" class="icon-btn" aria-label="Koszyk" style="position:relative">
+        <svg width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span style="position:absolute;top:2px;right:2px;width:14px;height:14px;border-radius:50%;background:var(--gold);color:var(--ink);font-family:var(--mono);font-size:8px;display:flex;align-items:center;justify-content:center;font-weight:700">2</span>
+      </a>
+      <button class="btn-arc-hdr" onclick="togglePanel()">
+        <svg width="12" height="18" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round">
+          <circle cx="20" cy="8" r="5"/><line x1="20" y1="13" x2="10" y2="54"/><line x1="20" y1="13" x2="30" y2="54"/>
+        </svg>
+        Zapytaj ARC
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ══ PAGE CONTENT ═════════════════════════════════════════ -->
+<main class="page-wrap">
+
+  <div class="page-hd">
+    <p class="page-hd-eyebrow">Ostatni krok</p>
+    <h1>Finalizacja zamówienia</h1>
+
+    <!-- BREADCRUMB STEPS -->
+    <div class="steps" role="navigation" aria-label="Kroki zamówienia">
+      <a href="page-cart.html" class="step done">
+        <span class="step-num">✓</span>
+        <span>Koszyk</span>
+      </a>
+      <span class="step-arrow">→</span>
+      <span class="step active">
+        <span class="step-num">2</span>
+        <span>Dane</span>
+      </span>
+      <span class="step-arrow">→</span>
+      <span class="step">
+        <span class="step-num">3</span>
+        <span>Dostawa</span>
+      </span>
+      <span class="step-arrow">→</span>
+      <span class="step">
+        <span class="step-num">4</span>
+        <span>Płatność</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="checkout-layout">
+
+    <!-- ── LEWA: formularz ── -->
+    <div>
+
+      <!-- SEKCJA 1: Dane kontaktowe -->
+      <section class="form-section">
+        <h2 class="form-section-title">Dane kontaktowe</h2>
+
+        <div class="form-row cols-2">
+          <div class="field">
+            <label for="first-name">Imię</label>
+            <input type="text" id="first-name" name="first_name" placeholder="Jan" autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label for="last-name">Nazwisko</label>
+            <input type="text" id="last-name" name="last_name" placeholder="Kowalski" autocomplete="family-name">
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div class="field">
+            <label for="email">Adres e-mail</label>
+            <input type="email" id="email" name="email" placeholder="jan.kowalski@example.com" autocomplete="email">
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div class="field">
+            <label for="phone">Telefon</label>
+            <input type="tel" id="phone" name="phone" placeholder="+48 600 000 000" autocomplete="tel">
+          </div>
+        </div>
+
+        <div class="check-row">
+          <input type="checkbox" id="create-account" onchange="toggleAccount(this)">
+          <label for="create-account">Chcę założyć konto — zapamiętam zamówienia i dane dostawy</label>
+        </div>
+
+        <div class="account-fields" id="accountFields">
+          <div class="form-row single" style="padding-top:.3rem">
+            <div class="field">
+              <label for="password">Hasło do konta</label>
+              <input type="password" id="password" name="password" placeholder="Min. 8 znaków" autocomplete="new-password">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 2: Adres dostawy -->
+      <section class="form-section">
+        <h2 class="form-section-title">Adres dostawy</h2>
+
+        <div class="form-row single">
+          <div class="field">
+            <label for="street">Ulica i numer domu / mieszkania</label>
+            <input type="text" id="street" name="street" placeholder="ul. Floriańska 15/3" autocomplete="street-address">
+          </div>
+        </div>
+
+        <div class="form-row cols-3-7">
+          <div class="field">
+            <label for="postcode">Kod pocztowy</label>
+            <input type="text" id="postcode" name="postcode" placeholder="30-001" autocomplete="postal-code">
+          </div>
+          <div class="field">
+            <label for="city">Miasto</label>
+            <input type="text" id="city" name="city" placeholder="Kraków" autocomplete="address-level2">
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div class="field">
+            <label for="country">Kraj</label>
+            <select id="country" name="country" autocomplete="country">
+              <option value="PL" selected>Polska</option>
+              <option value="DE">Niemcy</option>
+              <option value="AT">Austria</option>
+              <option value="CZ">Czechy</option>
+              <option value="SK">Słowacja</option>
+              <option value="HU">Węgry</option>
+              <option value="FR">Francja</option>
+              <option value="NL">Holandia</option>
+              <option value="BE">Belgia</option>
+              <option value="GB">Wielka Brytania</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row single">
+          <div class="field">
+            <label for="notes">Uwagi do zamówienia <span style="color:var(--sand);font-size:9px">(opcjonalne)</span></label>
+            <textarea id="notes" name="notes" placeholder="Np. dzwoń przed dostawą, piętro 3 bez windy, kod do bramy..."></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEKCJA 3: Metoda dostawy -->
+      <section class="form-section">
+        <h2 class="form-section-title">Metoda dostawy</h2>
+
+        <div class="delivery-options" id="deliveryOptions">
+
+          <label class="d-option selected" onclick="selectDelivery(this)">
+            <input type="radio" name="delivery" value="courier" checked>
+            <div class="d-opt-info">
+              <p class="d-opt-name">Dostawa kurierem</p>
+              <p class="d-opt-desc">Wycena indywidualna po złożeniu zamówienia — kontaktujemy się w ciągu 24h</p>
+            </div>
+          </label>
+
+          <label class="d-option" onclick="selectDelivery(this)">
+            <input type="radio" name="delivery" value="pickup">
+            <div class="d-opt-info">
+              <p class="d-opt-name">Odbiór własny</p>
+              <p class="d-opt-desc">Kraków, ul. Grodzka 12 · pon–sob 10:00–18:00</p>
+            </div>
+          </label>
+
+          <label class="d-option" onclick="selectDelivery(this)">
+            <input type="radio" name="delivery" value="assembly">
+            <div class="d-opt-info">
+              <p class="d-opt-name">Dostawa z montażem i wniesieniem</p>
+              <p class="d-opt-desc">Wycena indywidualna — idealna dla mebli gabarytowych</p>
+            </div>
+            <span class="badge-gold">Polecane</span>
+          </label>
+
+        </div>
+      </section>
+
+      <!-- SEKCJA 4: Płatność -->
+      <section class="form-section">
+        <h2 class="form-section-title">Metoda płatności</h2>
+
+        <div class="pay-options" id="payOptions">
+
+          <label class="p-option selected" onclick="selectPay(this)">
+            <input type="radio" name="payment" value="transfer" checked>
+            <span class="p-opt-name">Przelew bankowy</span>
+            <div class="p-opt-icons">
+              <span class="p-ico">BANK</span>
+            </div>
+          </label>
+
+          <label class="p-option" onclick="selectPay(this)">
+            <input type="radio" name="payment" value="card">
+            <span class="p-opt-name">Karta płatnicza</span>
+            <div class="p-opt-icons">
+              <span class="p-ico" style="font-weight:700;color:#1A1F71">VISA</span>
+              <span class="p-ico" style="display:flex;gap:0;padding:1px 4px">
+                <svg width="28" height="14" viewBox="0 0 44 28">
+                  <circle cx="14" cy="14" r="12" fill="#EB001B" opacity=".85"/>
+                  <circle cx="30" cy="14" r="12" fill="#F79E1B" opacity=".85"/>
+                  <path d="M22 6.2a12 12 0 0 1 0 15.6A12 12 0 0 1 22 6.2z" fill="#FF5F00"/>
+                </svg>
+              </span>
+            </div>
+          </label>
+
+          <label class="p-option" onclick="selectPay(this)">
+            <input type="radio" name="payment" value="blik">
+            <span class="p-opt-name">BLIK</span>
+            <div class="p-opt-icons">
+              <span class="p-ico" style="font-weight:700;color:#e31f26">BLIK</span>
+            </div>
+          </label>
+
+          <label class="p-option" onclick="selectPay(this)">
+            <input type="radio" name="payment" value="p24">
+            <span class="p-opt-name">Przelewy24</span>
+            <div class="p-opt-icons">
+              <span class="p-ico" style="font-weight:700;color:#c0392b">P24</span>
+            </div>
+          </label>
+
+        </div>
+      </section>
+
+      <!-- SUBMIT -->
+      <div class="form-submit">
+        <div class="terms-row">
+          <input type="checkbox" id="terms" required>
+          <label for="terms">Akceptuję <a href="#">regulamin sklepu</a> oraz <a href="#">politykę prywatności</a> Academia Architektury. Rozumiem, że złożenie zamówienia wiąże się z obowiązkiem zapłaty.</label>
+        </div>
+        <button class="btn-submit" type="submit">
+          Złóż zamówienie — 24 000 PLN
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+
+    </div><!-- /lewa -->
+
+    <!-- ── PRAWA: order summary ── -->
+    <aside class="order-summary">
+      <div class="os-title">Twoje zamówienie</div>
+
+      <div class="os-items">
+
+        <div class="os-item">
+          <div class="os-img" style="background-image:url('../image_gen/generated/academia/salone-chair-studio.png')"></div>
+          <div class="os-item-info">
+            <p class="os-item-brand">Poliform</p>
+            <p class="os-item-name">Salone — fotel wypoczynkowy</p>
+            <p class="os-item-variant">Aksamit Sage · szt. 1</p>
+          </div>
+          <p class="os-item-price">14 200 PLN</p>
+        </div>
+
+        <div class="os-item">
+          <div class="os-img" style="background-image:url('../image_gen/generated/academia/forma-lamp-studio.png')"></div>
+          <div class="os-item-info">
+            <p class="os-item-brand">Flos</p>
+            <p class="os-item-name">Forma — lampa podłogowa</p>
+            <p class="os-item-variant">Czarny mat · szt. 1</p>
+          </div>
+          <p class="os-item-price">9 800 PLN</p>
+        </div>
+
+      </div>
+
+      <div class="os-rows">
+        <div class="os-row">
+          <span class="os-row-label">Produkty (2)</span>
+          <span class="os-row-val">24 000 PLN</span>
+        </div>
+        <div class="os-row">
+          <span class="os-row-label">w tym VAT 23%</span>
+          <span class="os-row-val vat">4 488,62 PLN</span>
+        </div>
+        <div class="os-row">
+          <span class="os-row-label">Dostawa</span>
+          <span class="os-row-val muted">Do ustalenia</span>
+        </div>
+      </div>
+
+      <div class="os-total">
+        <span class="os-total-label">Razem</span>
+        <span class="os-total-val">24 000 PLN</span>
+      </div>
+
+      <div class="os-coupon">
+        <button class="coupon-toggle" id="couponToggle" onclick="toggleCoupon()">
+          <span>Mam kod rabatowy</span>
+          <span class="coupon-toggle-arrow" id="couponArrow">▾</span>
+        </button>
+        <div class="coupon-body" id="couponBody">
+          <div class="coupon-inner">
+            <input class="coupon-inp" type="text" placeholder="Wpisz kod rabatowy">
+            <button class="coupon-apply">Zastosuj</button>
+          </div>
+        </div>
+      </div>
+
+    </aside>
+
+  </div><!-- /checkout-layout -->
+
+</main>
+
+<!-- ══ FOOTER ══════════════════════════════════════════════ -->
+<footer class="ftr">
+  <div class="ftr-in">
+    <a href="layout-6-arc.html" class="ftr-logo">Academia <em>Architektury</em></a>
+    <p class="copy">© 2025 Academia Architektury · ul. Grodzka 12, Kraków</p>
+    <div class="legal">
+      <a href="#">Polityka prywatności</a>
+      <a href="#">Regulamin</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ FLOATING ARC ════════════════════════════════════════ -->
+<div class="arc-float">
+  <span class="arc-lbl">Zapytaj ARC — architekta AI</span>
+  <button class="arc-btn" onclick="togglePanel()" aria-label="Otwórz ARC">
+    <svg class="arc-ico arc-svg-anim" width="24" height="36" viewBox="0 0 40 60" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+      <circle cx="20" cy="8" r="5"/>
+      <g transform="translate(20,13)">
+        <line class="ll" x1="0" y1="0" x2="-12" y2="43"/>
+        <line class="lr" x1="0" y1="0" x2="12" y2="43"/>
+        <line x1="-8.5" y1="26" x2="8.5" y2="26" stroke-width="1" opacity=".4"/>
+      </g>
+    </svg>
+    <span class="arc-ndot"></span>
+  </button>
+</div>
+
+<!-- ══ ARC PANEL ═══════════════════════════════════════════ -->
+<div class="arc-panel" id="arcPanel">
+  <div class="ap-hdr">
+    <svg class="arc-svg-anim" width="26" height="39" viewBox="0 0 40 60" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round">
+      <circle cx="20" cy="8" r="5"/>
+      <g transform="translate(20,13)">
+        <line class="ll" x1="0" y1="0" x2="-12" y2="43"/>
+        <line class="lr" x1="0" y1="0" x2="12" y2="43"/>
+        <line x1="-8.5" y1="26" x2="8.5" y2="26" stroke-width="1" opacity=".4"/>
+      </g>
+    </svg>
+    <div class="ap-hdr-text">
+      <div class="ap-hdr-n">ARC</div>
+      <div class="ap-hdr-s">Asystent Projektu &nbsp;·&nbsp; Dostępny</div>
+    </div>
+    <button class="ap-close" onclick="togglePanel()">✕</button>
+  </div>
+  <div class="ap-msgs" id="apMsgs">
+    <div class="msg">
+      <div class="av">ARC</div>
+      <div class="bbl">Finalizujesz zamówienie — świetnie. Masz pytania o dostawę, montaż lub płatność? Chętnie pomogę przed złożeniem.</div>
+    </div>
+  </div>
+  <div class="ap-chips">
+    <button class="chip" onclick="send('Jak długo trwa dostawa?')">Czas dostawy?</button>
+    <button class="chip" onclick="send('Czy montaż jest wliczony w cenę?')">Montaż?</button>
+    <button class="chip" onclick="send('Czy mogę zmienić kolor po złożeniu zamówienia?')">Zmiana koloru?</button>
+  </div>
+  <div class="ap-inp">
+    <input id="apInp" type="text" placeholder="Masz pytanie przed złożeniem zamówienia?" onkeydown="if(event.key==='Enter')send()">
+    <button class="ap-send" onclick="send()">→</button>
+  </div>
+</div>
+
+<script>
+/* cursor */
+const cur = document.getElementById('cur');
+document.addEventListener('mousemove', e => {
+  cur.style.left = e.clientX + 'px';
+  cur.style.top  = e.clientY + 'px';
+});
+
+/* header shrink */
+const hdr = document.getElementById('hdr');
+window.addEventListener('scroll', () => hdr.classList.toggle('up', scrollY > 50), {passive:true});
+
+/* account toggle */
+function toggleAccount(cb) {
+  document.getElementById('accountFields').classList.toggle('open', cb.checked);
+}
+
+/* delivery selection */
+function selectDelivery(el) {
+  document.querySelectorAll('.d-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+/* payment selection */
+function selectPay(el) {
+  document.querySelectorAll('.p-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+/* coupon toggle */
+function toggleCoupon() {
+  const body = document.getElementById('couponBody');
+  const arrow = document.getElementById('couponArrow');
+  const isOpen = body.classList.toggle('open');
+  arrow.classList.toggle('open', isOpen);
+}
+
+/* ARC panel */
+let open = false;
+function togglePanel() {
+  open = !open;
+  document.getElementById('arcPanel').classList.toggle('open', open);
+  if (open) setTimeout(() => document.getElementById('apInp').focus(), 460);
+}
+
+const replies = [
+  'Dostawa mebli gabarytowych zajmuje zazwyczaj 2–5 tygodni od zatwierdzenia zamówienia. Skontaktujemy się z Tobą w ciągu 24h z konkretnym terminem.',
+  'Opcja "Dostawa z montażem" obejmuje wniesienie, rozpakowanie i montaż mebla. Koszt wyceniamy indywidualnie w zależności od piętra i dostępu.',
+  'Zmianę koloru lub wariantu możesz zgłosić do 24h od złożenia zamówienia — napisz na hello@akademiaarchitektury.pl lub zadzwoń.',
+  'Przelew bankowy to najbezpieczniejsza opcja dla zamówień powyżej 10 000 PLN. Dane do przelewu otrzymasz e-mailem po złożeniu zamówienia.',
+];
+let ri = 0;
+
+function send(txt) {
+  const inp = document.getElementById('apInp');
+  const msg = txt || inp.value.trim();
+  if (!msg) return;
+  inp.value = '';
+  const msgs = document.getElementById('apMsgs');
+
+  const u = document.createElement('div');
+  u.className = 'msg u';
+  u.innerHTML = `<div class="av">TY</div><div class="bbl">${msg}</div>`;
+  msgs.appendChild(u);
+
+  const t = document.createElement('div');
+  t.className = 'msg';
+  t.innerHTML = `<div class="av">ARC</div><div class="dots"><span></span><span></span><span></span></div>`;
+  msgs.appendChild(t);
+  msgs.scrollTop = msgs.scrollHeight;
+
+  setTimeout(() => {
+    msgs.removeChild(t);
+    const r = document.createElement('div');
+    r.className = 'msg';
+    r.innerHTML = `<div class="av">ARC</div><div class="bbl">${replies[ri++ % replies.length]}</div>`;
+    msgs.appendChild(r);
+    msgs.scrollTop = msgs.scrollHeight;
+  }, 1300);
+}
+</script>
+</body>
+</html>
